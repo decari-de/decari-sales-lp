@@ -54,46 +54,43 @@
         <!-- Preconnect for Performance -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="preconnect" href="https://assets.calendly.com" />
 
-        <!-- Fonts -->
+        <!-- Preload critical font (Inter 400 for body text) -->
+        <link
+            rel="preload"
+            href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+
+        <!-- Fonts with font-display: swap (already included in Google Fonts URL) -->
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
 
-        <!-- Tailwind CSS 4 CDN -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            navy: "#000F57",
-                            teal: "#097788",
-                            "teal-light": "#0a9db3",
-                        },
-                        fontFamily: {
-                            sans: ["Inter", "system-ui", "sans-serif"],
-                        },
-                    },
-                },
-            };
-        </script>
-
-        <!-- Calendly -->
-        <link
-            href="https://assets.calendly.com/assets/external/widget.css"
-            rel="stylesheet"
-        />
-        <script
-            src="https://assets.calendly.com/assets/external/widget.js"
-            type="text/javascript"
-            async
-        ></script>
+        <!-- Tailwind CSS (pre-built, minified) -->
+        <link rel="stylesheet" href="css/tailwind.css" />
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/custom.css" />
+
+        <!-- Calendly CSS - loaded async to prevent render blocking -->
+        <link
+            rel="preload"
+            href="https://assets.calendly.com/assets/external/widget.css"
+            as="style"
+            onload="
+                this.onload = null;
+                this.rel = 'stylesheet';
+            "
+        />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="https://assets.calendly.com/assets/external/widget.css"
+        /></noscript>
 
         <!-- Structured Data -->
         <script type="application/ld+json">
@@ -1807,6 +1804,33 @@
         </div>
 
         <!-- ========== SCRIPTS ========== -->
+
+        <!-- Calendly Widget - lazy loaded -->
+        <script>
+            // Lazy load Calendly when user interacts or scrolls near Calendly sections
+            let calendlyLoaded = false;
+            function loadCalendly() {
+                if (calendlyLoaded) return;
+                calendlyLoaded = true;
+                const script = document.createElement("script");
+                script.src =
+                    "https://assets.calendly.com/assets/external/widget.js";
+                script.async = true;
+                document.body.appendChild(script);
+            }
+
+            // Load on first user interaction
+            ["scroll", "mousemove", "touchstart", "click"].forEach((event) => {
+                document.addEventListener(event, loadCalendly, {
+                    once: true,
+                    passive: true,
+                });
+            });
+
+            // Also load after 3 seconds as fallback
+            setTimeout(loadCalendly, 3000);
+        </script>
+
         <script src="js/roi-calculator.js"></script>
 
         <!-- Mobile Menu Toggle -->
