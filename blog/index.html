@@ -1,173 +1,307 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog – Decari | Wissen für Pflegedienste</title>
-  <meta name="description" content="Expertenwissen für Pflegedienste: SGB XII, Hilfe zur Pflege, Mitarbeiterbindung und mehr. Praktische Tipps für mehr Umsatz und zufriedenere Teams.">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Blog – Decari | Wissen für Pflegedienste</title>
+        <meta
+            name="description"
+            content="Expertenwissen für Pflegedienste: SGB XII, Hilfe zur Pflege, Mitarbeiterbindung und mehr. Praktische Tipps für mehr Umsatz und zufriedenere Teams."
+        />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Blog – Decari | Wissen für Pflegedienste">
-  <meta property="og:description" content="Expertenwissen für Pflegedienste: SGB XII, Hilfe zur Pflege, Mitarbeiterbindung und mehr.">
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Blog – Decari | Wissen für Pflegedienste"
+        />
+        <meta
+            property="og:description"
+            content="Expertenwissen für Pflegedienste: SGB XII, Hilfe zur Pflege, Mitarbeiterbindung und mehr."
+        />
 
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="../assets/decari-favicon.png" />
+        <link rel="apple-touch-icon" href="../assets/decari-favicon.png" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Preconnect -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#000F57',
-            teal: '#097788',
-            'teal-light': '#0a9db3',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
-  <link rel="stylesheet" href="../css/custom.css">
-</head>
-<body class="font-sans text-gray-800 bg-white antialiased">
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            navy: "#000F57",
+                            teal: "#097788",
+                            "teal-light": "#0a9db3",
+                        },
+                        fontFamily: {
+                            sans: ["Inter", "system-ui", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
 
-  <!-- Header -->
-  <header class="bg-white border-b border-gray-100">
-    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <a href="../" class="flex items-center">
-          <img src="../assets/decari-logo.png" alt="Decari Logo" class="h-8 md:h-10 w-auto">
-        </a>
-        <div class="flex items-center space-x-6">
-          <a href="../" class="text-gray-600 hover:text-navy font-medium transition-colors hidden sm:inline">Startseite</a>
-          <a href="../#rechner" class="text-gray-600 hover:text-navy font-medium transition-colors hidden sm:inline">ROI-Rechner</a>
-          <a href="../#termin" class="bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all">
-            Termin buchen
-          </a>
-        </div>
-      </div>
-    </nav>
-  </header>
+        <link rel="stylesheet" href="../css/custom.css" />
+    </head>
+    <body class="font-sans text-gray-800 bg-white antialiased">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-100">
+            <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 md:h-20">
+                    <a href="../" class="flex items-center">
+                        <img
+                            src="../assets/decari-logo.png"
+                            alt="Decari Logo"
+                            class="h-8 md:h-10 w-auto"
+                        />
+                    </a>
+                    <div class="flex items-center space-x-6">
+                        <a
+                            href="../"
+                            class="text-gray-600 hover:text-navy font-medium transition-colors hidden sm:inline"
+                            >Startseite</a
+                        >
+                        <a
+                            href="../#rechner"
+                            class="text-gray-600 hover:text-navy font-medium transition-colors hidden sm:inline"
+                            >ROI-Rechner</a
+                        >
+                        <a
+                            href="../#termin"
+                            class="bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all"
+                        >
+                            Termin buchen
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-  <!-- Main Content -->
-  <main class="py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Main Content -->
+        <main class="py-12 md:py-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h1 class="text-3xl md:text-4xl font-bold text-navy mb-4">
+                        Blog: Wissen für Pflegedienste
+                    </h1>
+                    <p class="text-lg text-gray-600">
+                        Praktische Einblicke zu SGB XII, Mitarbeiterbindung und
+                        Umsatzsteigerung – von Experten für Pflegedienste.
+                    </p>
+                </div>
 
-      <!-- Page Header -->
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-navy mb-4">
-          Blog: Wissen für Pflegedienste
-        </h1>
-        <p class="text-lg text-gray-600">
-          Praktische Einblicke zu SGB XII, Mitarbeiterbindung und Umsatzsteigerung – von Experten für Pflegedienste.
-        </p>
-      </div>
+                <!-- Blog Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <article
+                        class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group"
+                    >
+                        <div
+                            class="h-48 bg-gradient-to-br from-teal to-teal-light flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-16 h-16 text-white/80"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs text-teal font-semibold uppercase tracking-wide mb-2"
+                            >
+                                SGB XII
+                            </div>
+                            <h2
+                                class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors"
+                            >
+                                <a href="sgb-xii-hilfe-zur-pflege.html"
+                                    >SGB XII Hilfe zur Pflege: Was Pflegedienste
+                                    wissen müssen</a
+                                >
+                            </h2>
+                            <p class="text-gray-600 text-sm mb-4">
+                                Ein umfassender Leitfaden zu den Grundlagen der
+                                Hilfe zur Pflege nach SGB XII – und wie
+                                Pflegedienste davon profitieren können.
+                            </p>
+                            <a
+                                href="sgb-xii-hilfe-zur-pflege.html"
+                                class="text-teal font-medium text-sm hover:underline"
+                            >
+                                Weiterlesen &rarr;
+                            </a>
+                        </div>
+                    </article>
 
-      <!-- Blog Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Article 2 -->
+                    <article
+                        class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group"
+                    >
+                        <div
+                            class="h-48 bg-gradient-to-br from-navy to-navy/80 flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-16 h-16 text-white/80"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                                />
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs text-teal font-semibold uppercase tracking-wide mb-2"
+                            >
+                                Strategie
+                            </div>
+                            <h2
+                                class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors"
+                            >
+                                <a
+                                    href="warum-mehr-klienten-nicht-die-loesung-ist.html"
+                                    >Warum mehr Klienten nicht die Lösung ist</a
+                                >
+                            </h2>
+                            <p class="text-gray-600 text-sm mb-4">
+                                Der Paradigmenwechsel: Wie Pflegedienste mit
+                                bestehenden Klienten mehr verdienen können –
+                                ohne neues Personal einzustellen.
+                            </p>
+                            <a
+                                href="warum-mehr-klienten-nicht-die-loesung-ist.html"
+                                class="text-teal font-medium text-sm hover:underline"
+                            >
+                                Weiterlesen &rarr;
+                            </a>
+                        </div>
+                    </article>
 
-        <!-- Article 1 -->
-        <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group">
-          <div class="h-48 bg-gradient-to-br from-teal to-teal-light flex items-center justify-center">
-            <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-            </svg>
-          </div>
-          <div class="p-6">
-            <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">SGB XII</div>
-            <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href="sgb-xii-hilfe-zur-pflege.html">SGB XII Hilfe zur Pflege: Was Pflegedienste wissen müssen</a>
-            </h2>
-            <p class="text-gray-600 text-sm mb-4">
-              Ein umfassender Leitfaden zu den Grundlagen der Hilfe zur Pflege nach SGB XII – und wie Pflegedienste davon profitieren können.
-            </p>
-            <a href="sgb-xii-hilfe-zur-pflege.html" class="text-teal font-medium text-sm hover:underline">
-              Weiterlesen &rarr;
-            </a>
-          </div>
-        </article>
+                    <!-- Article 3 -->
+                    <article
+                        class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group"
+                    >
+                        <div
+                            class="h-48 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-16 h-16 text-white/80"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs text-teal font-semibold uppercase tracking-wide mb-2"
+                            >
+                                Personal
+                            </div>
+                            <h2
+                                class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors"
+                            >
+                                <a href="mitarbeiterbindung-pflege.html"
+                                    >Mitarbeiterbindung: Wie höhere Budgets pro
+                                    Klient helfen</a
+                                >
+                            </h2>
+                            <p class="text-gray-600 text-sm mb-4">
+                                Die Verbindung zwischen Klientenbudgets und
+                                Mitarbeiterzufriedenheit – und warum zufriedene
+                                Teams weniger kündigen.
+                            </p>
+                            <a
+                                href="mitarbeiterbindung-pflege.html"
+                                class="text-teal font-medium text-sm hover:underline"
+                            >
+                                Weiterlesen &rarr;
+                            </a>
+                        </div>
+                    </article>
+                </div>
 
-        <!-- Article 2 -->
-        <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group">
-          <div class="h-48 bg-gradient-to-br from-navy to-navy/80 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-            </svg>
-          </div>
-          <div class="p-6">
-            <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">Strategie</div>
-            <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href="warum-mehr-klienten-nicht-die-loesung-ist.html">Warum mehr Klienten nicht die Lösung ist</a>
-            </h2>
-            <p class="text-gray-600 text-sm mb-4">
-              Der Paradigmenwechsel: Wie Pflegedienste mit bestehenden Klienten mehr verdienen können – ohne neues Personal einzustellen.
-            </p>
-            <a href="warum-mehr-klienten-nicht-die-loesung-ist.html" class="text-teal font-medium text-sm hover:underline">
-              Weiterlesen &rarr;
-            </a>
-          </div>
-        </article>
+                <!-- CTA Section -->
+                <div
+                    class="mt-16 bg-gray-50 rounded-2xl p-8 md:p-12 text-center"
+                >
+                    <h2 class="text-2xl font-bold text-navy mb-4">
+                        Bereit, Ihr Potenzial zu entdecken?
+                    </h2>
+                    <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                        Berechnen Sie in 30 Sekunden, wie viel Umsatz bei Ihren
+                        bestehenden Klienten auf dem Tisch liegt.
+                    </p>
+                    <a
+                        href="../#rechner"
+                        class="inline-flex bg-teal text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl"
+                    >
+                        Zum ROI-Rechner
+                    </a>
+                </div>
+            </div>
+        </main>
 
-        <!-- Article 3 -->
-        <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group">
-          <div class="h-48 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-          </div>
-          <div class="p-6">
-            <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">Personal</div>
-            <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href="mitarbeiterbindung-pflege.html">Mitarbeiterbindung: Wie höhere Budgets pro Klient helfen</a>
-            </h2>
-            <p class="text-gray-600 text-sm mb-4">
-              Die Verbindung zwischen Klientenbudgets und Mitarbeiterzufriedenheit – und warum zufriedene Teams weniger kündigen.
-            </p>
-            <a href="mitarbeiterbindung-pflege.html" class="text-teal font-medium text-sm hover:underline">
-              Weiterlesen &rarr;
-            </a>
-          </div>
-        </article>
-
-      </div>
-
-      <!-- CTA Section -->
-      <div class="mt-16 bg-gray-50 rounded-2xl p-8 md:p-12 text-center">
-        <h2 class="text-2xl font-bold text-navy mb-4">
-          Bereit, Ihr Potenzial zu entdecken?
-        </h2>
-        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-          Berechnen Sie in 30 Sekunden, wie viel Umsatz bei Ihren bestehenden Klienten auf dem Tisch liegt.
-        </p>
-        <a href="../#rechner" class="inline-flex bg-teal text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl">
-          Zum ROI-Rechner
-        </a>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-navy text-white py-8 mt-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <img src="../assets/decari-logo.png" alt="Decari Logo" class="h-8 w-auto mx-auto mb-4 brightness-0 invert">
-      <p class="text-white/50 text-sm">&copy; 2025 Decari GmbH. Alle Rechte vorbehalten.</p>
-      <div class="mt-4 space-x-4 text-sm">
-        <a href="../impressum.html" class="text-white/70 hover:text-white">Impressum</a>
-        <a href="../datenschutz.html" class="text-white/70 hover:text-white">Datenschutz</a>
-      </div>
-    </div>
-  </footer>
-
-</body>
+        <!-- Footer -->
+        <footer class="bg-navy text-white py-8 mt-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <img
+                    src="../assets/decari-logo.png"
+                    alt="Decari Logo"
+                    class="h-8 w-auto mx-auto mb-4 brightness-0 invert"
+                />
+                <p class="text-white/50 text-sm">
+                    &copy; 2025 Decari GmbH. Alle Rechte vorbehalten.
+                </p>
+                <div class="mt-4 space-x-4 text-sm">
+                    <a
+                        href="https://decari.de/impressum"
+                        target="_blank"
+                        rel="noopener"
+                        class="text-white/70 hover:text-white"
+                        >Impressum</a
+                    >
+                    <a
+                        href="https://decari.de/datenschutz"
+                        target="_blank"
+                        rel="noopener"
+                        class="text-white/70 hover:text-white"
+                        >Datenschutz</a
+                    >
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>
