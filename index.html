@@ -1,953 +1,1815 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Decari – Mehr Umsatz mit bestehenden Klienten | Case-Management für Pflegedienste</title>
-  <meta name="description" content="Decari erschließt für Pflegedienste zusätzliche Sozialleistungen. +3.000€/Monat Mehrumsatz pro High-Value-Klient – ohne zusätzliches Personal.">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Decari – Mehr Umsatz mit bestehenden Klienten | Case-Management für
+            Pflegedienste
+        </title>
+        <meta
+            name="description"
+            content="Decari erschließt für Pflegedienste zusätzliche Sozialleistungen. +3.000€/Monat Mehrumsatz pro High-Value-Klient – ohne zusätzliches Personal."
+        />
 
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Decari – Mehr Umsatz mit bestehenden Klienten">
-  <meta property="og:description" content="Bis zu 3x mehr Umsatz pro Klient – ohne neue Mitarbeiter. Case-Management für Pflegedienste.">
-  <meta property="og:url" content="https://www.decari.de">
-  <meta property="og:locale" content="de_DE">
+        <!-- Open Graph / Social -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Decari – Mehr Umsatz mit bestehenden Klienten"
+        />
+        <meta
+            property="og:description"
+            content="Bis zu 2-3x mehr Umsatz pro High-Value-Klient – ohne neue Mitarbeiter. Case-Management für Pflegedienste."
+        />
+        <meta property="og:url" content="https://www.decari.de" />
+        <meta property="og:locale" content="de_DE" />
 
-  <!-- Preconnect for Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://assets.calendly.com">
+        <!-- Preconnect for Performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://assets.calendly.com" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
-  <!-- Tailwind CSS 4 CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#000F57',
-            teal: '#097788',
-            'teal-light': '#0a9db3',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
+        <!-- Tailwind CSS 4 CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            navy: "#000F57",
+                            teal: "#097788",
+                            "teal-light": "#0a9db3",
+                        },
+                        fontFamily: {
+                            sans: ["Inter", "system-ui", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
 
-  <!-- Calendly -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+        <!-- Calendly -->
+        <link
+            href="https://assets.calendly.com/assets/external/widget.css"
+            rel="stylesheet"
+        />
+        <script
+            src="https://assets.calendly.com/assets/external/widget.js"
+            type="text/javascript"
+            async
+        ></script>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/custom.css" />
 
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Decari GmbH",
-    "description": "Full-Service Case-Management für Pflegedienste. Wir erschließen zusätzliche Sozialleistungen für Ihre Klienten.",
-    "url": "https://www.decari.de",
-    "email": "vertrieb@decari.de",
-    "serviceType": "Case Management",
-    "areaServed": "DE"
-  }
-  </script>
-</head>
-<body class="font-sans text-gray-800 bg-white antialiased">
-
-  <!-- Skip to Content (Accessibility) -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-teal text-white px-4 py-2 rounded-lg z-50">
-    Zum Hauptinhalt springen
-  </a>
-
-  <!-- ========== HEADER / NAVIGATION ========== -->
-  <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-100 z-40">
-    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <!-- Logo -->
-        <a href="/" class="flex items-center">
-          <img src="assets/decari-logo.png" alt="Decari Logo" class="h-8 md:h-10 w-auto">
+        <!-- Structured Data -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "ProfessionalService",
+                "name": "Decari GmbH",
+                "description": "Full-Service Case-Management für Pflegedienste. Wir erschließen zusätzliche Sozialleistungen für Ihre Klienten.",
+                "url": "https://www.decari.de",
+                "email": "vertrieb@decari.de",
+                "serviceType": "Case Management",
+                "areaServed": "DE"
+            }
+        </script>
+    </head>
+    <body class="font-sans text-gray-800 bg-white antialiased">
+        <!-- Skip to Content (Accessibility) -->
+        <a
+            href="#main-content"
+            class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-teal text-white px-4 py-2 rounded-lg z-50"
+        >
+            Zum Hauptinhalt springen
         </a>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="#problem" class="text-gray-600 hover:text-navy transition-colors font-medium">Problem</a>
-          <a href="#loesung" class="text-gray-600 hover:text-navy transition-colors font-medium">Lösung</a>
-          <a href="#rechner" class="text-gray-600 hover:text-navy transition-colors font-medium">Rechner</a>
-          <a href="#vorteile" class="text-gray-600 hover:text-navy transition-colors font-medium">Vorteile</a>
-          <a href="blog/" class="text-gray-600 hover:text-navy transition-colors font-medium">Blog</a>
-        </div>
+        <!-- ========== HEADER / NAVIGATION ========== -->
+        <header
+            class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-100 z-40"
+        >
+            <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 md:h-20">
+                    <!-- Logo -->
+                    <a href="/" class="flex items-center">
+                        <img
+                            src="assets/decari-logo.png"
+                            alt="Decari Logo"
+                            class="h-8 md:h-10 w-auto"
+                        />
+                    </a>
 
-        <!-- CTA Button -->
-        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788'});return false;"
-                class="hidden sm:inline-flex bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all shadow-sm hover:shadow-md">
-          Termin buchen
-        </button>
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a
+                            href="#problem"
+                            class="text-gray-600 hover:text-navy transition-colors font-medium"
+                            >Problem</a
+                        >
+                        <a
+                            href="#loesung"
+                            class="text-gray-600 hover:text-navy transition-colors font-medium"
+                            >Lösung</a
+                        >
+                        <a
+                            href="#rechner"
+                            class="text-gray-600 hover:text-navy transition-colors font-medium"
+                            >Rechner</a
+                        >
+                        <a
+                            href="#vorteile"
+                            class="text-gray-600 hover:text-navy transition-colors font-medium"
+                            >Vorteile</a
+                        >
+                        <a
+                            href="blog/"
+                            class="text-gray-600 hover:text-navy transition-colors font-medium"
+                            >Blog</a
+                        >
+                    </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-navy" aria-label="Menü öffnen">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      </div>
+                    <!-- CTA Button -->
+                    <button
+                        onclick="
+                            Calendly.initPopupWidget({
+                                url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788',
+                            });
+                            return false;
+                        "
+                        class="hidden sm:inline-flex bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all shadow-sm hover:shadow-md"
+                    >
+                        Termin buchen
+                    </button>
 
-      <!-- Mobile Navigation -->
-      <div id="mobile-menu" class="hidden md:hidden pb-4">
-        <div class="flex flex-col space-y-3">
-          <a href="#problem" class="text-gray-600 hover:text-navy py-2 font-medium">Problem</a>
-          <a href="#loesung" class="text-gray-600 hover:text-navy py-2 font-medium">Lösung</a>
-          <a href="#rechner" class="text-gray-600 hover:text-navy py-2 font-medium">Rechner</a>
-          <a href="#vorteile" class="text-gray-600 hover:text-navy py-2 font-medium">Vorteile</a>
-          <a href="blog/" class="text-gray-600 hover:text-navy py-2 font-medium">Blog</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+                    <!-- Mobile Menu Button -->
+                    <button
+                        id="mobile-menu-btn"
+                        class="md:hidden p-2 text-gray-600 hover:text-navy"
+                        aria-label="Menü öffnen"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                    </button>
+                </div>
 
-  <main id="main-content">
+                <!-- Mobile Navigation -->
+                <div id="mobile-menu" class="hidden md:hidden pb-4">
+                    <div class="flex flex-col space-y-3">
+                        <a
+                            href="#problem"
+                            class="text-gray-600 hover:text-navy py-2 font-medium"
+                            >Problem</a
+                        >
+                        <a
+                            href="#loesung"
+                            class="text-gray-600 hover:text-navy py-2 font-medium"
+                            >Lösung</a
+                        >
+                        <a
+                            href="#rechner"
+                            class="text-gray-600 hover:text-navy py-2 font-medium"
+                            >Rechner</a
+                        >
+                        <a
+                            href="#vorteile"
+                            class="text-gray-600 hover:text-navy py-2 font-medium"
+                            >Vorteile</a
+                        >
+                        <a
+                            href="blog/"
+                            class="text-gray-600 hover:text-navy py-2 font-medium"
+                            >Blog</a
+                        >
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-    <!-- ========== SECTION 1: HERO ========== -->
-    <section id="hero" class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-gray-50 to-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-4xl mx-auto">
-          <!-- Badge -->
-          <div class="inline-flex items-center bg-teal/10 text-teal font-semibold px-4 py-2 rounded-full mb-6">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"/>
-            </svg>
-            +170% Umsatzsteigerung pro High-Value-Klient
-          </div>
+        <main id="main-content">
+            <!-- ========== SECTION 1: HERO ========== -->
+            <section
+                id="hero"
+                class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-gray-50 to-white"
+            >
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-4xl mx-auto">
+                        <!-- Badge -->
+                        <div
+                            class="inline-flex items-center bg-teal/10 text-teal font-semibold px-4 py-2 rounded-full mb-6"
+                        >
+                            <svg
+                                class="w-5 h-5 mr-2"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+                                />
+                            </svg>
+                            +170% Umsatzsteigerung pro High-Value-Klient
+                        </div>
 
-          <!-- Headline -->
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6">
-            Mehr Umsatz mit Ihren bestehenden Klienten – <span class="text-teal">ohne zusätzliches Personal</span>
-          </h1>
+                        <!-- Headline -->
+                        <h1
+                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6"
+                        >
+                            Mehr Umsatz mit Ihren bestehenden Klienten –
+                            <span class="text-teal"
+                                >ohne zusätzliches Personal</span
+                            >
+                        </h1>
 
-          <!-- Subheadline -->
-          <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Ihre Klienten haben Anspruch auf Zusatzleistungen, die niemand beantragt. Wir holen dieses Geld – Sie betreuen dieselben Menschen, verdienen aber bis zu <strong>3x mehr</strong>.
-          </p>
+                        <!-- Subheadline -->
+                        <p
+                            class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed"
+                        >
+                            Ihre Klienten haben Anspruch auf Zusatzleistungen,
+                            die niemand beantragt. Wir holen dieses Geld – Sie
+                            betreuen dieselben Menschen, verdienen aber bis zu
+                            <strong>2-3x mehr</strong>.
+                        </p>
 
-          <!-- CTAs -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#rechner" class="w-full sm:w-auto bg-teal text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl text-center">
-              Potenzial berechnen
-            </a>
-            <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788'});return false;"
-                    class="w-full sm:w-auto bg-white text-navy font-semibold px-8 py-4 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all text-center">
-              Erstgespräch vereinbaren
+                        <!-- CTAs -->
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-center gap-4"
+                        >
+                            <a
+                                href="#rechner"
+                                class="w-full sm:w-auto bg-teal text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl text-center"
+                            >
+                                Potenzial berechnen
+                            </a>
+                            <button
+                                onclick="
+                                    Calendly.initPopupWidget({
+                                        url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788',
+                                    });
+                                    return false;
+                                "
+                                class="w-full sm:w-auto bg-white text-navy font-semibold px-8 py-4 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all text-center"
+                            >
+                                Erstgespräch vereinbaren
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 2: PROBLEM ========== -->
+            <section id="problem" class="py-16 md:py-24 bg-white">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4"
+                        >
+                            Sie müssen täglich Anfragen ablehnen – dabei liegt
+                            Geld auf dem Tisch
+                        </h2>
+                    </div>
+
+                    <!-- Problem Cards -->
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8 mb-12">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 md:p-8 hover:shadow-lg transition-all group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-red-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">
+                                Wachsen unmöglich
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                Sie möchten wachsen, aber ohne Pflegekräfte geht
+                                nichts. Neue Klienten aufnehmen? Unmöglich.
+                            </p>
+                            <div class="text-2xl font-bold text-red-600">
+                                80%
+                            </div>
+                            <p class="text-sm text-gray-500">
+                                der Pflegedienste mussten Anfragen ablehnen
+                            </p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 md:p-8 hover:shadow-lg transition-all group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-orange-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">
+                                Vergütung reicht nicht
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                Die Kassen zahlen &lt;30€ für Leistungen, die
+                                Sie &gt;45€ kosten. Schwere Pflegefälle sind ein
+                                Minusgeschäft.
+                            </p>
+                            <div class="text-2xl font-bold text-orange-600">
+                                1-2%
+                            </div>
+                            <p class="text-sm text-gray-500">
+                                Umsatzrendite – eingebrochen
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 md:p-8 hover:shadow-lg transition-all group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-yellow-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">
+                                Mitarbeiter am Limit
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                12 Einsätze in 8 Stunden. Zeitdruck, Hetze,
+                                keine Zeit für echte Pflege. Kein Wunder, dass
+                                alle kündigen.
+                            </p>
+                            <div class="text-2xl font-bold text-yellow-600">
+                                65%
+                            </div>
+                            <p class="text-sm text-gray-500">
+                                Fluktuation pro Jahr
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Box -->
+                    <div
+                        class="bg-navy/5 border-l-4 border-teal rounded-r-xl p-6 md:p-8 max-w-3xl mx-auto"
+                    >
+                        <p
+                            class="text-lg md:text-xl text-navy font-medium text-center"
+                        >
+                            <strong>40%</strong> Ihrer Klienten haben Anspruch
+                            auf Zusatzleistungen – nur
+                            <strong>12%</strong> erhalten sie.
+                            <span class="text-teal font-bold"
+                                >Dieses Geld liegt auf dem Tisch.</span
+                            >
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 3: SOLUTION ========== -->
+            <section id="loesung" class="py-16 md:py-24 bg-gray-50">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4"
+                        >
+                            Mehr verdienen mit denselben Klienten
+                        </h2>
+                        <p class="text-lg text-gray-600">
+                            Decari erschließt für Ihre bestehenden Klienten
+                            zusätzliche Sozialleistungen. Sie brauchen keine
+                            neuen Klienten, kein neues Personal – nur die
+                            Ansprüche, die bereits existieren.
+                        </p>
+                    </div>
+
+                    <!-- Solution Cards -->
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all border-t-4 border-teal group"
+                        >
+                            <div
+                                class="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal group-hover:text-white transition-all"
+                            >
+                                <svg
+                                    class="w-7 h-7 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">
+                                Bis zu 3x mehr pro HV-Klient
+                            </h3>
+                            <p class="text-gray-600">
+                                Bis zu <strong>+3.000€/Monat</strong> Mehrumsatz
+                                pro High-Value-Klient. Erschließung von SGB XII,
+                                SGB IX, Persönliches Budget – ohne Mehrarbeit
+                                für Sie.
+                            </p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all border-t-4 border-teal group"
+                        >
+                            <div
+                                class="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal group-hover:text-white transition-all"
+                            >
+                                <svg
+                                    class="w-7 h-7 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">
+                                Null Zusatzaufwand
+                            </h3>
+                            <p class="text-gray-600">
+                                Nur <strong>~1,5h/Monat</strong> Koordination
+                                pro Standort. 100% Behördenkram durch Decari –
+                                weder neue Mitarbeiter noch Schulungen nötig.
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div
+                            class="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all border-t-4 border-teal group"
+                        >
+                            <div
+                                class="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal group-hover:text-white transition-all"
+                            >
+                                <svg
+                                    class="w-7 h-7 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy mb-3">
+                                Mitarbeiter entlasten
+                            </h3>
+                            <p class="text-gray-600">
+                                Höhere Budgets =
+                                <strong>längere Einsatzzeiten</strong> möglich.
+                                Weniger Tourenstopps pro Schicht (8 statt 12).
+                                Zufriedenere Teams, geringere Fluktuation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 4: ROI CALCULATOR ========== -->
+            <section
+                id="rechner"
+                class="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50"
+            >
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center mb-10 md:mb-12">
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4"
+                        >
+                            Wie viel Umsatz verschenken Sie – bei Ihren
+                            bestehenden Klienten?
+                        </h2>
+                        <p class="text-lg text-gray-600">
+                            2 Eingaben – Ihr Ergebnis in Sekunden
+                        </p>
+                    </div>
+
+                    <!-- Calculator Card -->
+                    <div
+                        class="bg-white rounded-2xl shadow-xl p-6 md:p-10 lg:p-12"
+                    >
+                        <!-- Input Fields -->
+                        <div class="space-y-8" id="calculator-inputs">
+                            <!-- Field 1: Total Clients -->
+                            <div class="calculator-field">
+                                <label
+                                    for="gesamtKlienten"
+                                    class="block text-sm font-semibold text-gray-700 mb-3"
+                                >
+                                    Wie viele Klienten betreuen Sie insgesamt?
+                                </label>
+                                <div class="flex items-center gap-4">
+                                    <input
+                                        type="range"
+                                        id="gesamtKlienten"
+                                        min="50"
+                                        max="1000"
+                                        value="200"
+                                        step="10"
+                                        aria-label="Gesamtzahl der Klienten"
+                                        aria-valuemin="50"
+                                        aria-valuemax="1000"
+                                        aria-valuenow="200"
+                                        class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                                    />
+                                    <span
+                                        class="text-2xl font-bold text-navy w-20 text-right tabular-nums"
+                                        id="display-klienten"
+                                        >200</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex justify-between text-xs text-gray-400 mt-1 px-1"
+                                >
+                                    <span>50</span>
+                                    <span>500</span>
+                                    <span>1000</span>
+                                </div>
+                            </div>
+
+                            <!-- Field 2: Care Level -->
+                            <div class="calculator-field">
+                                <label
+                                    class="block text-sm font-semibold text-gray-700 mb-3"
+                                >
+                                    Durchschnittlicher Pflegegrad Ihrer Klienten
+                                </label>
+                                <div
+                                    class="flex gap-2 flex-wrap"
+                                    id="pflegegrad-buttons"
+                                    role="group"
+                                    aria-label="Pflegegrad auswählen"
+                                >
+                                    <button
+                                        data-value="2"
+                                        class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
+                                    >
+                                        2
+                                    </button>
+                                    <button
+                                        data-value="3"
+                                        class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-teal bg-teal text-white font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
+                                    >
+                                        3
+                                    </button>
+                                    <button
+                                        data-value="4"
+                                        class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
+                                    >
+                                        4
+                                    </button>
+                                    <button
+                                        data-value="5"
+                                        class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
+                                    >
+                                        5
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results Section -->
+                        <div
+                            id="calculator-results"
+                            class="mt-10 pt-8 border-t border-gray-100"
+                        >
+                            <h3
+                                class="text-lg font-semibold text-center text-gray-700 mb-6"
+                            >
+                                Umsatz, den Sie aktuell verschenken
+                            </h3>
+
+                            <!-- Result Cards -->
+                            <div
+                                class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
+                            >
+                                <div
+                                    class="bg-gray-50 rounded-xl p-5 text-center"
+                                >
+                                    <div
+                                        class="text-3xl md:text-4xl font-bold text-teal tabular-nums"
+                                        id="result-hvKlienten"
+                                    >
+                                        18
+                                    </div>
+                                    <div class="text-sm text-gray-500 mt-2">
+                                        Klienten mit Anspruch
+                                    </div>
+                                </div>
+                                <div
+                                    class="bg-gray-50 rounded-xl p-5 text-center"
+                                >
+                                    <div
+                                        class="text-3xl md:text-4xl font-bold text-teal tabular-nums"
+                                        id="result-monatlich"
+                                    >
+                                        54.000€
+                                    </div>
+                                    <div class="text-sm text-gray-500 mt-2">
+                                        pro Monat zusätzlich
+                                    </div>
+                                </div>
+                                <div
+                                    class="bg-teal/10 rounded-xl p-5 text-center border-2 border-teal result-highlight"
+                                >
+                                    <div
+                                        class="text-3xl md:text-4xl font-bold text-navy tabular-nums"
+                                        id="result-jaehrlich"
+                                    >
+                                        648.000€
+                                    </div>
+                                    <div
+                                        class="text-sm text-gray-600 mt-2 font-medium"
+                                    >
+                                        pro Jahr zusätzlich
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Highlight Box -->
+                            <div
+                                class="bg-navy/5 rounded-lg p-4 text-center text-navy mb-6"
+                            >
+                                <strong>Das Beste:</strong> Sie brauchen dafür
+                                KEINE neuen Mitarbeiter. Diese Klienten betreuen
+                                Sie bereits.
+                            </div>
+
+                            <!-- Context Fact -->
+                            <div
+                                id="context-fact"
+                                class="text-center text-gray-600 mb-8"
+                            >
+                                Das entspricht
+                                <strong>9 Vollzeit-Pflegekräften</strong>, die
+                                Sie zusätzlich finanzieren könnten.
+                            </div>
+
+                            <!-- CTA -->
+                            <div class="text-center">
+                                <button
+                                    onclick="
+                                        Calendly.initPopupWidget({
+                                            url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788',
+                                        });
+                                        return false;
+                                    "
+                                    class="bg-teal text-white text-lg font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl"
+                                >
+                                    Potenzial validieren lassen
+                                </button>
+                            </div>
+
+                            <!-- Disclaimer -->
+                            <p class="text-xs text-gray-400 text-center mt-6">
+                                Diese Berechnung basiert auf Durchschnittswerten
+                                verschiedener Zusatzleistungen (SGB IX, XII,
+                                Verhinderungspflege, Entlastung). Im
+                                Erstgespräch analysieren wir Ihr individuelles
+                                Potenzial.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 5: PROCESS ========== -->
+            <section id="prozess" class="py-16 md:py-24 bg-white">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4"
+                        >
+                            So einfach funktioniert's
+                        </h2>
+                    </div>
+
+                    <!-- Timeline - Desktop (using max-md:hidden for better Tailwind v4 CDN compatibility) -->
+                    <div class="max-md:hidden relative">
+                        <!-- Line (z-0 to stay behind circles) -->
+                        <div
+                            class="absolute top-8 left-0 right-0 h-1 bg-gray-200 z-0"
+                        ></div>
+                        <div
+                            class="absolute top-8 left-0 w-1/2 h-1 bg-teal z-0"
+                        ></div>
+
+                        <!-- Steps (z-10 to appear above line) -->
+                        <div class="grid grid-cols-5 gap-4 relative z-10">
+                            <!-- Step 1 -->
+                            <div class="text-center">
+                                <div
+                                    class="w-16 h-16 bg-teal text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold shadow-lg relative z-20"
+                                >
+                                    1
+                                </div>
+                                <h3 class="font-bold text-navy mb-2">
+                                    Onboarding
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    2-3h einmalig
+                                </p>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Setup & Schulung
+                                </p>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="text-center">
+                                <div
+                                    class="w-16 h-16 bg-teal text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold shadow-lg relative z-20"
+                                >
+                                    2
+                                </div>
+                                <h3 class="font-bold text-navy mb-2">
+                                    Qualifizierung
+                                </h3>
+                                <p class="text-sm text-gray-600">30 Min/Fall</p>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Scoring der Klienten
+                                </p>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="text-center">
+                                <div
+                                    class="w-16 h-16 bg-teal text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold shadow-lg relative z-20"
+                                >
+                                    3
+                                </div>
+                                <h3 class="font-bold text-navy mb-2">
+                                    Durchsetzung
+                                </h3>
+                                <p class="text-sm text-gray-600">100% Decari</p>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Anträge & Behörden
+                                </p>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="text-center">
+                                <div
+                                    class="w-16 h-16 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold relative z-20"
+                                >
+                                    4
+                                </div>
+                                <h3 class="font-bold text-navy mb-2">
+                                    Abrechnung
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    20 Min/Monat
+                                </p>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Dokumentation
+                                </p>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="text-center">
+                                <div
+                                    class="w-16 h-16 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold relative z-20"
+                                >
+                                    5
+                                </div>
+                                <h3 class="font-bold text-navy mb-2">
+                                    Folgeanträge
+                                </h3>
+                                <p class="text-sm text-gray-600">30 Min/Fall</p>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Verlängerungen
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline - Mobile -->
+                    <div class="md:hidden space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold"
+                            >
+                                1
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-navy">Onboarding</h3>
+                                <p class="text-sm text-gray-600">
+                                    2-3h einmalig – Setup & Schulung
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold"
+                            >
+                                2
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-navy">
+                                    Qualifizierung
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    30 Min/Fall – Scoring der Klienten
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-teal/30 text-teal rounded-full flex items-center justify-center flex-shrink-0 font-bold border-2 border-teal"
+                            >
+                                3
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-navy">
+                                    Durchsetzung
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    100% Decari – Anträge & Behörden
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center flex-shrink-0 font-bold"
+                            >
+                                4
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-navy">Abrechnung</h3>
+                                <p class="text-sm text-gray-600">
+                                    20 Min/Monat – Dokumentation
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center flex-shrink-0 font-bold"
+                            >
+                                5
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-navy">
+                                    Folgeanträge
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    30 Min/Fall – Verlängerungen
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Highlight -->
+                    <div class="mt-12 text-center">
+                        <div
+                            class="inline-flex items-center bg-teal/10 text-teal font-semibold px-6 py-3 rounded-full"
+                        >
+                            <svg
+                                class="w-5 h-5 mr-2"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                            Ihr Gesamtaufwand: ~1,5 Stunden pro Monat und
+                            Standort
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 6: CASE STUDY ========== -->
+            <section id="fallbeispiel" class="py-16 md:py-24 bg-gray-50">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4"
+                        >
+                            Aus der Praxis: Familie Müller
+                        </h2>
+                    </div>
+
+                    <!-- Before/After Comparison -->
+                    <div
+                        class="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto mb-10"
+                    >
+                        <!-- Before -->
+                        <div
+                            class="bg-white rounded-xl p-6 md:p-8 border-2 border-gray-200"
+                        >
+                            <div
+                                class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4"
+                            >
+                                Vorher
+                            </div>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-600"
+                                        >Nur Pflegegrad 4</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-600"
+                                        ><strong>1.778€/Monat</strong>
+                                        Sachleistung</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-600"
+                                        >Tochter am Limit</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-600"
+                                        >Pflegekraft:
+                                        <strong>15 Min</strong> Einsatz</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- After -->
+                        <div
+                            class="bg-white rounded-xl p-6 md:p-8 border-2 border-teal shadow-lg"
+                        >
+                            <div
+                                class="text-sm font-semibold text-teal uppercase tracking-wide mb-4"
+                            >
+                                Nachher
+                            </div>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-teal mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-700"
+                                        >+ Hilfe zur Pflege (SGB XII)</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-teal mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-700"
+                                        ><strong class="text-teal"
+                                            >4.800€/Monat</strong
+                                        >
+                                        Gesamtbudget</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-teal mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-700"
+                                        >24h-Versorgung gesichert</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-teal mt-0.5 flex-shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <span class="text-gray-700"
+                                        >Pflegekraft:
+                                        <strong class="text-teal"
+                                            >45 Min</strong
+                                        >
+                                        Zeit</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Result Highlight -->
+                    <div class="max-w-2xl mx-auto">
+                        <div
+                            class="bg-navy text-white rounded-xl p-6 md:p-8 text-center"
+                        >
+                            <div class="text-3xl md:text-4xl font-bold mb-2">
+                                +3.022€/Monat
+                            </div>
+                            <div class="text-lg text-white/80 mb-4">
+                                = +36.264€/Jahr (+170%)
+                            </div>
+                            <p class="text-white/90">
+                                <strong>Doppelter Gewinn:</strong> Mehr Umsatz
+                                für Sie. Mehr Zeit für echte Pflege.
+                                Zufriedenere Mitarbeiter.
+                            </p>
+                        </div>
+
+                        <!-- Context Box -->
+                        <div
+                            class="mt-6 bg-white rounded-lg p-4 text-sm text-gray-600 border border-gray-200"
+                        >
+                            <strong>Kontext:</strong> Herr Müller, 78,
+                            fortgeschrittene Demenz mit Weglauftendenz. Scoring:
+                            12/14 Punkte (High-Value). Bearbeitungszeit bis
+                            Bewilligung: 8 Wochen.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 7: BENEFITS ========== -->
+            <section id="vorteile" class="py-16 md:py-24 bg-white">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4"
+                        >
+                            Ihre Vorteile mit Decari
+                        </h2>
+                    </div>
+
+                    <!-- Benefits Grid -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Benefit 1 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy mb-2">
+                                Mehr Umsatz ohne Mehrarbeit
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                +3.000€/Monat pro High-Value-Klient. Ohne neue
+                                Klienten aufzunehmen.
+                            </p>
+                        </div>
+
+                        <!-- Benefit 2 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy mb-2">
+                                White-Label Service
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                Wir agieren in Ihrem Namen. Ihre Marke, unsere
+                                Expertise.
+                            </p>
+                        </div>
+
+                        <!-- Benefit 3 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy mb-2">
+                                Skalierbar für Ketten
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                Ein Vertrag, alle Standorte. Zentrale Steuerung,
+                                lokale Umsetzung.
+                            </p>
+                        </div>
+
+                        <!-- Benefit 4 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy mb-2">
+                                Mitarbeiter halten
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                Höhere Budgets = längere Einsätze = weniger
+                                Hetze. Spart 70.000€ pro unbesetzter Stelle.
+                            </p>
+                        </div>
+
+                        <!-- Benefit 5 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy mb-2">
+                                Kein zusätzliches Personal
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                Weder für die Anträge (machen wir) noch für mehr
+                                Klienten (betreuen Sie bereits).
+                            </p>
+                        </div>
+
+                        <!-- Benefit 6 -->
+                        <div
+                            class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group"
+                        >
+                            <div
+                                class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-teal group-hover:text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy mb-2">
+                                Erfolgsbasiert
+                            </h3>
+                            <p class="text-gray-600 text-sm">
+                                Wir verdienen nur, wenn Sie verdienen. Kein
+                                Risiko für Sie.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 8: CTA / CALENDLY ========== -->
+            <section id="termin" class="py-16 md:py-24 bg-gray-50">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center max-w-3xl mx-auto mb-10 md:mb-12">
+                        <h2
+                            class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4"
+                        >
+                            Lassen Sie uns über Ihr ungenutztes Potenzial
+                            sprechen
+                        </h2>
+                        <p class="text-lg text-gray-600">
+                            In 30 Minuten analysieren wir gemeinsam, wie viel
+                            Umsatz bei Ihren bestehenden Klienten auf dem Tisch
+                            liegt – und wie Sie ihn holen.
+                        </p>
+                    </div>
+
+                    <!-- Calendly Embed -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                        <div
+                            class="calendly-inline-widget"
+                            data-url="https://calendly.com/DECARI_USERNAME/erstgespraech?hide_gdpr_banner=1&primary_color=097788"
+                            style="min-width: 320px; height: 700px"
+                        ></div>
+                    </div>
+
+                    <!-- Alternative CTA -->
+                    <p class="text-center text-gray-500 mt-6">
+                        Lieber erst schriftlich?
+                        <a
+                            href="#kontakt"
+                            class="text-teal hover:underline font-medium"
+                            >Zum Kontaktformular</a
+                        >
+                    </p>
+                </div>
+            </section>
+
+            <!-- ========== SECTION 9: CONTACT FORM ========== -->
+            <section id="kontakt" class="py-16 md:py-24 bg-white">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-12 items-start">
+                        <!-- Left: Form -->
+                        <div>
+                            <h2
+                                class="text-2xl sm:text-3xl font-bold text-navy mb-4"
+                            >
+                                Oder schreiben Sie uns
+                            </h2>
+                            <p class="text-gray-600 mb-8">
+                                Wir melden uns innerhalb von 24 Stunden bei
+                                Ihnen.
+                            </p>
+
+                            <form
+                                action="https://api.web3forms.com/submit"
+                                method="POST"
+                                class="space-y-5"
+                            >
+                                <!-- Web3Forms Config -->
+                                <input
+                                    type="hidden"
+                                    name="access_key"
+                                    value="YOUR_ACCESS_KEY_HERE"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="subject"
+                                    value="Neue Anfrage - Decari Landing Page"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="from_name"
+                                    value="Decari Website"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="redirect"
+                                    value="https://www.decari.de?success=true"
+                                />
+                                <!-- Honeypot -->
+                                <input
+                                    type="checkbox"
+                                    name="botcheck"
+                                    class="hidden"
+                                    style="display: none"
+                                />
+
+                                <!-- Name -->
+                                <div>
+                                    <label
+                                        for="name"
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                        >Name *</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors"
+                                        placeholder="Ihr vollständiger Name"
+                                    />
+                                </div>
+
+                                <!-- Email -->
+                                <div>
+                                    <label
+                                        for="email"
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                        >E-Mail *</label
+                                    >
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors"
+                                        placeholder="ihre@email.de"
+                                    />
+                                </div>
+
+                                <!-- Company -->
+                                <div>
+                                    <label
+                                        for="company"
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                        >Pflegedienst / Unternehmen</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="company"
+                                        name="company"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors"
+                                        placeholder="Name Ihres Pflegedienstes"
+                                    />
+                                </div>
+
+                                <!-- Client Count -->
+                                <div>
+                                    <label
+                                        for="klienten"
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                        >Anzahl Klienten</label
+                                    >
+                                    <select
+                                        id="klienten"
+                                        name="klienten"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors"
+                                    >
+                                        <option value="">Bitte wählen</option>
+                                        <option value="<100">Unter 100</option>
+                                        <option value="100-300">
+                                            100 - 300
+                                        </option>
+                                        <option value="300-500">
+                                            300 - 500
+                                        </option>
+                                        <option value="500+">Über 500</option>
+                                    </select>
+                                </div>
+
+                                <!-- Message -->
+                                <div>
+                                    <label
+                                        for="message"
+                                        class="block text-sm font-medium text-gray-700 mb-1"
+                                        >Nachricht</label
+                                    >
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        rows="4"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors resize-none"
+                                        placeholder="Wie können wir Ihnen helfen?"
+                                    ></textarea>
+                                </div>
+
+                                <!-- Submit -->
+                                <button
+                                    type="submit"
+                                    class="w-full bg-teal text-white font-semibold py-4 px-6 rounded-lg hover:bg-teal-light transition-all shadow-md hover:shadow-lg"
+                                >
+                                    Nachricht senden
+                                </button>
+
+                                <p class="text-xs text-gray-500 text-center">
+                                    Mit dem Absenden stimmen Sie unserer
+                                    <a href="datenschutz.html" class="underline"
+                                        >Datenschutzerklärung</a
+                                    >
+                                    zu.
+                                </p>
+                            </form>
+                        </div>
+
+                        <!-- Right: Contact Info -->
+                        <div class="md:pl-8">
+                            <div class="bg-gray-50 rounded-xl p-6 md:p-8">
+                                <h3 class="text-xl font-bold text-navy mb-6">
+                                    Kontakt
+                                </h3>
+
+                                <div class="space-y-4">
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center flex-shrink-0"
+                                        >
+                                            <svg
+                                                class="w-5 h-5 text-teal"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-500">
+                                                E-Mail
+                                            </div>
+                                            <a
+                                                href="mailto:vertrieb@decari.de"
+                                                class="text-navy font-medium hover:text-teal transition-colors"
+                                            >
+                                                vertrieb@decari.de
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center flex-shrink-0"
+                                        >
+                                            <svg
+                                                class="w-5 h-5 text-teal"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-500">
+                                                Website
+                                            </div>
+                                            <a
+                                                href="https://www.decari.de"
+                                                target="_blank"
+                                                rel="noopener"
+                                                class="text-navy font-medium hover:text-teal transition-colors"
+                                            >
+                                                www.decari.de
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Info -->
+                                <div class="mt-8 pt-6 border-t border-gray-200">
+                                    <h4 class="font-semibold text-navy mb-3">
+                                        Schnelle Fakten
+                                    </h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="flex items-center gap-2">
+                                            <svg
+                                                class="w-4 h-4 text-teal"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                            Antwort innerhalb 24h
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <svg
+                                                class="w-4 h-4 text-teal"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                            Kostenlose Erstberatung
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <svg
+                                                class="w-4 h-4 text-teal"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                            Keine Verpflichtungen
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ========== FOOTER ========== -->
+        <footer class="bg-navy text-white py-12 md:py-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <!-- Logo & Tagline -->
+                    <div class="md:col-span-2">
+                        <img
+                            src="assets/decari-logo.png"
+                            alt="Decari Logo"
+                            class="h-10 w-auto mb-4 brightness-0 invert"
+                        />
+                        <p class="text-white/70 max-w-sm">
+                            Full-Service Case-Management für Pflegedienste. Mehr
+                            Umsatz mit bestehenden Klienten – ohne zusätzliches
+                            Personal.
+                        </p>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Navigation</h4>
+                        <ul class="space-y-2 text-white/70">
+                            <li>
+                                <a
+                                    href="#loesung"
+                                    class="hover:text-white transition-colors"
+                                    >Lösung</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#rechner"
+                                    class="hover:text-white transition-colors"
+                                    >ROI-Rechner</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#vorteile"
+                                    class="hover:text-white transition-colors"
+                                    >Vorteile</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="blog/"
+                                    class="hover:text-white transition-colors"
+                                    >Blog</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Legal -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Rechtliches</h4>
+                        <ul class="space-y-2 text-white/70">
+                            <li>
+                                <a
+                                    href="impressum.html"
+                                    class="hover:text-white transition-colors"
+                                    >Impressum</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="datenschutz.html"
+                                    class="hover:text-white transition-colors"
+                                    >Datenschutz</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div
+                    class="border-t border-white/10 mt-10 pt-8 text-center text-white/50 text-sm"
+                >
+                    <p>&copy; 2025 Decari GmbH. Alle Rechte vorbehalten.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ========== STICKY MOBILE CTA ========== -->
+        <div
+            class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 md:hidden z-50 shadow-lg"
+            id="mobile-cta"
+        >
+            <button
+                onclick="
+                    Calendly.initPopupWidget({
+                        url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788',
+                    });
+                    return false;
+                "
+                class="w-full bg-teal text-white py-3 rounded-lg font-semibold shadow-md active:bg-teal-light"
+            >
+                Jetzt Termin buchen
             </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 2: PROBLEM ========== -->
-    <section id="problem" class="py-16 md:py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-            Sie müssen täglich Anfragen ablehnen – dabei liegt Geld auf dem Tisch
-          </h2>
         </div>
 
-        <!-- Problem Cards -->
-        <div class="grid md:grid-cols-3 gap-6 md:gap-8 mb-12">
-          <!-- Card 1 -->
-          <div class="bg-gray-50 rounded-xl p-6 md:p-8 hover:shadow-lg transition-all group">
-            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-navy mb-3">Wachsen unmöglich</h3>
-            <p class="text-gray-600 mb-4">
-              Sie möchten wachsen, aber ohne Pflegekräfte geht nichts. Neue Klienten aufnehmen? Unmöglich.
-            </p>
-            <div class="text-2xl font-bold text-red-600">80%</div>
-            <p class="text-sm text-gray-500">der Pflegedienste mussten Anfragen ablehnen</p>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="bg-gray-50 rounded-xl p-6 md:p-8 hover:shadow-lg transition-all group">
-            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-navy mb-3">Vergütung reicht nicht</h3>
-            <p class="text-gray-600 mb-4">
-              Die Kassen zahlen &lt;30€ für Leistungen, die Sie &gt;45€ kosten. Schwere Pflegefälle sind ein Minusgeschäft.
-            </p>
-            <div class="text-2xl font-bold text-orange-600">1-2%</div>
-            <p class="text-sm text-gray-500">Umsatzrendite – eingebrochen</p>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="bg-gray-50 rounded-xl p-6 md:p-8 hover:shadow-lg transition-all group">
-            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-navy mb-3">Mitarbeiter am Limit</h3>
-            <p class="text-gray-600 mb-4">
-              12 Einsätze in 8 Stunden. Zeitdruck, Hetze, keine Zeit für echte Pflege. Kein Wunder, dass alle kündigen.
-            </p>
-            <div class="text-2xl font-bold text-yellow-600">65%</div>
-            <p class="text-sm text-gray-500">Fluktuation pro Jahr</p>
-          </div>
-        </div>
-
-        <!-- Highlight Box -->
-        <div class="bg-navy/5 border-l-4 border-teal rounded-r-xl p-6 md:p-8 max-w-3xl mx-auto">
-          <p class="text-lg md:text-xl text-navy font-medium text-center">
-            <strong>40%</strong> Ihrer Klienten haben Anspruch auf Zusatzleistungen – nur <strong>12%</strong> erhalten sie. <span class="text-teal font-bold">Dieses Geld liegt auf dem Tisch.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 3: SOLUTION ========== -->
-    <section id="loesung" class="py-16 md:py-24 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-            Mehr verdienen mit denselben Klienten
-          </h2>
-          <p class="text-lg text-gray-600">
-            Decari erschließt für Ihre bestehenden Klienten zusätzliche Sozialleistungen. Sie brauchen keine neuen Klienten, kein neues Personal – nur die Ansprüche, die bereits existieren.
-          </p>
-        </div>
-
-        <!-- Solution Cards -->
-        <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-          <!-- Card 1 -->
-          <div class="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all border-t-4 border-teal group">
-            <div class="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal group-hover:text-white transition-all">
-              <svg class="w-7 h-7 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-navy mb-3">3x mehr pro Klient</h3>
-            <p class="text-gray-600">
-              Bis zu <strong>+3.000€/Monat</strong> Mehrumsatz pro High-Value-Klient. Erschließung von SGB XII, SGB IX, Persönliches Budget – ohne Mehrarbeit für Sie.
-            </p>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all border-t-4 border-teal group">
-            <div class="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal group-hover:text-white transition-all">
-              <svg class="w-7 h-7 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-navy mb-3">Null Zusatzaufwand</h3>
-            <p class="text-gray-600">
-              Nur <strong>~1,5h/Monat</strong> Koordination pro Standort. 100% Behördenkram durch Decari – weder neue Mitarbeiter noch Schulungen nötig.
-            </p>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all border-t-4 border-teal group">
-            <div class="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal group-hover:text-white transition-all">
-              <svg class="w-7 h-7 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-navy mb-3">Mitarbeiter entlasten</h3>
-            <p class="text-gray-600">
-              Höhere Budgets = <strong>längere Einsatzzeiten</strong> möglich. Weniger Tourenstopps pro Schicht (8 statt 12). Zufriedenere Teams, geringere Fluktuation.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 4: ROI CALCULATOR ========== -->
-    <section id="rechner" class="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-10 md:mb-12">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-            Wie viel Umsatz verschenken Sie – bei Ihren bestehenden Klienten?
-          </h2>
-          <p class="text-lg text-gray-600">
-            3 Eingaben – Ihr Ergebnis in Sekunden
-          </p>
-        </div>
-
-        <!-- Calculator Card -->
-        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 lg:p-12">
-          <!-- Input Fields -->
-          <div class="space-y-8" id="calculator-inputs">
-
-            <!-- Field 1: Total Clients -->
-            <div class="calculator-field">
-              <label for="gesamtKlienten" class="block text-sm font-semibold text-gray-700 mb-3">
-                Wie viele Klienten betreuen Sie insgesamt?
-              </label>
-              <div class="flex items-center gap-4">
-                <input
-                  type="range"
-                  id="gesamtKlienten"
-                  min="50"
-                  max="1000"
-                  value="200"
-                  step="10"
-                  aria-label="Gesamtzahl der Klienten"
-                  aria-valuemin="50"
-                  aria-valuemax="1000"
-                  aria-valuenow="200"
-                  class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
-                >
-                <span class="text-2xl font-bold text-navy w-20 text-right tabular-nums" id="display-klienten">200</span>
-              </div>
-              <div class="flex justify-between text-xs text-gray-400 mt-1 px-1">
-                <span>50</span>
-                <span>500</span>
-                <span>1000</span>
-              </div>
-            </div>
-
-            <!-- Field 2: Care Level -->
-            <div class="calculator-field">
-              <label class="block text-sm font-semibold text-gray-700 mb-3">
-                Durchschnittlicher Pflegegrad Ihrer Klienten
-              </label>
-              <div class="flex gap-2 flex-wrap" id="pflegegrad-buttons" role="group" aria-label="Pflegegrad auswählen">
-                <button data-value="2" class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2">2</button>
-                <button data-value="3" class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-teal bg-teal text-white font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2">3</button>
-                <button data-value="4" class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2">4</button>
-                <button data-value="5" class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2">5</button>
-              </div>
-            </div>
-
-            <!-- Field 3: Age Percentage -->
-            <div class="calculator-field">
-              <label for="anteil67plus" class="block text-sm font-semibold text-gray-700 mb-3">
-                Wie viele Ihrer Klienten sind über 67 Jahre?
-                <span class="ml-2 text-gray-400 text-xs font-normal">(potenzielle SGB XII Kandidaten)</span>
-              </label>
-              <div class="flex items-center gap-4">
-                <input
-                  type="range"
-                  id="anteil67plus"
-                  min="30"
-                  max="90"
-                  value="60"
-                  aria-label="Anteil Klienten über 67 Jahre"
-                  aria-valuemin="30"
-                  aria-valuemax="90"
-                  aria-valuenow="60"
-                  class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
-                >
-                <span class="text-2xl font-bold text-navy w-20 text-right tabular-nums" id="display-anteil">60%</span>
-              </div>
-              <div class="flex justify-between text-xs text-gray-400 mt-1 px-1">
-                <span>30%</span>
-                <span>60%</span>
-                <span>90%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Results Section -->
-          <div id="calculator-results" class="mt-10 pt-8 border-t border-gray-100">
-            <h3 class="text-lg font-semibold text-center text-gray-700 mb-6">
-              Umsatz, den Sie aktuell verschenken
-            </h3>
-
-            <!-- Result Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-              <div class="bg-gray-50 rounded-xl p-5 text-center">
-                <div class="text-3xl md:text-4xl font-bold text-teal tabular-nums" id="result-hvKlienten">18</div>
-                <div class="text-sm text-gray-500 mt-2">Klienten mit Anspruch</div>
-              </div>
-              <div class="bg-gray-50 rounded-xl p-5 text-center">
-                <div class="text-3xl md:text-4xl font-bold text-teal tabular-nums" id="result-monatlich">54.000€</div>
-                <div class="text-sm text-gray-500 mt-2">pro Monat zusätzlich</div>
-              </div>
-              <div class="bg-teal/10 rounded-xl p-5 text-center border-2 border-teal result-highlight">
-                <div class="text-3xl md:text-4xl font-bold text-navy tabular-nums" id="result-jaehrlich">648.000€</div>
-                <div class="text-sm text-gray-600 mt-2 font-medium">pro Jahr zusätzlich</div>
-              </div>
-            </div>
-
-            <!-- Highlight Box -->
-            <div class="bg-navy/5 rounded-lg p-4 text-center text-navy mb-6">
-              <strong>Das Beste:</strong> Sie brauchen dafür KEINE neuen Mitarbeiter. Diese Klienten betreuen Sie bereits.
-            </div>
-
-            <!-- Context Fact -->
-            <div id="context-fact" class="text-center text-gray-600 mb-8">
-              Das entspricht <strong>9 Vollzeit-Pflegekräften</strong>, die Sie zusätzlich finanzieren könnten.
-            </div>
-
-            <!-- CTA -->
-            <div class="text-center">
-              <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788'});return false;"
-                      class="bg-teal text-white text-lg font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl">
-                Potenzial validieren lassen
-              </button>
-            </div>
-
-            <!-- Disclaimer -->
-            <p class="text-xs text-gray-400 text-center mt-6">
-              Diese Berechnung basiert auf Durchschnittswerten (Ø 3.000€ Mehrumsatz pro High-Value-Klient). Im Erstgespräch analysieren wir Ihr individuelles Potenzial.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 5: PROCESS ========== -->
-    <section id="prozess" class="py-16 md:py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-            So einfach funktioniert's
-          </h2>
-        </div>
-
-        <!-- Timeline - Desktop -->
-        <div class="hidden md:block relative">
-          <!-- Line -->
-          <div class="absolute top-8 left-0 right-0 h-1 bg-gray-200"></div>
-          <div class="absolute top-8 left-0 w-1/2 h-1 bg-teal"></div>
-
-          <!-- Steps -->
-          <div class="grid grid-cols-5 gap-4 relative">
-            <!-- Step 1 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-teal text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold shadow-lg">1</div>
-              <h3 class="font-bold text-navy mb-2">Onboarding</h3>
-              <p class="text-sm text-gray-600">2-3h einmalig</p>
-              <p class="text-xs text-gray-500 mt-1">Setup & Schulung</p>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-teal text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold shadow-lg">2</div>
-              <h3 class="font-bold text-navy mb-2">Qualifizierung</h3>
-              <p class="text-sm text-gray-600">30 Min/Fall</p>
-              <p class="text-xs text-gray-500 mt-1">Scoring der Klienten</p>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-teal/30 text-teal rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold border-4 border-teal">3</div>
-              <h3 class="font-bold text-navy mb-2">Durchsetzung</h3>
-              <p class="text-sm text-gray-600">100% Decari</p>
-              <p class="text-xs text-gray-500 mt-1">Anträge & Behörden</p>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
-              <h3 class="font-bold text-navy mb-2">Abrechnung</h3>
-              <p class="text-sm text-gray-600">20 Min/Monat</p>
-              <p class="text-xs text-gray-500 mt-1">Dokumentation</p>
-            </div>
-
-            <!-- Step 5 -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">5</div>
-              <h3 class="font-bold text-navy mb-2">Folgeanträge</h3>
-              <p class="text-sm text-gray-600">30 Min/Fall</p>
-              <p class="text-xs text-gray-500 mt-1">Verlängerungen</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Timeline - Mobile -->
-        <div class="md:hidden space-y-6">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</div>
-            <div>
-              <h3 class="font-bold text-navy">Onboarding</h3>
-              <p class="text-sm text-gray-600">2-3h einmalig – Setup & Schulung</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</div>
-            <div>
-              <h3 class="font-bold text-navy">Qualifizierung</h3>
-              <p class="text-sm text-gray-600">30 Min/Fall – Scoring der Klienten</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-teal/30 text-teal rounded-full flex items-center justify-center flex-shrink-0 font-bold border-2 border-teal">3</div>
-            <div>
-              <h3 class="font-bold text-navy">Durchsetzung</h3>
-              <p class="text-sm text-gray-600">100% Decari – Anträge & Behörden</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center flex-shrink-0 font-bold">4</div>
-            <div>
-              <h3 class="font-bold text-navy">Abrechnung</h3>
-              <p class="text-sm text-gray-600">20 Min/Monat – Dokumentation</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center flex-shrink-0 font-bold">5</div>
-            <div>
-              <h3 class="font-bold text-navy">Folgeanträge</h3>
-              <p class="text-sm text-gray-600">30 Min/Fall – Verlängerungen</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Highlight -->
-        <div class="mt-12 text-center">
-          <div class="inline-flex items-center bg-teal/10 text-teal font-semibold px-6 py-3 rounded-full">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-            </svg>
-            Ihr Gesamtaufwand: ~1,5 Stunden pro Monat und Standort
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 6: CASE STUDY ========== -->
-    <section id="fallbeispiel" class="py-16 md:py-24 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-            Aus der Praxis: Familie Müller
-          </h2>
-        </div>
-
-        <!-- Before/After Comparison -->
-        <div class="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto mb-10">
-          <!-- Before -->
-          <div class="bg-white rounded-xl p-6 md:p-8 border-2 border-gray-200">
-            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Vorher</div>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-600">Nur Pflegegrad 4</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-600"><strong>1.778€/Monat</strong> Sachleistung</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-600">Tochter am Limit</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-600">Pflegekraft: <strong>15 Min</strong> Einsatz</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- After -->
-          <div class="bg-white rounded-xl p-6 md:p-8 border-2 border-teal shadow-lg">
-            <div class="text-sm font-semibold text-teal uppercase tracking-wide mb-4">Nachher</div>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-teal mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-700">+ Hilfe zur Pflege (SGB XII)</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-teal mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-700"><strong class="text-teal">4.800€/Monat</strong> Gesamtbudget</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-teal mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-700">24h-Versorgung gesichert</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-teal mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span class="text-gray-700">Pflegekraft: <strong class="text-teal">45 Min</strong> Zeit</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Result Highlight -->
-        <div class="max-w-2xl mx-auto">
-          <div class="bg-navy text-white rounded-xl p-6 md:p-8 text-center">
-            <div class="text-3xl md:text-4xl font-bold mb-2">+3.022€/Monat</div>
-            <div class="text-lg text-white/80 mb-4">= +36.264€/Jahr (+170%)</div>
-            <p class="text-white/90">
-              <strong>Doppelter Gewinn:</strong> Mehr Umsatz für Sie. Mehr Zeit für echte Pflege. Zufriedenere Mitarbeiter.
-            </p>
-          </div>
-
-          <!-- Context Box -->
-          <div class="mt-6 bg-white rounded-lg p-4 text-sm text-gray-600 border border-gray-200">
-            <strong>Kontext:</strong> Herr Müller, 78, fortgeschrittene Demenz mit Weglauftendenz. Scoring: 12/14 Punkte (High-Value). Bearbeitungszeit bis Bewilligung: 8 Wochen.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 7: BENEFITS ========== -->
-    <section id="vorteile" class="py-16 md:py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-            Ihre Vorteile mit Decari
-          </h2>
-        </div>
-
-        <!-- Benefits Grid -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Benefit 1 -->
-          <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors">
-              <svg class="w-6 h-6 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Mehr Umsatz ohne Mehrarbeit</h3>
-            <p class="text-gray-600 text-sm">
-              +3.000€/Monat pro High-Value-Klient. Ohne neue Klienten aufzunehmen.
-            </p>
-          </div>
-
-          <!-- Benefit 2 -->
-          <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors">
-              <svg class="w-6 h-6 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">White-Label Service</h3>
-            <p class="text-gray-600 text-sm">
-              Wir agieren in Ihrem Namen. Ihre Marke, unsere Expertise.
-            </p>
-          </div>
-
-          <!-- Benefit 3 -->
-          <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors">
-              <svg class="w-6 h-6 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Skalierbar für Ketten</h3>
-            <p class="text-gray-600 text-sm">
-              Ein Vertrag, alle Standorte. Zentrale Steuerung, lokale Umsetzung.
-            </p>
-          </div>
-
-          <!-- Benefit 4 -->
-          <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors">
-              <svg class="w-6 h-6 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Mitarbeiter halten</h3>
-            <p class="text-gray-600 text-sm">
-              Höhere Budgets = längere Einsätze = weniger Hetze. Spart 70.000€ pro unbesetzter Stelle.
-            </p>
-          </div>
-
-          <!-- Benefit 5 -->
-          <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors">
-              <svg class="w-6 h-6 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Kein zusätzliches Personal</h3>
-            <p class="text-gray-600 text-sm">
-              Weder für die Anträge (machen wir) noch für mehr Klienten (betreuen Sie bereits).
-            </p>
-          </div>
-
-          <!-- Benefit 6 -->
-          <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group">
-            <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal transition-colors">
-              <svg class="w-6 h-6 text-teal group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Erfolgsbasiert</h3>
-            <p class="text-gray-600 text-sm">
-              Wir verdienen nur, wenn Sie verdienen. Kein Risiko für Sie.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 8: CTA / CALENDLY ========== -->
-    <section id="termin" class="py-16 md:py-24 bg-gray-50">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-10 md:mb-12">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-            Lassen Sie uns über Ihr ungenutztes Potenzial sprechen
-          </h2>
-          <p class="text-lg text-gray-600">
-            In 30 Minuten analysieren wir gemeinsam, wie viel Umsatz bei Ihren bestehenden Klienten auf dem Tisch liegt – und wie Sie ihn holen.
-          </p>
-        </div>
-
-        <!-- Calendly Embed -->
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div class="calendly-inline-widget"
-               data-url="https://calendly.com/DECARI_USERNAME/erstgespraech?hide_gdpr_banner=1&primary_color=097788"
-               style="min-width:320px; height:700px;">
-          </div>
-        </div>
-
-        <!-- Alternative CTA -->
-        <p class="text-center text-gray-500 mt-6">
-          Lieber erst schriftlich? <a href="#kontakt" class="text-teal hover:underline font-medium">Zum Kontaktformular</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 9: CONTACT FORM ========== -->
-    <section id="kontakt" class="py-16 md:py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-12 items-start">
-          <!-- Left: Form -->
-          <div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-navy mb-4">
-              Oder schreiben Sie uns
-            </h2>
-            <p class="text-gray-600 mb-8">
-              Wir melden uns innerhalb von 24 Stunden bei Ihnen.
-            </p>
-
-            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
-              <!-- Web3Forms Config -->
-              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-              <input type="hidden" name="subject" value="Neue Anfrage - Decari Landing Page">
-              <input type="hidden" name="from_name" value="Decari Website">
-              <input type="hidden" name="redirect" value="https://www.decari.de?success=true">
-              <!-- Honeypot -->
-              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-              <!-- Name -->
-              <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
-                <input type="text" id="name" name="name" required
-                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors"
-                       placeholder="Ihr vollständiger Name">
-              </div>
-
-              <!-- Email -->
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-Mail *</label>
-                <input type="email" id="email" name="email" required
-                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors"
-                       placeholder="ihre@email.de">
-              </div>
-
-              <!-- Company -->
-              <div>
-                <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Pflegedienst / Unternehmen</label>
-                <input type="text" id="company" name="company"
-                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors"
-                       placeholder="Name Ihres Pflegedienstes">
-              </div>
-
-              <!-- Client Count -->
-              <div>
-                <label for="klienten" class="block text-sm font-medium text-gray-700 mb-1">Anzahl Klienten</label>
-                <select id="klienten" name="klienten"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors">
-                  <option value="">Bitte wählen</option>
-                  <option value="<100">Unter 100</option>
-                  <option value="100-300">100 - 300</option>
-                  <option value="300-500">300 - 500</option>
-                  <option value="500+">Über 500</option>
-                </select>
-              </div>
-
-              <!-- Message -->
-              <div>
-                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Nachricht</label>
-                <textarea id="message" name="message" rows="4"
-                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal transition-colors resize-none"
-                          placeholder="Wie können wir Ihnen helfen?"></textarea>
-              </div>
-
-              <!-- Submit -->
-              <button type="submit"
-                      class="w-full bg-teal text-white font-semibold py-4 px-6 rounded-lg hover:bg-teal-light transition-all shadow-md hover:shadow-lg">
-                Nachricht senden
-              </button>
-
-              <p class="text-xs text-gray-500 text-center">
-                Mit dem Absenden stimmen Sie unserer <a href="datenschutz.html" class="underline">Datenschutzerklärung</a> zu.
-              </p>
-            </form>
-          </div>
-
-          <!-- Right: Contact Info -->
-          <div class="md:pl-8">
-            <div class="bg-gray-50 rounded-xl p-6 md:p-8">
-              <h3 class="text-xl font-bold text-navy mb-6">Kontakt</h3>
-
-              <div class="space-y-4">
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">E-Mail</div>
-                    <a href="mailto:vertrieb@decari.de" class="text-navy font-medium hover:text-teal transition-colors">
-                      vertrieb@decari.de
-                    </a>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Website</div>
-                    <a href="https://www.decari.de" target="_blank" rel="noopener" class="text-navy font-medium hover:text-teal transition-colors">
-                      www.decari.de
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quick Info -->
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <h4 class="font-semibold text-navy mb-3">Schnelle Fakten</h4>
-                <ul class="space-y-2 text-sm text-gray-600">
-                  <li class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-teal" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    Antwort innerhalb 24h
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-teal" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    Kostenlose Erstberatung
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-teal" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    Keine Verpflichtungen
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="bg-navy text-white py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Logo & Tagline -->
-        <div class="md:col-span-2">
-          <img src="assets/decari-logo.png" alt="Decari Logo" class="h-10 w-auto mb-4 brightness-0 invert">
-          <p class="text-white/70 max-w-sm">
-            Full-Service Case-Management für Pflegedienste. Mehr Umsatz mit bestehenden Klienten – ohne zusätzliches Personal.
-          </p>
-        </div>
-
-        <!-- Navigation -->
-        <div>
-          <h4 class="font-semibold mb-4">Navigation</h4>
-          <ul class="space-y-2 text-white/70">
-            <li><a href="#loesung" class="hover:text-white transition-colors">Lösung</a></li>
-            <li><a href="#rechner" class="hover:text-white transition-colors">ROI-Rechner</a></li>
-            <li><a href="#vorteile" class="hover:text-white transition-colors">Vorteile</a></li>
-            <li><a href="blog/" class="hover:text-white transition-colors">Blog</a></li>
-          </ul>
-        </div>
-
-        <!-- Legal -->
-        <div>
-          <h4 class="font-semibold mb-4">Rechtliches</h4>
-          <ul class="space-y-2 text-white/70">
-            <li><a href="impressum.html" class="hover:text-white transition-colors">Impressum</a></li>
-            <li><a href="datenschutz.html" class="hover:text-white transition-colors">Datenschutz</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Copyright -->
-      <div class="border-t border-white/10 mt-10 pt-8 text-center text-white/50 text-sm">
-        <p>&copy; 2025 Decari GmbH. Alle Rechte vorbehalten.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ========== STICKY MOBILE CTA ========== -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 md:hidden z-50 shadow-lg" id="mobile-cta">
-    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/DECARI_USERNAME/erstgespraech?primary_color=097788'});return false;"
-            class="w-full bg-teal text-white py-3 rounded-lg font-semibold shadow-md active:bg-teal-light">
-      Jetzt Termin buchen
-    </button>
-  </div>
-
-  <!-- ========== SCRIPTS ========== -->
-  <script src="js/roi-calculator.js"></script>
-
-  <!-- Mobile Menu Toggle -->
-  <script>
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu on link click
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.add('hidden');
-      });
-    });
-  </script>
-
-</body>
+        <!-- ========== SCRIPTS ========== -->
+        <script src="js/roi-calculator.js"></script>
+
+        <!-- Mobile Menu Toggle -->
+        <script>
+            document
+                .getElementById("mobile-menu-btn")
+                .addEventListener("click", function () {
+                    const menu = document.getElementById("mobile-menu");
+                    menu.classList.toggle("hidden");
+                });
+
+            // Close mobile menu on link click
+            document.querySelectorAll("#mobile-menu a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    document
+                        .getElementById("mobile-menu")
+                        .classList.add("hidden");
+                });
+            });
+        </script>
+    </body>
 </html>
