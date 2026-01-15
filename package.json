@@ -1,26 +1,23 @@
 {
   "name": "decari-sales-lp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./css/input.css -o ./css/tailwind.css --minify",
-    "watch:css": "npx tailwindcss -i ./css/input.css -o ./css/tailwind.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/decari-de/decari-sales-lp.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/decari-de/decari-sales-lp/issues"
   },
   "homepage": "https://github.com/decari-de/decari-sales-lp#readme",
-  "devDependencies": {
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.16.9",
     "tailwindcss": "^3.3.6"
   }
 }
