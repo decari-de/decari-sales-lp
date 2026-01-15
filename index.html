@@ -1906,60 +1906,72 @@
             style="
                 position: fixed;
                 bottom: 16px;
-                left: 16px;
+                right: 16px;
                 z-index: 9999;
-                max-width: 384px;
+                max-width: 390px;
             "
         >
             <div
-                class="bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
+                class="bg-white rounded-lg border border-gray-200 p-4 relative"
+                style="
+                    box-shadow:
+                        0 10px 38px -10px rgba(22, 23, 24, 0.35),
+                        0 10px 20px -15px rgba(22, 23, 24, 0.2);
+                "
             >
-                <div class="p-4 pb-2">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <h3 class="font-semibold text-navy text-sm mb-1">
-                                Gesetzlich vorgeschriebener Cookie-Banner
-                            </h3>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                pflegedienste.decari.de verwendet keine
-                                Third-Party-Cookies, nur einen einzigen
-                                First-Party-Cookie für die Session.
-                            </p>
-                            <p
-                                class="text-gray-500 text-xs mt-2 leading-relaxed"
-                            >
-                                Keine Daten gehen an Dritte.<br />
-                                <span class="text-gray-400"
-                                    >(Ursula von der Leyen wäre stolz.)</span
-                                >
-                            </p>
-                        </div>
-                        <button
-                            onclick="closeCookieBanner()"
-                            class="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 p-1"
-                            aria-label="Banner schließen"
+                <!-- Close Button -->
+                <button
+                    onclick="closeCookieBanner()"
+                    class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors"
+                    aria-label="Banner schließen"
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M4.75 3.69 12 10.94l7.25-7.25 1.06 1.06L13.06 12l7.25 7.25-1.06 1.06L12 13.06l-7.25 7.25-1.06-1.06L10.94 12 3.69 4.75l1.06-1.06Z"
+                        />
+                    </svg>
+                </button>
+
+                <!-- Content -->
+                <div class="pr-6">
+                    <h3
+                        class="text-[15px] font-semibold text-gray-900 leading-tight mb-1"
+                    >
+                        Gesetzlich vorgeschriebener Cookie-Banner
+                    </h3>
+                    <p class="text-sm text-gray-600 mt-1">
+                        pflegedienste.decari.de verwendet keine
+                        Third-Party-Cookies, nur einen einzigen
+                        First-Party-Cookie.
+                    </p>
+                    <p class="text-sm text-gray-600 mt-2 pr-28">
+                        Keine Daten gehen an Dritte. (<span
+                            class="border-b border-gray-400 border-dashed"
+                            >Ursula von der Leyen</span
                         >
-                            <svg
-                                class="w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
-                    </div>
+                        wäre stolz.)
+                    </p>
                 </div>
-                <div class="relative h-24 overflow-hidden">
+
+                <!-- Ursula Image (overflowing bottom-right) -->
+                <div
+                    style="
+                        position: absolute;
+                        bottom: 0;
+                        right: -16px;
+                        line-height: 0;
+                    "
+                >
                     <img
                         src="assets/ursula.png"
-                        alt="Ursula von der Leyen gibt Daumen hoch"
-                        class="absolute bottom-0 right-4 h-28 object-contain"
+                        alt="Ursula von der Leyen"
+                        style="width: 120px; height: auto"
                     />
                 </div>
             </div>
