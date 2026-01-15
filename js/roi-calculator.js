@@ -278,15 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
           results.hvKlienten,
         );
       }
-
-      // Track analytics event (if available)
-      if (typeof gtag === "function") {
-        gtag("event", "calculator_result", {
-          event_category: "engagement",
-          event_label: "roi_calculator",
-          value: results.jaehrlich,
-        });
-      }
     }, 50);
   }
 
@@ -332,25 +323,6 @@ document.addEventListener("DOMContentLoaded", function () {
         this.click();
       }
     });
-  });
-
-  // ========================================
-  // Track Calculator Interaction
-  // ========================================
-
-  function trackInteraction(field, value) {
-    if (typeof gtag === "function") {
-      gtag("event", "calculator_interaction", {
-        event_category: "engagement",
-        event_label: field,
-        value: value,
-      });
-    }
-  }
-
-  // Add tracking to slider (on change, not input)
-  sliderKlienten.addEventListener("change", function () {
-    trackInteraction("gesamtKlienten", this.value);
   });
 
   // ========================================

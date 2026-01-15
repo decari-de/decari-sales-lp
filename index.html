@@ -1002,7 +1002,7 @@
                                         class="text-3xl md:text-4xl font-bold text-teal tabular-nums"
                                         id="result-hvKlienten"
                                     >
-                                        18
+                                        14
                                     </div>
                                     <div class="text-sm text-gray-500 mt-2">
                                         Klienten mit Anspruch
@@ -1015,7 +1015,7 @@
                                         class="text-3xl md:text-4xl font-bold text-teal tabular-nums"
                                         id="result-monatlich"
                                     >
-                                        54.000€
+                                        41.890€
                                     </div>
                                     <div class="text-sm text-gray-500 mt-2">
                                         pro Monat zusätzlich
@@ -1028,7 +1028,7 @@
                                         class="text-3xl md:text-4xl font-bold text-navy tabular-nums"
                                         id="result-jaehrlich"
                                     >
-                                        648.000€
+                                        502.680€
                                     </div>
                                     <div
                                         class="text-sm text-gray-600 mt-2 font-medium"
@@ -1053,7 +1053,7 @@
                                 class="text-center text-gray-600 mb-8"
                             >
                                 Das entspricht
-                                <strong>9 Vollzeit-Pflegekräften</strong>, die
+                                <strong>6 Vollzeit-Pflegekräften</strong>, die
                                 Sie zusätzlich finanzieren könnten.
                             </div>
 
@@ -1897,6 +1897,87 @@
                     submitBtn.innerHTML = "Nachricht senden";
                 }
             });
+        </script>
+
+        <!-- Cookie Banner (PostHog-Style - No Third-Party Cookies) -->
+        <div
+            id="cookie-banner"
+            class="fixed bottom-4 left-4 z-50 hidden max-w-sm"
+        >
+            <div
+                class="bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
+            >
+                <div class="p-4 pb-2">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h3 class="font-semibold text-navy text-sm mb-1">
+                                Gesetzlich vorgeschriebener Cookie-Banner
+                            </h3>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                pflegedienste.decari.de verwendet keine
+                                Third-Party-Cookies, nur einen einzigen
+                                First-Party-Cookie für die Session.
+                            </p>
+                            <p
+                                class="text-gray-500 text-xs mt-2 leading-relaxed"
+                            >
+                                Keine Daten gehen an Dritte.<br />
+                                <span class="text-gray-400"
+                                    >(Ursula von der Leyen wäre stolz.)</span
+                                >
+                            </p>
+                        </div>
+                        <button
+                            onclick="closeCookieBanner()"
+                            class="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 p-1"
+                            aria-label="Banner schließen"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative h-24 overflow-hidden">
+                    <img
+                        src="assets/ursula.png"
+                        alt="Ursula von der Leyen gibt Daumen hoch"
+                        class="absolute bottom-0 right-4 h-28 object-contain"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Cookie Banner Logic
+            function closeCookieBanner() {
+                document
+                    .getElementById("cookie-banner")
+                    .classList.add("hidden");
+                localStorage.setItem("cookieBannerDismissed", "true");
+            }
+
+            function showCookieBanner() {
+                if (!localStorage.getItem("cookieBannerDismissed")) {
+                    setTimeout(() => {
+                        document
+                            .getElementById("cookie-banner")
+                            .classList.remove("hidden");
+                    }, 2000); // Show after 2 seconds
+                }
+            }
+
+            showCookieBanner();
         </script>
     </body>
 </html>

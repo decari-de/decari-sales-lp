@@ -1,0 +1,13 @@
+# Decari Landing Page - robots.txt
+# https://pflegedienste.decari.de
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://pflegedienste.decari.de/sitemap.xml
+
+# Block common bot traps and irrelevant paths
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.md$
