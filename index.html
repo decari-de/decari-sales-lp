@@ -1902,7 +1902,14 @@
         <!-- Cookie Banner (PostHog-Style - No Third-Party Cookies) -->
         <div
             id="cookie-banner"
-            class="fixed bottom-4 left-4 z-50 hidden max-w-sm"
+            class="hidden"
+            style="
+                position: fixed;
+                bottom: 16px;
+                left: 16px;
+                z-index: 9999;
+                max-width: 384px;
+            "
         >
             <div
                 class="bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
