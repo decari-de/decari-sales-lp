@@ -41,9 +41,20 @@ const siteUrl = "https://pflegedienste.decari.de";
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Calendly CSS -->
+  <link
+    rel="preload"
+    href="https://assets.calendly.com/assets/external/widget.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+  </noscript>
 </head>
 <body class="font-sans text-gray-800 bg-white antialiased">
-  <Header variant="blog-article" />
+  <Header />
 
   <article class="py-12 md:py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,5 +111,24 @@ const siteUrl = "https://pflegedienste.decari.de";
   </article>
 
   <Footer />
+
+  <!-- Calendly Widget - lazy loaded -->
+  <script is:inline>
+    let calendlyLoaded = false;
+    function loadCalendly() {
+      if (calendlyLoaded) return;
+      calendlyLoaded = true;
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    ["scroll", "mousemove", "touchstart", "click"].forEach((event) => {
+      document.addEventListener(event, loadCalendly, { once: true, passive: true });
+    });
+
+    setTimeout(loadCalendly, 3000);
+  </script>
 </body>
 </html>

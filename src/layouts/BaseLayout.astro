@@ -6,7 +6,6 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
-  headerVariant: 'home' | 'blog-index' | 'blog-article' | '404';
   canonicalUrl?: string;
   ogImage?: string;
 }
@@ -14,7 +13,6 @@ interface Props {
 const {
   title,
   description = "Decari beantragt für Ihre Klienten zusätzliche Sozialleistungen. Bis zu +3.000€/Monat pro Klient mit Zusatzanspruch – ohne zusätzliches Personal.",
-  headerVariant,
   canonicalUrl,
   ogImage = "/assets/decari-logo.png"
 } = Astro.props;
@@ -102,7 +100,7 @@ const siteUrl = "https://pflegedienste.decari.de";
     Zum Hauptinhalt springen
   </a>
 
-  <Header variant={headerVariant} />
+  <Header />
 
   <main id="main-content">
     <slot />

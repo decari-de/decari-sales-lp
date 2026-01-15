@@ -1,100 +1,57 @@
 ---
-interface Props {
-  variant: 'home' | 'blog-index' | 'blog-article' | '404';
-}
-
-const { variant } = Astro.props;
-const isFixed = variant === 'home';
-const showMobileMenu = variant === 'home';
+// Einheitlicher Header für alle Seiten
 ---
 
-<header class:list={[
-  'border-b border-gray-100',
-  isFixed ? 'fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-40' : 'bg-white'
-]}>
+<header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-40 border-b border-gray-100">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Logo -->
-      <a href={variant === 'home' ? '/' : '/'} class="flex items-center">
+      <a href="/" class="flex items-center">
         <img
           src="/assets/decari-logo.png"
           alt="Decari Logo"
-          class:list={[
-            'w-auto',
-            isFixed ? 'h-10 md:h-12' : 'h-8 md:h-10'
-          ]}
+          class="w-auto h-10 md:h-12"
         />
       </a>
 
-      <!-- Navigation -->
-      {variant === 'home' && (
-        <div class="max-md:hidden flex items-center space-x-8">
-          <a href="#rechner" class="text-gray-600 hover:text-navy transition-colors font-medium">Rechner</a>
-          <a href="#loesung" class="text-gray-600 hover:text-navy transition-colors font-medium">Leistungen</a>
-          <a href="#kontakt" class="text-gray-600 hover:text-navy transition-colors font-medium">Kontakt</a>
-        </div>
-      )}
-
-      {variant === 'blog-index' && (
-        <div class="flex items-center space-x-6">
-          <a href="/" class="text-gray-600 hover:text-navy font-medium hidden sm:inline">Startseite</a>
-          <a href="/#rechner" class="text-gray-600 hover:text-navy font-medium hidden sm:inline">ROI-Rechner</a>
-        </div>
-      )}
-
-      {variant === 'blog-article' && (
-        <div class="flex items-center space-x-6">
-          <a href="/blog/" class="text-gray-600 hover:text-navy font-medium">Blog</a>
-        </div>
-      )}
+      <!-- Desktop Navigation -->
+      <div class="max-md:hidden flex items-center space-x-8">
+        <a href="/#rechner" class="text-gray-600 hover:text-navy transition-colors font-medium">ROI-Rechner</a>
+        <a href="/#loesung" class="text-gray-600 hover:text-navy transition-colors font-medium">Leistungen</a>
+        <a href="/#kontakt" class="text-gray-600 hover:text-navy transition-colors font-medium">Kontakt</a>
+        <a href="/blog/" class="text-gray-600 hover:text-navy transition-colors font-medium">Blog</a>
+      </div>
 
       <!-- CTA Button -->
-      {variant === 'home' && (
-        <button
-          id="header-calendly-btn"
-          class="max-sm:hidden inline-flex bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all shadow-sm hover:shadow-md"
-        >
-          Termin buchen
-        </button>
-      )}
-
-      {(variant === 'blog-index' || variant === 'blog-article') && (
-        <a
-          href="/#termin"
-          class="bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all"
-        >
-          Termin buchen
-        </a>
-      )}
-
-      {variant === '404' && (
-        <a href="/" class="bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all">
-          Zur Startseite
-        </a>
-      )}
+      <button
+        id="header-calendly-btn"
+        class="max-sm:hidden bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all shadow-sm hover:shadow-md"
+      >
+        Termin buchen
+      </button>
 
       <!-- Mobile Menu Button -->
-      {showMobileMenu && (
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-navy" aria-label="Menü öffnen">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      )}
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-navy" aria-label="Menü öffnen">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
 
     <!-- Mobile Navigation -->
-    {showMobileMenu && (
-      <div id="mobile-menu" class="hidden md:hidden pb-4">
-        <div class="flex flex-col space-y-3">
-          <a href="#rechner" class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Rechner</a>
-          <a href="#loesung" class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Leistungen</a>
-          <a href="#kontakt" class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Kontakt</a>
-        </div>
+    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      <div class="flex flex-col space-y-3">
+        <a href="/#rechner" class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">ROI-Rechner</a>
+        <a href="/#loesung" class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Leistungen</a>
+        <a href="/#kontakt" class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Kontakt</a>
+        <a href="/blog/" class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Blog</a>
       </div>
-    )}
+    </div>
   </nav>
 </header>
+
+<!-- Spacer für fixed Header -->
+<div class="h-16 md:h-20"></div>
 
 <script>
   // Mobile Menu Toggle
@@ -112,7 +69,7 @@ const showMobileMenu = variant === 'home';
     });
   });
 
-  // Header Calendly button
+  // Header Calendly button - öffnet Popup
   const headerCalendlyBtn = document.getElementById('header-calendly-btn');
   headerCalendlyBtn?.addEventListener('click', () => {
     // @ts-ignore
