@@ -1908,72 +1908,107 @@
                 bottom: 16px;
                 right: 16px;
                 z-index: 9999;
-                max-width: 390px;
+                width: 390px;
+                max-width: calc(100vw - 32px);
             "
         >
             <div
-                class="bg-white rounded-lg border border-gray-200 p-4 relative"
+                class="bg-white rounded-lg border border-gray-200 relative"
                 style="
                     box-shadow:
                         0 10px 38px -10px rgba(22, 23, 24, 0.35),
                         0 10px 20px -15px rgba(22, 23, 24, 0.2);
+                    padding: 16px 20px 20px 20px;
                 "
             >
-                <!-- Close Button -->
-                <button
-                    onclick="closeCookieBanner()"
-                    class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors"
-                    aria-label="Banner schließen"
+                <!-- Header with Title and Close Button -->
+                <div
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 12px;
+                        margin-bottom: 12px;
+                    "
                 >
-                    <svg
-                        class="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M4.75 3.69 12 10.94l7.25-7.25 1.06 1.06L13.06 12l7.25 7.25-1.06 1.06L12 13.06l-7.25 7.25-1.06-1.06L10.94 12 3.69 4.75l1.06-1.06Z"
-                        />
-                    </svg>
-                </button>
-
-                <!-- Content -->
-                <div class="pr-6">
                     <h3
-                        class="text-[15px] font-semibold text-gray-900 leading-tight mb-1"
+                        style="
+                            font-size: 15px;
+                            font-weight: 600;
+                            color: #111827;
+                            line-height: 1.4;
+                            margin: 0;
+                        "
                     >
                         Gesetzlich vorgeschriebener Cookie-Banner
                     </h3>
-                    <p class="text-sm text-gray-600 mt-1">
-                        pflegedienste.decari.de verwendet keine
-                        Third-Party-Cookies, nur einen einzigen
-                        First-Party-Cookie.
-                    </p>
-                    <p class="text-sm text-gray-600 mt-2 pr-28">
-                        Keine Daten gehen an Dritte. (<span
-                            class="border-b border-gray-400 border-dashed"
-                            >Ursula von der Leyen</span
+                    <button
+                        onclick="closeCookieBanner()"
+                        style="
+                            color: #9ca3af;
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            padding: 0;
+                            flex-shrink: 0;
+                        "
+                        aria-label="Schließen"
+                    >
+                        <svg
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
                         >
-                        wäre stolz.)
-                    </p>
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M4.75 3.69 12 10.94l7.25-7.25 1.06 1.06L13.06 12l7.25 7.25-1.06 1.06L12 13.06l-7.25 7.25-1.06-1.06L10.94 12 3.69 4.75l1.06-1.06Z"
+                            />
+                        </svg>
+                    </button>
                 </div>
 
-                <!-- Ursula Image (overflowing bottom-right) -->
-                <div
+                <!-- Content -->
+                <p
+                    style="
+                        font-size: 14px;
+                        color: #4b5563;
+                        line-height: 1.6;
+                        margin: 0 0 12px 0;
+                    "
+                >
+                    Wir verwenden keine Third-Party-Cookies, nur einen einzigen
+                    First-Party-Cookie.
+                </p>
+                <p
+                    style="
+                        font-size: 14px;
+                        color: #4b5563;
+                        line-height: 1.6;
+                        margin: 0;
+                        padding-right: 120px;
+                    "
+                >
+                    Keine Daten gehen an Dritte.<br />
+                    (<span style="border-bottom: 1px dashed #9ca3af"
+                        >Ursula von der Leyen</span
+                    >
+                    wäre stolz.)
+                </p>
+
+                <!-- Ursula Image -->
+                <img
+                    src="assets/ursula.png"
+                    alt="Ursula von der Leyen"
                     style="
                         position: absolute;
                         bottom: 0;
                         right: -16px;
-                        line-height: 0;
+                        width: 140px;
+                        height: auto;
                     "
-                >
-                    <img
-                        src="assets/ursula.png"
-                        alt="Ursula von der Leyen"
-                        style="width: 120px; height: auto"
-                    />
-                </div>
+                />
             </div>
         </div>
 
