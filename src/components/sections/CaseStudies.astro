@@ -1,0 +1,44 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import CaseStudyCard from '../cards/CaseStudyCard.astro';
+import { caseStudies } from '../../data/caseStudies';
+---
+
+<section id="fallbeispiel" class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeader
+      title="Aus der Praxis: Drei Beispiele"
+      subtitle="Unterschiedliche Klienten, unterschiedliche Leistungen – ein gemeinsames Ergebnis: mehr Umsatz für Sie."
+    />
+
+    <!-- 3 Case Cards -->
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8 mb-12">
+      {caseStudies.map(study => (
+        <CaseStudyCard
+          name={study.name}
+          age={study.age}
+          condition={study.condition}
+          before={study.before}
+          after={study.after}
+          result={study.result}
+          tags={study.tags}
+        >
+          <svg slot="icon" class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={study.iconPath} />
+          </svg>
+        </CaseStudyCard>
+      ))}
+    </div>
+
+    <!-- Zusammenfassung -->
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-navy text-white rounded-xl p-6 md:p-8 text-center">
+        <div class="text-3xl md:text-4xl font-bold mb-2">Ø +2.800€/Monat</div>
+        <div class="text-lg text-white/80 mb-4">pro Klient mit Zusatzanspruch</div>
+        <p class="text-white/90">
+          <strong>Doppelter Gewinn:</strong> Mehr Umsatz für Sie. Mehr Zeit für echte Pflege. Zufriedenere Mitarbeiter.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

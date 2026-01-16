@@ -1,0 +1,56 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import ProcessStep from '../cards/ProcessStep.astro';
+import { processSteps } from '../../data/processSteps';
+---
+
+<section id="prozess" class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeader title="So einfach funktioniert's" />
+
+    <!-- Timeline - Desktop -->
+    <div class="hidden md:block relative">
+      <!-- Line -->
+      <div class="absolute top-8 left-0 right-0 h-1 bg-gray-200 z-0"></div>
+      <div class="absolute top-8 left-0 w-1/2 h-1 bg-teal z-0"></div>
+
+      <!-- Steps -->
+      <div class="grid grid-cols-5 gap-4 relative z-10">
+        {processSteps.map(step => (
+          <ProcessStep
+            number={step.number}
+            title={step.title}
+            duration={step.duration}
+            description={step.description}
+            variant={step.variant}
+            layout="desktop"
+          />
+        ))}
+      </div>
+    </div>
+
+    <!-- Timeline - Mobile -->
+    <div class="md:hidden space-y-6">
+      {processSteps.map(step => (
+        <ProcessStep
+          number={step.number}
+          title={step.title}
+          duration={step.duration}
+          description={step.description}
+          variant={step.variant}
+          layout="mobile"
+        />
+      ))}
+    </div>
+
+    <!-- Highlight -->
+    <div class="mt-12 text-center">
+      <div class="inline-flex items-center bg-teal/10 text-teal font-semibold px-6 py-3 rounded-full">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+        </svg>
+        Ihr Gesamtaufwand: ~1,5 Stunden pro Monat und Standort
+      </div>
+    </div>
+  </div>
+</section>

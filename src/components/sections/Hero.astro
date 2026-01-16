@@ -1,0 +1,40 @@
+---
+import Badge from '../ui/Badge.astro';
+import Button from '../ui/Button.astro';
+import CalendlyButton from '../ui/CalendlyButton.astro';
+---
+
+<section id="hero" class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-gray-50 to-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-4xl mx-auto">
+      <!-- Badge -->
+      <div class="inline-flex items-center bg-teal/10 text-teal font-semibold px-4 py-2 rounded-full mb-6">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" />
+        </svg>
+        Bis zu +3.000€/Monat pro Klient – ohne neues Personal
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6">
+        Ihre Klienten haben Anspruch auf mehr Geld.
+        <span class="text-teal">Wir holen es für Sie.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+        Viele Ihrer Pflegebedürftigen könnten zusätzliche Sozialleistungen erhalten – Hilfe zur Pflege, Eingliederungshilfe, Persönliches Budget. Aber niemand stellt die Anträge.
+        <strong>Wir übernehmen das komplett.</strong>
+        Sie verdienen mehr mit denselben Klienten.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button href="#rechner" size="lg" class="w-full sm:w-auto">
+          Potenzial berechnen
+        </Button>
+        <CalendlyButton variant="secondary" size="lg" class="w-full sm:w-auto" />
+      </div>
+    </div>
+  </div>
+</section>

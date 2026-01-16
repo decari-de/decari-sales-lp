@@ -1,0 +1,46 @@
+---
+interface Props {
+  color?: 'teal' | 'orange' | 'yellow' | 'red' | 'gray';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  color = 'teal',
+  size = 'md',
+  class: className = ''
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-10 h-10',
+  md: 'w-12 h-12',
+  lg: 'w-16 h-16'
+};
+
+const colorClasses = {
+  teal: 'bg-teal/10 text-teal',
+  orange: 'bg-orange-100 text-orange-600',
+  yellow: 'bg-yellow-100 text-yellow-600',
+  red: 'bg-red-100 text-red-600',
+  gray: 'bg-gray-200 text-gray-500'
+};
+
+const iconSizes = {
+  sm: 'w-5 h-5',
+  md: 'w-6 h-6',
+  lg: 'w-8 h-8'
+};
+
+const classes = `${sizeClasses[size]} ${colorClasses[color]} rounded-lg flex items-center justify-center ${className}`;
+---
+
+<div class={classes}>
+  <slot />
+</div>
+
+<style define:vars={{ iconSize: iconSizes[size] }}>
+  div :global(svg) {
+    width: var(--iconSize);
+    height: var(--iconSize);
+  }
+</style>

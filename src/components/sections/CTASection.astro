@@ -1,0 +1,40 @@
+---
+import CalendlyButton from '../ui/CalendlyButton.astro';
+import TrustBadge from '../ui/TrustBadge.astro';
+---
+
+<section id="termin" class="py-20 md:py-28 bg-navy">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Section Header -->
+    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+      Bereit, Ihr ungenutztes Potenzial zu heben?
+    </h2>
+    <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+      In einem kostenlosen 30-Minuten-Gespräch analysieren wir gemeinsam, wie viel Umsatz bei Ihren bestehenden Klienten auf dem Tisch liegt.
+    </p>
+
+    <!-- Main CTA -->
+    <CalendlyButton
+      text="Jetzt Erstgespräch vereinbaren"
+      size="lg"
+      class="hover:scale-105 transform"
+    >
+      <svg slot="icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    </CalendlyButton>
+
+    <!-- Trust indicators -->
+    <div class="flex flex-wrap justify-center gap-6 mt-8 text-white/60 text-sm">
+      <TrustBadge text="Kostenlos & unverbindlich" class="text-white/60 [&_svg]:text-white/60" />
+      <TrustBadge text="30 Minuten" icon="clock" class="text-white/60 [&_svg]:text-white/60" />
+      <TrustBadge text="Individuelle Potenzialanalyse" class="text-white/60 [&_svg]:text-white/60" />
+    </div>
+
+    <!-- Alternative -->
+    <p class="text-white/50 mt-8 text-sm">
+      Lieber erst schriftlich?
+      <a href="#kontakt" class="text-teal hover:text-teal-light underline">Zum Kontaktformular</a>
+    </p>
+  </div>
+</section>

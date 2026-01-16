@@ -1,0 +1,21 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import FAQItem from '../ui/FAQItem.astro';
+import { faqItems } from '../../data/faqItems';
+---
+
+<section id="faq" class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeader
+      title="Häufige Fragen"
+      subtitle="Antworten auf die wichtigsten Fragen zur Zusammenarbeit"
+      class="mb-12"
+    />
+
+    <div class="space-y-4">
+      {faqItems.map(item => (
+        <FAQItem question={item.question} answer={item.answer} />
+      ))}
+    </div>
+  </div>
+</section>

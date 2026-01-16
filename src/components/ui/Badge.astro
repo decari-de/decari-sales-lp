@@ -1,0 +1,30 @@
+---
+interface Props {
+  variant?: 'teal' | 'gray' | 'highlight';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const {
+  variant = 'teal',
+  size = 'md',
+  class: className = ''
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-2 py-0.5 text-xs',
+  md: 'px-3 py-1 text-sm'
+};
+
+const variantClasses = {
+  teal: 'bg-teal/10 text-teal',
+  gray: 'bg-gray-100 text-gray-600',
+  highlight: 'bg-teal text-white'
+};
+
+const classes = `inline-flex items-center rounded-full font-medium ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+---
+
+<span class={classes}>
+  <slot />
+</span>

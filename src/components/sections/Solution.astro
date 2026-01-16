@@ -1,0 +1,40 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import Badge from '../ui/Badge.astro';
+import BenefitCard from '../cards/BenefitCard.astro';
+import { benefits, servicesTags } from '../../data/benefits';
+---
+
+<section id="loesung" class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Paradigmenwechsel Header -->
+    <SectionHeader
+      eyebrow="Aber hier ist die gute Nachricht"
+      title="Sie brauchen keine neuen Klienten.<br />Sie brauchen keine neuen Mitarbeiter."
+      subtitle="Sie brauchen nur das Geld, das Ihren Klienten bereits zusteht – aber das niemand beantragt."
+      class="mb-6"
+    />
+
+    <!-- Was wir tun Box -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 max-w-3xl mx-auto mb-12 border-l-4 border-teal">
+      <h3 class="text-xl font-bold text-navy mb-3">Was wir konkret tun</h3>
+      <p class="text-gray-600 mb-4">
+        Wir prüfen, welche Ihrer Klienten Anspruch auf <strong>zusätzliche Sozialleistungen</strong> haben – und stellen die Anträge komplett für Sie:
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {servicesTags.map(tag => <Badge>{tag}</Badge>)}
+      </div>
+    </div>
+
+    <!-- 3 Kern-Vorteile -->
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      {benefits.map(benefit => (
+        <BenefitCard title={benefit.title} description={benefit.description}>
+          <svg slot="icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={benefit.iconPath} />
+          </svg>
+        </BenefitCard>
+      ))}
+    </div>
+  </div>
+</section>

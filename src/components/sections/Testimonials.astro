@@ -1,0 +1,28 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import TestimonialCard from '../cards/TestimonialCard.astro';
+import { testimonials } from '../../data/testimonials';
+---
+
+<section id="testimonials" class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeader
+      title="Das sagen unsere Partner"
+      subtitle="Pflegedienste, die mit Decari arbeiten"
+      class="mb-12"
+    />
+
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      {testimonials.map(testimonial => (
+        <TestimonialCard
+          quote={testimonial.quote}
+          highlight={testimonial.highlight}
+          authorName={testimonial.authorName}
+          authorRole={testimonial.authorRole}
+          authorInitials={testimonial.authorInitials}
+          rating={testimonial.rating}
+        />
+      ))}
+    </div>
+  </div>
+</section>

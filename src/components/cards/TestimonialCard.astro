@@ -1,0 +1,33 @@
+---
+import StarRating from '../ui/StarRating.astro';
+
+interface Props {
+  quote: string;
+  highlight: string;
+  authorName: string;
+  authorRole: string;
+  authorInitials: string;
+  rating?: number;
+}
+
+const { quote, highlight, authorName, authorRole, authorInitials, rating = 5 } = Astro.props;
+---
+
+<div class="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
+  <StarRating rating={rating} class="mb-4" />
+  <blockquote class="text-gray-700 mb-6">
+    <p class="text-lg leading-relaxed">
+      „{quote}
+      <strong class="text-navy">{highlight}</strong>"
+    </p>
+  </blockquote>
+  <div class="flex items-center gap-3">
+    <div class="w-12 h-12 bg-teal/10 rounded-full flex items-center justify-center">
+      <span class="text-teal font-bold text-lg">{authorInitials}</span>
+    </div>
+    <div>
+      <div class="font-semibold text-navy">{authorName}</div>
+      <div class="text-sm text-gray-500">{authorRole}</div>
+    </div>
+  </div>
+</div>
