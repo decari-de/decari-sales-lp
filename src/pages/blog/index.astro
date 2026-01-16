@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -32,12 +34,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div class="p-6">
             <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">SGB XII</div>
             <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href="/blog/sgb-xii-hilfe-zur-pflege/">SGB XII Hilfe zur Pflege: Was Pflegedienste wissen müssen</a>
+              <a href={`${base}blog/sgb-xii-hilfe-zur-pflege/`}>SGB XII Hilfe zur Pflege: Was Pflegedienste wissen müssen</a>
             </h2>
             <p class="text-gray-600 text-sm mb-4">
               Ein umfassender Leitfaden zu den Grundlagen der Hilfe zur Pflege nach SGB XII – und wie Pflegedienste davon profitieren können.
             </p>
-            <a href="/blog/sgb-xii-hilfe-zur-pflege/" class="text-teal font-medium text-sm hover:underline">
+            <a href={`${base}blog/sgb-xii-hilfe-zur-pflege/`} class="text-teal font-medium text-sm hover:underline">
               Weiterlesen &rarr;
             </a>
           </div>
@@ -53,12 +55,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div class="p-6">
             <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">Strategie</div>
             <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href="/blog/warum-mehr-klienten-nicht-die-loesung-ist/">Warum mehr Klienten nicht die Lösung ist</a>
+              <a href={`${base}blog/warum-mehr-klienten-nicht-die-loesung-ist/`}>Warum mehr Klienten nicht die Lösung ist</a>
             </h2>
             <p class="text-gray-600 text-sm mb-4">
               Der Paradigmenwechsel: Wie Pflegedienste mit bestehenden Klienten mehr verdienen können – ohne neues Personal einzustellen.
             </p>
-            <a href="/blog/warum-mehr-klienten-nicht-die-loesung-ist/" class="text-teal font-medium text-sm hover:underline">
+            <a href={`${base}blog/warum-mehr-klienten-nicht-die-loesung-ist/`} class="text-teal font-medium text-sm hover:underline">
               Weiterlesen &rarr;
             </a>
           </div>
@@ -74,12 +76,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div class="p-6">
             <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">Personal</div>
             <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href="/blog/mitarbeiterbindung-pflege/">Mitarbeiterbindung: Wie höhere Budgets pro Klient helfen</a>
+              <a href={`${base}blog/mitarbeiterbindung-pflege/`}>Mitarbeiterbindung: Wie höhere Budgets pro Klient helfen</a>
             </h2>
             <p class="text-gray-600 text-sm mb-4">
               Die Verbindung zwischen Klientenbudgets und Mitarbeiterzufriedenheit – und warum zufriedene Teams weniger kündigen.
             </p>
-            <a href="/blog/mitarbeiterbindung-pflege/" class="text-teal font-medium text-sm hover:underline">
+            <a href={`${base}blog/mitarbeiterbindung-pflege/`} class="text-teal font-medium text-sm hover:underline">
               Weiterlesen &rarr;
             </a>
           </div>
@@ -95,7 +97,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           Berechnen Sie in 30 Sekunden, wie viel Umsatz bei Ihren bestehenden Klienten auf dem Tisch liegt.
         </p>
         <a
-          href="/#rechner"
+          href={`${base}#rechner`}
           class="inline-flex bg-teal text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl"
         >
           Zum ROI-Rechner
