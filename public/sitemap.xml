@@ -2,39 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://pflegedienste.decari.de/</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://partner.decari.de/</loc>
+    <lastmod>2025-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Blog Index -->
   <url>
-    <loc>https://pflegedienste.decari.de/blog/</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://partner.decari.de/blog/</loc>
+    <lastmod>2025-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Blog Articles -->
   <url>
-    <loc>https://pflegedienste.decari.de/blog/sgb-xii-hilfe-zur-pflege.html</loc>
+    <loc>https://partner.decari.de/blog/sgb-xii-hilfe-zur-pflege/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pflegedienste.decari.de/blog/warum-mehr-klienten-nicht-die-loesung-ist.html</loc>
+    <loc>https://partner.decari.de/blog/warum-mehr-klienten-nicht-die-loesung-ist/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pflegedienste.decari.de/blog/mitarbeiterbindung-pflege.html</loc>
+    <loc>https://partner.decari.de/blog/mitarbeiterbindung-pflege/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://partner.decari.de/impressum/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://partner.decari.de/datenschutz/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

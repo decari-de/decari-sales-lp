@@ -47,6 +47,12 @@ const base = import.meta.env.BASE_URL;
         <a href={`${base}#loesung`} class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Leistungen</a>
         <a href={`${base}#kontakt`} class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Kontakt</a>
         <a href={`${base}blog/`} class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Blog</a>
+        <button
+          id="mobile-menu-calendly-btn"
+          class="mt-2 w-full bg-teal text-white font-semibold px-5 py-3 rounded-lg hover:bg-teal-light transition-all shadow-sm"
+        >
+          Termin buchen
+        </button>
       </div>
     </div>
   </nav>
@@ -74,6 +80,19 @@ const base = import.meta.env.BASE_URL;
   // Header Calendly button - öffnet Popup
   const headerCalendlyBtn = document.getElementById('header-calendly-btn');
   headerCalendlyBtn?.addEventListener('click', () => {
+    // @ts-ignore
+    if (typeof Calendly !== 'undefined') {
+      // @ts-ignore
+      Calendly.initPopupWidget({
+        url: 'https://calendly.com/steffen-decari/erstgespraech?primary_color=097788'
+      });
+    }
+  });
+
+  // Mobile Menu Calendly button - öffnet Popup und schließt Menü
+  const mobileMenuCalendlyBtn = document.getElementById('mobile-menu-calendly-btn');
+  mobileMenuCalendlyBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.add('hidden');
     // @ts-ignore
     if (typeof Calendly !== 'undefined') {
       // @ts-ignore
