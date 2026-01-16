@@ -4,10 +4,13 @@
 
 Decari Sales Landing Page - Statische Website für ambulante Pflegedienst-Digitalisierung.
 
+**Live:** https://partner.decari.de
+
 ## Tech Stack
 
 - **Framework:** Astro 5.x (Static Site Generator)
 - **Styling:** Tailwind CSS 3.x
+- **Hosting:** Cloudflare Pages (automatisches Deployment bei Push)
 - **Sprache:** Deutsch
 
 ## Befehle
@@ -22,22 +25,28 @@ npm run preview  # Preview des Builds
 
 ```
 src/
-├── components/     # Wiederverwendbare Komponenten
+├── components/
 │   ├── Header.astro    # Header mit variant-Prop (home|blog-index|blog-article|404)
 │   └── Footer.astro
 ├── layouts/
-│   ├── BaseLayout.astro        # Hauptlayout mit SEO, Fonts, Calendly
+│   ├── BaseLayout.astro        # Hauptlayout mit SEO, Fonts, Calendly, Cookie-Banner
 │   └── BlogArticleLayout.astro # Blog-Artikel mit Breadcrumb
 ├── pages/
 │   ├── index.astro
 │   ├── 404.astro
+│   ├── impressum.astro
+│   ├── datenschutz.astro
 │   └── blog/
+│       ├── index.astro
+│       ├── sgb-xii-hilfe-zur-pflege.astro
+│       ├── warum-mehr-klienten-nicht-die-loesung-ist.astro
+│       └── mitarbeiterbindung-pflege.astro
 ├── content/        # Raw HTML-Imports (?raw Suffix)
 └── styles/
     └── global.css  # Tailwind + Custom CSS
 
 public/
-├── assets/         # Bilder (Logo, Favicon)
+├── assets/         # Bilder (Logo, Favicon, Ursula)
 ├── js/             # ROI-Calculator
 ├── robots.txt
 └── sitemap.xml
@@ -62,12 +71,19 @@ Die Header-Komponente akzeptiert einen `variant`-Prop:
 
 ## Externe Dienste
 
-- **Calendly:** Termin-Popup auf Startseite
-- **PostHog:** Analytics (in BaseLayout)
-- **Brevo:** Kontaktformular
+- **Calendly:** Termin-Popup und Inline-Widget auf Startseite
+- **Web3Forms:** Kontaktformular
+- **Cloudflare Pages:** Hosting mit globalem CDN
 
 ## Wichtige Hinweise
 
 - Blog-Inhalte liegen als Raw-HTML in `src/content/` und werden mit `?raw` importiert
 - ROI-Calculator ist Vanilla JS in `public/js/roi-calculator.js`
 - Scripts die auf public/ Assets zugreifen brauchen `is:inline` Direktive
+- Cookie-Banner wird in BaseLayout.astro gerendert (localStorage für Dismiss-Status)
+- Kein Analytics aktiv (kein PostHog, kein Google Analytics)
+
+## Deployment
+
+Push zu `main` triggert automatisches Deployment auf Cloudflare Pages.
+Preview-URLs werden automatisch für Branches/PRs erstellt.
