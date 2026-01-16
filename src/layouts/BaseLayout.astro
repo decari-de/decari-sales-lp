@@ -18,6 +18,7 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://pflegedienste.decari.de";
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -43,8 +44,8 @@ const siteUrl = "https://pflegedienste.decari.de";
   <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/decari-favicon.png" />
-  <link rel="apple-touch-icon" href="/assets/decari-favicon.png" />
+  <link rel="icon" type="image/png" href={`${base}assets/decari-favicon.png`} />
+  <link rel="apple-touch-icon" href={`${base}assets/decari-favicon.png`} />
 
   <!-- Canonical -->
   {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
@@ -107,6 +108,68 @@ const siteUrl = "https://pflegedienste.decari.de";
   </main>
 
   <Footer />
+
+  <!-- Cookie Banner -->
+  <div
+    id="cookie-banner"
+    class="hidden"
+    style="position: fixed; bottom: 16px; right: 16px; z-index: 9999; width: 390px; max-width: calc(100vw - 32px);"
+  >
+    <div
+      class="bg-white rounded-lg border border-gray-200 relative"
+      style="box-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2); padding: 16px 20px 20px 20px;"
+    >
+      <!-- Header with Title and Close Button -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+        <h3 style="font-size: 15px; font-weight: 600; color: #111827; line-height: 1.4; margin: 0;">
+          Gesetzlich vorgeschriebener Cookie-Banner
+        </h3>
+        <button
+          onclick="closeCookieBanner()"
+          style="color: #9ca3af; background: none; border: none; cursor: pointer; padding: 0; flex-shrink: 0;"
+          aria-label="Schließen"
+        >
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 3.69 12 10.94l7.25-7.25 1.06 1.06L13.06 12l7.25 7.25-1.06 1.06L12 13.06l-7.25 7.25-1.06-1.06L10.94 12 3.69 4.75l1.06-1.06Z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <p style="font-size: 14px; color: #4b5563; line-height: 1.6; margin: 0 0 12px 0;">
+        Wir verwenden keine Third-Party-Cookies, nur einen einzigen First-Party-Cookie.
+      </p>
+      <p style="font-size: 14px; color: #4b5563; line-height: 1.6; margin: 0; padding-right: 120px;">
+        Keine Daten gehen an Dritte.<br />
+        (<span style="border-bottom: 1px dashed #9ca3af">Ursula von der Leyen</span> wäre stolz.)
+      </p>
+
+      <!-- Ursula Image -->
+      <img
+        src={`${base}assets/ursula.png`}
+        alt="Ursula von der Leyen"
+        style="position: absolute; bottom: 12px; right: 12px; width: 100px; height: auto; pointer-events: none;"
+      />
+    </div>
+  </div>
+
+  <!-- Cookie Banner Script -->
+  <script is:inline>
+    function closeCookieBanner() {
+      document.getElementById("cookie-banner").classList.add("hidden");
+      localStorage.setItem("cookieBannerDismissed", "true");
+    }
+
+    function showCookieBanner() {
+      if (!localStorage.getItem("cookieBannerDismissed")) {
+        setTimeout(() => {
+          document.getElementById("cookie-banner").classList.remove("hidden");
+        }, 2000);
+      }
+    }
+
+    showCookieBanner();
+  </script>
 
   <!-- Calendly Widget - lazy loaded -->
   <script is:inline>
