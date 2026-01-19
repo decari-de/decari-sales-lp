@@ -4,53 +4,95 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <footer class="bg-navy text-white py-12 md:py-16">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-4 gap-8">
-      <!-- Logo & Tagline -->
-      <div class="md:col-span-2">
-        <img
-          src={`${base}assets/decari-logo.png`}
-          alt="Decari Logo"
-          class="h-10 w-auto mb-4 brightness-0 invert"
-        />
-        <p class="text-white/70 max-w-sm mb-5">
-          Sozialleistungs-Service für Pflegedienste. Mehr Umsatz mit bestehenden Klienten – ohne zusätzliches Personal.
-        </p>
-        <a
-          href={`${base}#rechner`}
-          class="inline-flex items-center gap-2 bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all text-sm"
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+            <!-- Logo & Tagline -->
+            <div class="md:col-span-2">
+                <img
+                    src={`${base}assets/decari-logo.png`}
+                    alt="Decari Logo"
+                    class="h-10 w-auto mb-4 brightness-0 invert"
+                />
+                <p class="text-white/70 max-w-sm mb-5">
+                    Sozialleistungs-Service für Pflegedienste. Mehr Umsatz mit
+                    bestehenden Klienten – zufriedenere Teams.
+                </p>
+                <a
+                    href={`${base}#rechner`}
+                    class="inline-flex items-center gap-2 bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all text-sm"
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                        ></path>
+                    </svg>
+                    Potenzial berechnen
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <div>
+                <h4 class="font-semibold mb-4">Navigation</h4>
+                <ul class="space-y-2 text-white/70">
+                    <li>
+                        <a
+                            href={`${base}#loesung`}
+                            class="hover:text-white transition-colors"
+                            >Lösung</a>
+                    </li>
+                    <li>
+                        <a
+                            href={`${base}#rechner`}
+                            class="hover:text-white transition-colors"
+                            >ROI-Rechner</a>
+                    </li>
+                    <li>
+                        <a
+                            href={`${base}#prozess`}
+                            class="hover:text-white transition-colors"
+                            >Prozess</a>
+                    </li>
+                    <li>
+                        <a
+                            href={`${base}blog/`}
+                            class="hover:text-white transition-colors">Blog</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Legal -->
+            <div>
+                <h4 class="font-semibold mb-4">Rechtliches</h4>
+                <ul class="space-y-2 text-white/70">
+                    <li>
+                        <a
+                            href={`${base}impressum/`}
+                            class="hover:text-white transition-colors"
+                            >Impressum</a>
+                    </li>
+                    <li>
+                        <a
+                            href={`${base}datenschutz/`}
+                            class="hover:text-white transition-colors"
+                            >Datenschutz</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div
+            class="border-t border-white/10 mt-10 pt-8 text-center text-white/50 text-sm"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-          </svg>
-          Potenzial berechnen
-        </a>
-      </div>
-
-      <!-- Navigation -->
-      <div>
-        <h4 class="font-semibold mb-4">Navigation</h4>
-        <ul class="space-y-2 text-white/70">
-          <li><a href={`${base}#loesung`} class="hover:text-white transition-colors">Lösung</a></li>
-          <li><a href={`${base}#rechner`} class="hover:text-white transition-colors">ROI-Rechner</a></li>
-          <li><a href={`${base}#prozess`} class="hover:text-white transition-colors">Prozess</a></li>
-          <li><a href={`${base}blog/`} class="hover:text-white transition-colors">Blog</a></li>
-        </ul>
-      </div>
-
-      <!-- Legal -->
-      <div>
-        <h4 class="font-semibold mb-4">Rechtliches</h4>
-        <ul class="space-y-2 text-white/70">
-          <li><a href={`${base}impressum/`} class="hover:text-white transition-colors">Impressum</a></li>
-          <li><a href={`${base}datenschutz/`} class="hover:text-white transition-colors">Datenschutz</a></li>
-        </ul>
-      </div>
+            <p>&copy; 2025 Decari GmbH. Alle Rechte vorbehalten.</p>
+        </div>
     </div>
-
-    <!-- Copyright -->
-    <div class="border-t border-white/10 mt-10 pt-8 text-center text-white/50 text-sm">
-      <p>&copy; 2025 Decari GmbH. Alle Rechte vorbehalten.</p>
-    </div>
-  </div>
 </footer>
