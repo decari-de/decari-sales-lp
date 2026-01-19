@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const transparenzBundesland = document.getElementById(
     "transparenz-bundesland",
   );
+  const bundeslandHint = document.getElementById("bundesland-hint");
+  const resultCards = document.querySelector("#calculator-results .grid");
 
   // Exit early if calculator elements don't exist
   if (!sliderKlienten) {
@@ -242,6 +244,10 @@ document.addEventListener("DOMContentLoaded", function () {
         state.bundesland && BUNDESLAND_DATA[state.bundesland];
 
       if (bundeslandSelected) {
+        // Hide hint, show results
+        if (bundeslandHint) bundeslandHint.classList.add("hidden");
+        if (resultCards) resultCards.classList.remove("hidden");
+
         // Animate numbers
         animateNumber(resultHvKlienten, results.hvKlienten, false);
         animateNumber(resultMonatlich, results.monatlich, true);
@@ -262,10 +268,9 @@ document.addEventListener("DOMContentLoaded", function () {
           transparenzBox.classList.remove("hidden");
         }
       } else {
-        // Show placeholder when no Bundesland selected
-        if (resultHvKlienten) resultHvKlienten.textContent = "–";
-        if (resultMonatlich) resultMonatlich.textContent = "– €";
-        if (resultJaehrlich) resultJaehrlich.textContent = "– €";
+        // Show hint, hide results when no Bundesland selected
+        if (bundeslandHint) bundeslandHint.classList.remove("hidden");
+        if (resultCards) resultCards.classList.add("hidden");
 
         // Hide transparency box
         if (transparenzBox) {

@@ -313,8 +313,20 @@ const infoTexts = {
                     Ihr geschätztes Zusatzpotenzial
                 </h3>
 
-                <!-- Result Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                <!-- Hint when no Bundesland selected -->
+                <div
+                    id="bundesland-hint"
+                    class="text-center py-6 mb-4 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200"
+                >
+                    <p class="text-gray-500 text-sm">
+                        Bitte wählen Sie oben Ihr <span
+                            class="font-semibold text-navy">Bundesland</span
+                        >, um das Potenzial zu berechnen.
+                    </p>
+                </div>
+
+                <!-- Result Cards (hidden until Bundesland selected) -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 hidden">
                     <div class="bg-gray-50 rounded-xl p-5 text-center">
                         <div
                             class="text-3xl md:text-4xl font-bold text-teal tabular-nums"
