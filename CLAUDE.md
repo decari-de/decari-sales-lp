@@ -47,7 +47,7 @@ src/
 
 public/
 ├── assets/         # Bilder (Logo, Favicon, Ursula)
-├── js/             # ROI-Calculator
+├── js/             # Potenzialrechner
 ├── robots.txt
 └── sitemap.xml
 ```
@@ -78,7 +78,7 @@ Die Header-Komponente akzeptiert einen `variant`-Prop:
 ## Wichtige Hinweise
 
 - Blog-Inhalte liegen als Raw-HTML in `src/content/` und werden mit `?raw` importiert
-- ROI-Calculator ist Vanilla JS in `public/js/roi-calculator.js`
+- Potenzialrechner ist Vanilla JS in `public/js/potenzialrechner.js`
 - Scripts die auf public/ Assets zugreifen brauchen `is:inline` Direktive
 - Cookie-Banner wird in BaseLayout.astro gerendert (localStorage für Dismiss-Status)
 - Kein Analytics aktiv (kein PostHog, kein Google Analytics)

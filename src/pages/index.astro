@@ -8,7 +8,7 @@ import Solution from "../components/sections/Solution.astro";
 import USP from "../components/sections/USP.astro";
 import CaseStudies from "../components/sections/CaseStudies.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
-import ROICalculator from "../components/sections/ROICalculator.astro";
+import PotenzialRechner from "../components/sections/PotenzialRechner.astro";
 import Process from "../components/sections/Process.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import ContactForm from "../components/sections/ContactForm.astro";
@@ -29,14 +29,14 @@ const base = import.meta.env.BASE_URL;
     <USP />
     <CaseStudies />
     <Testimonials />
-    <ROICalculator />
+    <PotenzialRechner />
     <Process />
     <CTASection />
     <ContactForm />
     <FAQ />
 
-    <!-- ROI Calculator Script -->
-    <script is:inline src={`${base}js/roi-calculator.js`}></script>
+    <!-- Potenzialrechner Script -->
+    <script is:inline src={`${base}js/potenzialrechner.js`}></script>
 
     <!-- Contact Form AJAX Submit -->
     <script is:inline>

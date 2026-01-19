@@ -1,108 +1,192 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
-  title="Blog – Decari | Wissen für Pflegedienste"
-  description="Expertenwissen für Pflegedienste: SGB XII, Hilfe zur Pflege, Mitarbeiterbindung und mehr. Praktische Tipps für mehr Umsatz und zufriedenere Teams."
+    title="Blog – Decari | Wissen für Pflegedienste"
+    description="Expertenwissen für Pflegedienste: SGB XII, Hilfe zur Pflege, Mitarbeiterbindung und mehr. Praktische Tipps für mehr Umsatz und zufriedenere Teams."
 >
-  <!-- Main Content -->
-  <div class="py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Page Header -->
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-navy mb-4">
-          Blog: Wissen für Pflegedienste
-        </h1>
-        <p class="text-lg text-gray-600">
-          Praktische Einblicke zu SGB XII, Mitarbeiterbindung und
-          Umsatzsteigerung – von Experten für Pflegedienste.
-        </p>
-      </div>
+    <!-- Main Content -->
+    <div class="py-12 md:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Page Header -->
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-navy mb-4">
+                    Blog: Wissen für Pflegedienste
+                </h1>
+                <p class="text-lg text-gray-600">
+                    Praktische Einblicke zu SGB XII, Mitarbeiterbindung und
+                    Umsatzsteigerung – von Experten für Pflegedienste.
+                </p>
+            </div>
 
-      <!-- Blog Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Article 1 -->
-        <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group">
-          <div class="h-48 bg-gradient-to-br from-teal to-teal-light flex items-center justify-center">
-            <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </div>
-          <div class="p-6">
-            <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">SGB XII</div>
-            <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href={`${base}blog/sgb-xii-hilfe-zur-pflege/`}>SGB XII Hilfe zur Pflege: Was Pflegedienste wissen müssen</a>
-            </h2>
-            <p class="text-gray-600 text-sm mb-4">
-              Ein umfassender Leitfaden zu den Grundlagen der Hilfe zur Pflege nach SGB XII – und wie Pflegedienste davon profitieren können.
-            </p>
-            <a href={`${base}blog/sgb-xii-hilfe-zur-pflege/`} class="text-teal font-medium text-sm hover:underline">
-              Weiterlesen &rarr;
-            </a>
-          </div>
-        </article>
+            <!-- Blog Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article
+                    class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group"
+                >
+                    <div
+                        class="h-48 bg-gradient-to-br from-teal to-teal-light flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-16 h-16 text-white/80"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="text-xs text-teal font-semibold uppercase tracking-wide mb-2"
+                        >
+                            SGB XII
+                        </div>
+                        <h2
+                            class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors"
+                        >
+                            <a href={`${base}blog/sgb-xii-hilfe-zur-pflege/`}
+                                >SGB XII Hilfe zur Pflege: Was Pflegedienste
+                                wissen müssen</a
+                            >
+                        </h2>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ein umfassender Leitfaden zu den Grundlagen der
+                            Hilfe zur Pflege nach SGB XII – und wie
+                            Pflegedienste davon profitieren können.
+                        </p>
+                        <a
+                            href={`${base}blog/sgb-xii-hilfe-zur-pflege/`}
+                            class="text-teal font-medium text-sm hover:underline"
+                        >
+                            Weiterlesen &rarr;
+                        </a>
+                    </div>
+                </article>
 
-        <!-- Article 2 -->
-        <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group">
-          <div class="h-48 bg-gradient-to-br from-navy to-navy/80 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-          </div>
-          <div class="p-6">
-            <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">Strategie</div>
-            <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href={`${base}blog/warum-mehr-klienten-nicht-die-loesung-ist/`}>Warum mehr Klienten nicht die Lösung ist</a>
-            </h2>
-            <p class="text-gray-600 text-sm mb-4">
-              Der Paradigmenwechsel: Wie Pflegedienste mit bestehenden Klienten mehr verdienen können – ohne neues Personal einzustellen.
-            </p>
-            <a href={`${base}blog/warum-mehr-klienten-nicht-die-loesung-ist/`} class="text-teal font-medium text-sm hover:underline">
-              Weiterlesen &rarr;
-            </a>
-          </div>
-        </article>
+                <!-- Article 2 -->
+                <article
+                    class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group"
+                >
+                    <div
+                        class="h-48 bg-gradient-to-br from-navy to-navy/80 flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-16 h-16 text-white/80"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="text-xs text-teal font-semibold uppercase tracking-wide mb-2"
+                        >
+                            Strategie
+                        </div>
+                        <h2
+                            class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors"
+                        >
+                            <a
+                                href={`${base}blog/warum-mehr-klienten-nicht-die-loesung-ist/`}
+                                >Warum mehr Klienten nicht die Lösung ist</a
+                            >
+                        </h2>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Der Paradigmenwechsel: Wie Pflegedienste mit
+                            bestehenden Klienten mehr verdienen können – ohne
+                            neues Personal einzustellen.
+                        </p>
+                        <a
+                            href={`${base}blog/warum-mehr-klienten-nicht-die-loesung-ist/`}
+                            class="text-teal font-medium text-sm hover:underline"
+                        >
+                            Weiterlesen &rarr;
+                        </a>
+                    </div>
+                </article>
 
-        <!-- Article 3 -->
-        <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group">
-          <div class="h-48 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-          </div>
-          <div class="p-6">
-            <div class="text-xs text-teal font-semibold uppercase tracking-wide mb-2">Personal</div>
-            <h2 class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors">
-              <a href={`${base}blog/mitarbeiterbindung-pflege/`}>Mitarbeiterbindung: Wie höhere Budgets pro Klient helfen</a>
-            </h2>
-            <p class="text-gray-600 text-sm mb-4">
-              Die Verbindung zwischen Klientenbudgets und Mitarbeiterzufriedenheit – und warum zufriedene Teams weniger kündigen.
-            </p>
-            <a href={`${base}blog/mitarbeiterbindung-pflege/`} class="text-teal font-medium text-sm hover:underline">
-              Weiterlesen &rarr;
-            </a>
-          </div>
-        </article>
-      </div>
+                <!-- Article 3 -->
+                <article
+                    class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all overflow-hidden group"
+                >
+                    <div
+                        class="h-48 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-16 h-16 text-white/80"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="text-xs text-teal font-semibold uppercase tracking-wide mb-2"
+                        >
+                            Personal
+                        </div>
+                        <h2
+                            class="text-xl font-bold text-navy mb-3 group-hover:text-teal transition-colors"
+                        >
+                            <a href={`${base}blog/mitarbeiterbindung-pflege/`}
+                                >Mitarbeiterbindung: Wie höhere Budgets pro
+                                Klient helfen</a
+                            >
+                        </h2>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Die Verbindung zwischen Klientenbudgets und
+                            Mitarbeiterzufriedenheit – und warum zufriedene
+                            Teams weniger kündigen.
+                        </p>
+                        <a
+                            href={`${base}blog/mitarbeiterbindung-pflege/`}
+                            class="text-teal font-medium text-sm hover:underline"
+                        >
+                            Weiterlesen &rarr;
+                        </a>
+                    </div>
+                </article>
+            </div>
 
-      <!-- CTA Section -->
-      <div class="mt-16 bg-gray-50 rounded-2xl p-8 md:p-12 text-center">
-        <h2 class="text-2xl font-bold text-navy mb-4">
-          Bereit, Ihr Potenzial zu entdecken?
-        </h2>
-        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-          Berechnen Sie in 30 Sekunden, wie viel Umsatz bei Ihren bestehenden Klienten auf dem Tisch liegt.
-        </p>
-        <a
-          href={`${base}#rechner`}
-          class="inline-flex bg-teal text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl"
-        >
-          Zum ROI-Rechner
-        </a>
-      </div>
+            <!-- CTA Section -->
+            <div class="mt-16 bg-gray-50 rounded-2xl p-8 md:p-12 text-center">
+                <h2 class="text-2xl font-bold text-navy mb-4">
+                    Bereit, Ihr Potenzial zu entdecken?
+                </h2>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                    Berechnen Sie in 30 Sekunden, wie viel Umsatz bei Ihren
+                    bestehenden Klienten auf dem Tisch liegt.
+                </p>
+                <a
+                    href={`${base}#rechner`}
+                    class="inline-flex bg-teal text-white font-semibold px-8 py-4 rounded-lg hover:bg-teal-light transition-all shadow-lg hover:shadow-xl"
+                >
+                    Zum Potenzialrechner
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </BaseLayout>
