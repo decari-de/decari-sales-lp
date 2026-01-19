@@ -4,101 +4,150 @@
 const base = import.meta.env.BASE_URL;
 ---
 
-<header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-40 border-b border-gray-100">
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 md:h-20">
-      <!-- Logo -->
-      <a href={base} class="flex items-center">
-        <img
-          src={`${base}assets/decari-logo.png`}
-          alt="Decari Logo"
-          class="w-auto h-10 md:h-12"
-        />
-      </a>
+<header
+    class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-40 border-b border-gray-100"
+>
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+            <!-- Logo -->
+            <a href={base} class="flex items-center">
+                <img
+                    src={`${base}assets/decari-logo.png`}
+                    alt="Decari Logo"
+                    class="w-auto h-10 md:h-12"
+                />
+            </a>
 
-      <!-- Desktop Navigation -->
-      <div class="max-md:hidden flex items-center space-x-8">
-        <a href={`${base}#rechner`} class="text-gray-600 hover:text-navy transition-colors font-medium">ROI-Rechner</a>
-        <a href={`${base}#loesung`} class="text-gray-600 hover:text-navy transition-colors font-medium">Leistungen</a>
-        <a href={`${base}#kontakt`} class="text-gray-600 hover:text-navy transition-colors font-medium">Kontakt</a>
-        <a href={`${base}blog/`} class="text-gray-600 hover:text-navy transition-colors font-medium">Blog</a>
-      </div>
+            <!-- Desktop Navigation -->
+            <div class="max-md:hidden flex items-center space-x-8">
+                <a
+                    href={`${base}#rechner`}
+                    class="text-gray-600 hover:text-navy transition-colors font-medium"
+                    >Potenzialrechner</a
+                >
+                <a
+                    href={`${base}#loesung`}
+                    class="text-gray-600 hover:text-navy transition-colors font-medium"
+                    >Leistungen</a
+                >
+                <a
+                    href={`${base}#kontakt`}
+                    class="text-gray-600 hover:text-navy transition-colors font-medium"
+                    >Kontakt</a
+                >
+                <a
+                    href={`${base}blog/`}
+                    class="text-gray-600 hover:text-navy transition-colors font-medium"
+                    >Blog</a
+                >
+            </div>
 
-      <!-- CTA Button -->
-      <button
-        id="header-calendly-btn"
-        class="max-sm:hidden bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all shadow-sm hover:shadow-md"
-      >
-        Termin buchen
-      </button>
+            <!-- CTA Button -->
+            <button
+                id="header-calendly-btn"
+                class="max-sm:hidden bg-teal text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-light transition-all shadow-sm hover:shadow-md"
+            >
+                Termin buchen
+            </button>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-navy" aria-label="Menü öffnen">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-btn"
+                class="md:hidden p-2 text-gray-600 hover:text-navy"
+                aria-label="Menü öffnen"
+            >
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
 
-    <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <div class="flex flex-col space-y-3">
-        <a href={`${base}#rechner`} class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">ROI-Rechner</a>
-        <a href={`${base}#loesung`} class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Leistungen</a>
-        <a href={`${base}#kontakt`} class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Kontakt</a>
-        <a href={`${base}blog/`} class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link">Blog</a>
-        <button
-          id="mobile-menu-calendly-btn"
-          class="mt-2 w-full bg-teal text-white font-semibold px-5 py-3 rounded-lg hover:bg-teal-light transition-all shadow-sm"
-        >
-          Termin buchen
-        </button>
-      </div>
-    </div>
-  </nav>
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4">
+            <div class="flex flex-col space-y-3">
+                <a
+                    href={`${base}#rechner`}
+                    class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link"
+                    >Potenzialrechner</a
+                >
+                <a
+                    href={`${base}#loesung`}
+                    class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link"
+                    >Leistungen</a
+                >
+                <a
+                    href={`${base}#kontakt`}
+                    class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link"
+                    >Kontakt</a
+                >
+                <a
+                    href={`${base}blog/`}
+                    class="text-gray-600 hover:text-navy py-2 font-medium mobile-menu-link"
+                    >Blog</a
+                >
+                <button
+                    id="mobile-menu-calendly-btn"
+                    class="mt-2 w-full bg-teal text-white font-semibold px-5 py-3 rounded-lg hover:bg-teal-light transition-all shadow-sm"
+                >
+                    Termin buchen
+                </button>
+            </div>
+        </div>
+    </nav>
 </header>
 
 <!-- Spacer für fixed Header -->
 <div class="h-16 md:h-20"></div>
 
 <script>
-  // Mobile Menu Toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-  mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-
-  // Close mobile menu on link click
-  document.querySelectorAll('.mobile-menu-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
+    mobileMenuBtn?.addEventListener("click", () => {
+        mobileMenu?.classList.toggle("hidden");
     });
-  });
 
-  // Header Calendly button - öffnet Popup
-  const headerCalendlyBtn = document.getElementById('header-calendly-btn');
-  headerCalendlyBtn?.addEventListener('click', () => {
-    // @ts-ignore
-    if (typeof Calendly !== 'undefined') {
-      // @ts-ignore
-      Calendly.initPopupWidget({
-        url: 'https://calendly.com/steffen-decari/erstgespraech?primary_color=097788'
-      });
-    }
-  });
+    // Close mobile menu on link click
+    document.querySelectorAll(".mobile-menu-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileMenu?.classList.add("hidden");
+        });
+    });
 
-  // Mobile Menu Calendly button - öffnet Popup und schließt Menü
-  const mobileMenuCalendlyBtn = document.getElementById('mobile-menu-calendly-btn');
-  mobileMenuCalendlyBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.add('hidden');
-    // @ts-ignore
-    if (typeof Calendly !== 'undefined') {
-      // @ts-ignore
-      Calendly.initPopupWidget({
-        url: 'https://calendly.com/steffen-decari/erstgespraech?primary_color=097788'
-      });
-    }
-  });
+    // Header Calendly button - öffnet Popup
+    const headerCalendlyBtn = document.getElementById("header-calendly-btn");
+    headerCalendlyBtn?.addEventListener("click", () => {
+        // @ts-ignore
+        if (typeof Calendly !== "undefined") {
+            // @ts-ignore
+            Calendly.initPopupWidget({
+                url: "https://calendly.com/steffen-decari/erstgespraech?primary_color=097788",
+            });
+        }
+    });
+
+    // Mobile Menu Calendly button - öffnet Popup und schließt Menü
+    const mobileMenuCalendlyBtn = document.getElementById(
+        "mobile-menu-calendly-btn",
+    );
+    mobileMenuCalendlyBtn?.addEventListener("click", () => {
+        mobileMenu?.classList.add("hidden");
+        // @ts-ignore
+        if (typeof Calendly !== "undefined") {
+            // @ts-ignore
+            Calendly.initPopupWidget({
+                url: "https://calendly.com/steffen-decari/erstgespraech?primary_color=097788",
+            });
+        }
+    });
 </script>

@@ -2,6 +2,39 @@
 import SectionHeader from "../ui/SectionHeader.astro";
 import CalendlyButton from "../ui/CalendlyButton.astro";
 import TrustBadge from "../ui/TrustBadge.astro";
+
+// Bundesländer für Dropdown
+const bundeslaender = [
+    "Baden-Württemberg",
+    "Bayern",
+    "Berlin",
+    "Brandenburg",
+    "Bremen",
+    "Hamburg",
+    "Hessen",
+    "Mecklenburg-Vorpommern",
+    "Niedersachsen",
+    "Nordrhein-Westfalen",
+    "Rheinland-Pfalz",
+    "Saarland",
+    "Sachsen",
+    "Sachsen-Anhalt",
+    "Schleswig-Holstein",
+    "Thüringen",
+];
+
+// Info-Texte für Tooltips
+const infoTexts = {
+    klienten:
+        "Je mehr Klienten Sie betreuen, desto größer das Potenzial für zusätzliche Sozialleistungen.",
+    bundesland:
+        "Die Vergütungssätze für Hilfe zur Pflege und Eingliederungshilfe variieren je nach Bundesland erheblich.",
+    egh: "Ohne Zulassung für Eingliederungshilfe (SGB IX) können Sie diese Leistungen nicht abrechnen. Die Zulassung beantragen Sie beim Bezirk oder Landschaftsverband.",
+    finanz: "Hilfe zur Pflege (SGB XII) steht nur Klienten mit begrenztem Vermögen zu (unter ca. 10.000€). Je mehr Klienten in bescheidenen Verhältnissen leben, desto höher das Potenzial.",
+    pflegegrad:
+        "Höhere Pflegegrade bedeuten oft komplexere Versorgungssituationen – und damit mehr Möglichkeiten für Zusatzleistungen.",
+    alter: "Eingliederungshilfe (SGB IX) ist nur für Klienten unter 67 Jahren möglich. Hilfe zur Pflege (SGB XII) richtet sich an Klienten über 67.",
+};
 ---
 
 <section
@@ -10,57 +43,241 @@ import TrustBadge from "../ui/TrustBadge.astro";
 >
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-            title="Wie viel Umsatz verschenken Sie – bei Ihren bestehenden Klienten?"
-            subtitle="2 Eingaben – Ihr Ergebnis in Sekunden"
+            title="Wie viel zusätzliches Umsatzpotenzial liegt bei Ihren Klienten?"
+            subtitle="6 Angaben – Ihre Schätzung in Sekunden"
             class="mb-10 md:mb-12"
         />
 
         <!-- Calculator Card -->
         <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 lg:p-12">
             <!-- Input Fields -->
-            <div class="space-y-8" id="calculator-inputs">
+            <div class="space-y-6" id="calculator-inputs">
                 <!-- Field 1: Total Clients -->
                 <div class="calculator-field">
                     <label
                         for="gesamtKlienten"
-                        class="block text-sm font-semibold text-gray-700 mb-3"
+                        class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3"
                     >
                         Wie viele Klienten betreuen Sie insgesamt?
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-tooltip={infoTexts.klienten}
+                            aria-label="Information zur Klientenzahl"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </button>
                     </label>
                     <div class="flex items-center gap-4">
                         <input
                             type="range"
                             id="gesamtKlienten"
-                            min="50"
+                            min="30"
                             max="1000"
-                            value="200"
+                            value="120"
                             step="10"
                             aria-label="Gesamtzahl der Klienten"
-                            aria-valuemin="50"
+                            aria-valuemin="30"
                             aria-valuemax="1000"
-                            aria-valuenow="200"
+                            aria-valuenow="120"
                             class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
                         />
                         <span
                             class="text-2xl font-bold text-navy w-20 text-right tabular-nums"
-                            id="display-klienten">200</span
+                            id="display-klienten">120</span
                         >
                     </div>
                     <div
                         class="flex justify-between text-xs text-gray-400 mt-1 px-1"
                     >
-                        <span>50</span>
-                        <span>500</span>
+                        <span>30</span>
                         <span>1000</span>
                     </div>
                 </div>
 
-                <!-- Field 2: Care Level -->
+                <!-- Field 2: Bundesland -->
                 <div class="calculator-field">
                     <label
-                        class="block text-sm font-semibold text-gray-700 mb-3"
+                        for="bundesland"
+                        class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3"
+                    >
+                        In welchem Bundesland sind Sie tätig?
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-tooltip={infoTexts.bundesland}
+                            aria-label="Information zum Bundesland"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </label>
+                    <select
+                        id="bundesland"
+                        class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-gray-700 font-medium transition-all hover:border-teal focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 cursor-pointer appearance-none bg-no-repeat bg-right pr-10"
+                        style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%236b7280%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpolyline points=%226 9 12 15 18 9%22%3E%3C/polyline%3E%3C/svg%3E'); background-position: right 12px center;"
+                    >
+                        <option value="">Bitte wählen</option>
+                        {
+                            bundeslaender.map((land) => (
+                                <option value={land}>{land}</option>
+                            ))
+                        }
+                    </select>
+                </div>
+
+                <!-- Field 3: EGH-Zulassung -->
+                <div class="calculator-field">
+                    <label
+                        class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3"
+                    >
+                        Haben Sie eine EGH-Zulassung (SGB IX)?
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-tooltip={infoTexts.egh}
+                            aria-label="Information zur EGH-Zulassung"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </label>
+                    <div
+                        class="flex gap-2"
+                        id="egh-toggle"
+                        role="group"
+                        aria-label="EGH-Zulassung"
+                    >
+                        <button
+                            data-value="true"
+                            class="flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 text-gray-700 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
+                        >
+                            Ja
+                        </button>
+                        <button
+                            data-value="false"
+                            class="flex-1 px-4 py-3 rounded-lg border-2 border-teal bg-teal text-white font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
+                        >
+                            Nein
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Field 4: Finanzielle Situation -->
+                <div class="calculator-field">
+                    <label
+                        class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3"
+                    >
+                        Wie schätzen Sie die finanzielle Situation Ihrer
+                        Klienten ein?
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-tooltip={infoTexts.finanz}
+                            aria-label="Information zur finanziellen Situation"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </label>
+                    <div
+                        class="flex gap-2 flex-wrap"
+                        id="finanz-buttons"
+                        role="group"
+                        aria-label="Finanzielle Situation"
+                    >
+                        <button
+                            data-value="wohlhabend"
+                            class="flex-1 min-w-[100px] px-3 py-3 rounded-lg border-2 border-gray-200 text-gray-700 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2 text-sm"
+                        >
+                            Wohlhabend
+                        </button>
+                        <button
+                            data-value="gemischt"
+                            class="flex-1 min-w-[100px] px-3 py-3 rounded-lg border-2 border-teal bg-teal text-white font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2 text-sm"
+                        >
+                            Gemischt
+                        </button>
+                        <button
+                            data-value="bescheiden"
+                            class="flex-1 min-w-[100px] px-3 py-3 rounded-lg border-2 border-gray-200 text-gray-700 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2 text-sm"
+                        >
+                            Bescheiden
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Field 5: Care Level -->
+                <div class="calculator-field">
+                    <label
+                        class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3"
                     >
                         Durchschnittlicher Pflegegrad Ihrer Klienten
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-tooltip={infoTexts.pflegegrad}
+                            aria-label="Information zum Pflegegrad"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </button>
                     </label>
                     <div
                         class="flex gap-2 flex-wrap"
@@ -90,6 +307,57 @@ import TrustBadge from "../ui/TrustBadge.astro";
                         >
                     </div>
                 </div>
+
+                <!-- Field 6: Anteil unter 67 Jahren -->
+                <div class="calculator-field">
+                    <label
+                        for="anteilUnter67"
+                        class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3"
+                    >
+                        Anteil Klienten unter 67 Jahren
+                        <button
+                            type="button"
+                            class="info-btn"
+                            data-tooltip={infoTexts.alter}
+                            aria-label="Information zur Altersverteilung"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </label>
+                    <div class="flex items-center gap-4">
+                        <input
+                            type="range"
+                            id="anteilUnter67"
+                            min="5"
+                            max="40"
+                            value="15"
+                            step="1"
+                            class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                        />
+                        <span
+                            class="text-2xl font-bold text-navy w-16 text-right tabular-nums"
+                            id="display-alter">15%</span
+                        >
+                    </div>
+                    <div
+                        class="flex justify-between text-xs text-gray-400 mt-1 px-1"
+                    >
+                        <span>5%</span>
+                        <span>40%</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Results Section -->
@@ -100,20 +368,20 @@ import TrustBadge from "../ui/TrustBadge.astro";
                 <h3
                     class="text-lg font-semibold text-center text-gray-700 mb-6"
                 >
-                    Umsatz, den Sie aktuell verschenken
+                    Ihr geschätztes Zusatzpotenzial
                 </h3>
 
                 <!-- Result Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                     <div class="bg-gray-50 rounded-xl p-5 text-center">
                         <div
                             class="text-3xl md:text-4xl font-bold text-teal tabular-nums"
                             id="result-hvKlienten"
                         >
-                            14
+                            –
                         </div>
                         <div class="text-sm text-gray-500 mt-2">
-                            Klienten mit Anspruch
+                            Klienten mit Potenzial
                         </div>
                     </div>
                     <div class="bg-gray-50 rounded-xl p-5 text-center">
@@ -121,7 +389,7 @@ import TrustBadge from "../ui/TrustBadge.astro";
                             class="text-3xl md:text-4xl font-bold text-teal tabular-nums"
                             id="result-monatlich"
                         >
-                            41.890€
+                            – €
                         </div>
                         <div class="text-sm text-gray-500 mt-2">
                             pro Monat zusätzlich
@@ -134,7 +402,7 @@ import TrustBadge from "../ui/TrustBadge.astro";
                             class="text-3xl md:text-4xl font-bold text-navy tabular-nums"
                             id="result-jaehrlich"
                         >
-                            502.680€
+                            – €
                         </div>
                         <div class="text-sm text-gray-600 mt-2 font-medium">
                             pro Jahr zusätzlich
@@ -142,19 +410,94 @@ import TrustBadge from "../ui/TrustBadge.astro";
                     </div>
                 </div>
 
-                <!-- Highlight Box -->
+                <!-- Transparency Box with Dynamic Numbers -->
                 <div
-                    class="bg-navy/5 rounded-lg p-4 text-center text-navy mb-6"
+                    id="transparenz-box"
+                    class="hidden bg-navy/5 rounded-lg p-4 text-sm text-gray-600 mb-6"
                 >
-                    <strong>Das Beste:</strong> Diese Klienten betreuen Sie bereits.
-                    Mehr bewilligte Stunden bedeuten effizientere Touren und zufriedenere
-                    Mitarbeiter.
-                </div>
+                    <p class="font-semibold text-navy mb-3">
+                        So kommen wir auf Ihr Potenzial:
+                    </p>
 
-                <!-- Context Fact -->
-                <div id="context-fact" class="text-center text-gray-600 mb-8">
-                    Das entspricht <strong>6 Vollzeit-Pflegekräften</strong>,
-                    die Sie zusätzlich finanzieren könnten.
+                    <!-- HzP Section -->
+                    <div class="mb-4">
+                        <p class="font-medium text-gray-700 mb-2">
+                            Hilfe zur Pflege (SGB XII):
+                        </p>
+                        <ul class="space-y-1 text-gray-500 text-sm ml-4">
+                            <li>
+                                • Von Ihren <span
+                                    id="t-gesamt"
+                                    class="font-medium text-gray-700">120</span
+                                > Klienten sind ca. <span
+                                    id="t-ueber67"
+                                    class="font-medium text-gray-700">102</span
+                                > über 67 Jahre
+                            </li>
+                            <li>
+                                • Davon haben geschätzt <span
+                                    id="t-niedrigVermoegen"
+                                    class="font-medium text-gray-700">31</span
+                                > ein Vermögen unter 10.000€
+                            </li>
+                            <li>
+                                • Erfahrungsgemäß stellen wir bei ca. <span
+                                    id="t-hzpKlienten"
+                                    class="font-medium text-gray-700">2</span
+                                > Klienten erfolgreich einen Antrag
+                            </li>
+                            <li>
+                                • Bei <span
+                                    id="t-hzpStunden"
+                                    class="font-medium text-gray-700">30</span
+                                > Std./Monat × <span
+                                    id="t-hzpSatz"
+                                    class="font-medium text-gray-700"
+                                    >43,80</span
+                                >€ = <span
+                                    id="t-hzpUmsatz"
+                                    class="font-medium text-teal">2.628€</span
+                                >/Monat
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- EGH Section (conditionally shown) -->
+                    <div id="transparenz-egh" class="hidden">
+                        <p class="font-medium text-gray-700 mb-2">
+                            Eingliederungshilfe (SGB IX):
+                        </p>
+                        <ul class="space-y-1 text-gray-500 text-sm ml-4">
+                            <li>
+                                • Von Ihren <span
+                                    id="t-gesamt2"
+                                    class="font-medium text-gray-700">120</span
+                                > Klienten sind ca. <span
+                                    id="t-unter67"
+                                    class="font-medium text-gray-700">18</span
+                                > unter 67 Jahre
+                            </li>
+                            <li>
+                                • Erfahrungsgemäß stellen wir bei ca. <span
+                                    id="t-eghKlienten"
+                                    class="font-medium text-gray-700">1</span
+                                > Klienten erfolgreich einen Antrag
+                            </li>
+                            <li>
+                                • Bei <span
+                                    id="t-eghStunden"
+                                    class="font-medium text-gray-700">40</span
+                                > Std./Monat × <span
+                                    id="t-eghSatz"
+                                    class="font-medium text-gray-700"
+                                    >30,48</span
+                                >€ = <span
+                                    id="t-eghUmsatz"
+                                    class="font-medium text-teal">1.219€</span
+                                >/Monat
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- CTA -->
@@ -176,12 +519,13 @@ import TrustBadge from "../ui/TrustBadge.astro";
 
                 <!-- Disclaimer -->
                 <p class="text-xs text-gray-400 text-center mt-6">
-                    Diese Berechnung basiert auf Durchschnittswerten
-                    verschiedener Zusatzleistungen (SGB IX, XII,
-                    Verhinderungspflege, Entlastung). Im Erstgespräch
-                    analysieren wir Ihr individuelles Potenzial.
+                    Im Erstgespräch analysieren wir Ihr konkretes Potenzial
+                    basierend auf Ihrer individuellen Klientenstruktur.
                 </p>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Tooltip Container -->
+<div id="tooltip" class="tooltip hidden" role="tooltip"></div>

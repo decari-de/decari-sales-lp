@@ -1,11 +1,12 @@
 /**
- * Decari ROI Calculator
+ * Decari Potenzial-Rechner
  * Interactive calculator for estimating additional revenue potential
  *
- * V2 - Überarbeitete Logik (Januar 2025):
- * - Berücksichtigt BEIDE Altersgruppen (<67 und >67)
- * - Realistische Konversionsraten basierend auf Destatis-Daten
- * - Vereinfachtes UI mit nur 2 Eingaben
+ * V3 - Neue Logik (Januar 2025):
+ * - Fokus auf SGB XII (Hilfe zur Pflege) und SGB IX (Eingliederungshilfe)
+ * - Entfernung von Entlastungsbetrag und Verhinderungspflege
+ * - Neue Eingaben: Bundesland, EGH-Zulassung, Finanzielle Situation
+ * - Regionale Stundensätze basierend auf Playbook-Daten
  */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -15,14 +16,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const sliderKlienten = document.getElementById("gesamtKlienten");
   const displayKlienten = document.getElementById("display-klienten");
+  const bundeslandSelect = document.getElementById("bundesland");
+  const eghButtons = document.querySelectorAll("#egh-toggle button");
+  const finanzButtons = document.querySelectorAll("#finanz-buttons button");
   const pflegegradButtons = document.querySelectorAll(
     "#pflegegrad-buttons button",
   );
+  const sliderAlter = document.getElementById("anteilUnter67");
+  const displayAlter = document.getElementById("display-alter");
 
   const resultHvKlienten = document.getElementById("result-hvKlienten");
   const resultMonatlich = document.getElementById("result-monatlich");
   const resultJaehrlich = document.getElementById("result-jaehrlich");
-  const contextFact = document.getElementById("context-fact");
+  const transparenzBox = document.getElementById("transparenz-box");
+  const transparenzBundesland = document.getElementById(
+    "transparenz-bundesland",
+  );
 
   // Exit early if calculator elements don't exist
   if (!sliderKlienten) {
@@ -30,102 +39,127 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ========================================
+  // Constants - Bundesland-Daten
+  // ========================================
+
+  // Stundensätze basierend auf Playbook-Annahmen (Januar 2025)
+  // hzp = Hilfe zur Pflege (SGB XII), egh = Eingliederungshilfe (SGB IX)
+  const BUNDESLAND_DATA = {
+    "Baden-Württemberg": { hzp: 45.0, egh: 32.0 },
+    Bayern: { hzp: 67.68, egh: 31.57 }, // Philipp-Playbook
+    Berlin: { hzp: 48.0, egh: 33.0 },
+    Brandenburg: { hzp: 38.0, egh: 28.0 },
+    Bremen: { hzp: 44.0, egh: 30.0 },
+    Hamburg: { hzp: 50.0, egh: 34.0 },
+    Hessen: { hzp: 46.0, egh: 30.0 }, // Philipp-Schätzung
+    "Mecklenburg-Vorpommern": { hzp: 36.0, egh: 27.0 },
+    Niedersachsen: { hzp: 42.0, egh: 29.0 },
+    "Nordrhein-Westfalen": { hzp: 43.8, egh: 30.48 }, // Philipp-Playbook
+    "Rheinland-Pfalz": { hzp: 43.0, egh: 29.0 },
+    Saarland: { hzp: 42.0, egh: 29.0 },
+    Sachsen: { hzp: 38.0, egh: 27.0 },
+    "Sachsen-Anhalt": { hzp: 37.0, egh: 27.0 },
+    "Schleswig-Holstein": { hzp: 43.0, egh: 30.0 },
+    Thüringen: { hzp: 37.0, egh: 27.0 },
+  };
+
+  // ========================================
+  // Constants - Berechnungsparameter
+  // ========================================
+
+  const KONVERSIONSRATE = 0.2; // 20% der Zielgruppe
+  const STUNDEN_HZP = 30; // Monatliche Stunden HzP
+  const STUNDEN_EGH = 40; // Monatliche Stunden EGH
+
+  // Vermögens-Faktoren (Proxy für Vermögen < 10k€)
+  const VERMOEGEN_FAKTOREN = {
+    wohlhabend: 0.15, // 15% - Eigenheim, Ersparnisse
+    gemischt: 0.3, // 30% - Verschiedene Situationen
+    bescheiden: 0.45, // 45% - Wenig Rücklagen
+  };
+
+  const MONATE_PRO_JAHR = 12;
+
+  // ========================================
   // State
   // ========================================
 
   let state = {
-    gesamtKlienten: 200,
+    gesamtKlienten: 120,
+    bundesland: null,
+    hatEgh: false,
+    finanzielleSituation: "gemischt",
     pflegegrad: 3,
+    anteilUnter67: 0.15,
   };
 
   // ========================================
-  // Constants (Recherche-basiert, Stand 2025)
-  // ========================================
-
-  // Konversionsraten (realistisch, basierend auf Destatis 2024)
-  const KONVERSIONSRATEN = {
-    eingliederungshilfe: 0.03, // 3% - Klienten <67 mit Behinderung (SGB IX)
-    hilfePflege: 0.04, // 4% - Klienten >67 mit geringem Einkommen (SGB XII)
-    verhinderungspflege: 0.2, // 20% - Klienten PG2+ nutzen Budget nicht voll aus
-    entlastungsbetrag: 0.3, // 30% - Klienten nutzen Entlastungsbetrag nicht voll aus
-  };
-
-  // Durchschnittlicher Mehrumsatz pro Leistungsart (€/Monat)
-  const MEHRUMSATZ = {
-    eingliederungshilfe: 2000, // SGB IX - Durchschnitt ~2.324€/Monat (Destatis)
-    hilfePflege: 1500, // SGB XII - bedarfsorientiert, konservativ geschätzt
-    verhinderungspflege: 295, // 3.539€/Jahr ÷ 12 (ab 07/2025)
-    entlastungsbetrag: 131, // 131€/Monat (2025)
-  };
-
-  // Anteil Klienten mit PG 2+ (für Verhinderungspflege berechtigt)
-  const ANTEIL_PG2_PLUS = {
-    2: 0.7, // Bei durchschnittl. PG 2: ~70% haben PG2+
-    3: 0.85, // Bei durchschnittl. PG 3: ~85% haben PG2+
-    4: 0.95, // Bei durchschnittl. PG 4: ~95% haben PG2+
-    5: 1.0, // Bei durchschnittl. PG 5: 100% haben PG2+
-  };
-
-  const PFLEGEKRAFT_JAHRESKOSTEN = 72000; // Annual cost per caregiver
-  const MONATE_PRO_JAHR = 12;
-
-  // ========================================
-  // Calculation Functions (NEUE LOGIK)
+  // Calculation Function (V3 Logic)
   // ========================================
 
   function calculate() {
-    const { gesamtKlienten, pflegegrad } = state;
+    const {
+      gesamtKlienten,
+      bundesland,
+      hatEgh,
+      finanzielleSituation,
+      anteilUnter67,
+    } = state;
 
-    // Anteil Klienten mit PG 2+ basierend auf durchschnittlichem Pflegegrad
-    const anteilPG2plus = ANTEIL_PG2_PLUS[pflegegrad] || 0.85;
-    const klientenPG2plus = gesamtKlienten * anteilPG2plus;
+    // Return zeros if Bundesland not selected
+    if (!bundesland || !BUNDESLAND_DATA[bundesland]) {
+      return {
+        hvKlienten: 0,
+        monatlich: 0,
+        jaehrlich: 0,
+        breakdown: null,
+      };
+    }
 
-    // Potenzial pro Leistungsart berechnen
-    const potenzialEingliederung = Math.round(
-      gesamtKlienten *
-        KONVERSIONSRATEN.eingliederungshilfe *
-        MEHRUMSATZ.eingliederungshilfe,
+    const rates = BUNDESLAND_DATA[bundesland];
+    const vermoegensFaktor = VERMOEGEN_FAKTOREN[finanzielleSituation];
+
+    // HzP: Klienten >67 UND passendes Vermögensprofil
+    const klientenUeber67 = Math.round(gesamtKlienten * (1 - anteilUnter67));
+    const mitNiedrigemVermoegen = Math.round(
+      klientenUeber67 * vermoegensFaktor,
     );
+    const hzpKlienten = Math.round(mitNiedrigemVermoegen * KONVERSIONSRATE);
+    const hzpUmsatz = hzpKlienten * STUNDEN_HZP * rates.hzp;
 
-    const potenzialHilfePflege = Math.round(
-      gesamtKlienten * KONVERSIONSRATEN.hilfePflege * MEHRUMSATZ.hilfePflege,
-    );
+    // EGH: Nur wenn Zulassung vorhanden, Klienten <67
+    const klientenUnter67 = Math.round(gesamtKlienten * anteilUnter67);
+    let eghKlienten = 0;
+    let eghUmsatz = 0;
+    if (hatEgh) {
+      eghKlienten = Math.round(klientenUnter67 * KONVERSIONSRATE);
+      eghUmsatz = eghKlienten * STUNDEN_EGH * rates.egh;
+    }
 
-    const potenzialVerhinderung = Math.round(
-      klientenPG2plus *
-        KONVERSIONSRATEN.verhinderungspflege *
-        MEHRUMSATZ.verhinderungspflege,
-    );
-
-    const potenzialEntlastung = Math.round(
-      gesamtKlienten *
-        KONVERSIONSRATEN.entlastungsbetrag *
-        MEHRUMSATZ.entlastungsbetrag,
-    );
-
-    // Gesamtpotenzial
-    const monatlich =
-      potenzialEingliederung +
-      potenzialHilfePflege +
-      potenzialVerhinderung +
-      potenzialEntlastung;
-
-    // High-Value Klienten (SGB IX + SGB XII)
-    const hvKlienten = Math.round(
-      gesamtKlienten *
-        (KONVERSIONSRATEN.eingliederungshilfe + KONVERSIONSRATEN.hilfePflege),
-    );
+    const monatlich = hzpUmsatz + eghUmsatz;
 
     return {
-      hvKlienten: hvKlienten,
-      monatlich: monatlich,
-      jaehrlich: monatlich * MONATE_PRO_JAHR,
-      // Für erweiterte Anzeige (optional)
-      details: {
-        eingliederung: potenzialEingliederung,
-        hilfePflege: potenzialHilfePflege,
-        verhinderung: potenzialVerhinderung,
-        entlastung: potenzialEntlastung,
+      hvKlienten: hzpKlienten + eghKlienten,
+      monatlich: Math.round(monatlich),
+      jaehrlich: Math.round(monatlich * MONATE_PRO_JAHR),
+      breakdown: {
+        gesamt: gesamtKlienten,
+        hzp: {
+          klientenUeber67: klientenUeber67,
+          mitNiedrigemVermoegen: mitNiedrigemVermoegen,
+          klienten: hzpKlienten,
+          stunden: STUNDEN_HZP,
+          satz: rates.hzp,
+          umsatz: Math.round(hzpUmsatz),
+        },
+        egh: {
+          klientenUnter67: klientenUnter67,
+          klienten: eghKlienten,
+          stunden: STUNDEN_EGH,
+          satz: rates.egh,
+          umsatz: Math.round(eghUmsatz),
+        },
+        hatEgh: hatEgh,
       },
     };
   }
@@ -135,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ========================================
 
   function formatCurrency(num) {
-    return num.toLocaleString("de-DE") + "€";
+    return num.toLocaleString("de-DE") + " €";
   }
 
   function formatNumber(num) {
@@ -181,65 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ========================================
-  // Context Fact Generation
-  // ========================================
-
-  function getContextFact(jaehrlich, hvKlienten) {
-    const facts = [];
-
-    // Fact 1: Financeable caregivers
-    const finanzierbarePflegekraefte = Math.floor(
-      jaehrlich / PFLEGEKRAFT_JAHRESKOSTEN,
-    );
-    if (finanzierbarePflegekraefte >= 1) {
-      facts.push(
-        `Das entspricht <strong>${finanzierbarePflegekraefte} Vollzeit-Pflegekräften</strong>, die Sie zusätzlich finanzieren könnten.`,
-      );
-    }
-
-    // Fact 2: Salary increases
-    const gehaltsErhoehungProMitarbeiter = 500;
-    const mitarbeiterMitErhoehung = Math.floor(
-      jaehrlich / MONATE_PRO_JAHR / gehaltsErhoehungProMitarbeiter,
-    );
-    if (mitarbeiterMitErhoehung >= 3) {
-      facts.push(
-        `Das ist genug, um <strong>${mitarbeiterMitErhoehung} Mitarbeitern</strong> eine Gehaltserhöhung von 500€/Monat zu finanzieren.`,
-      );
-    }
-
-    // Fact 3: Percentage increase (based on realistic average revenue)
-    const durchschnittUmsatzProKlient = 1300; // Realistischer Durchschnitt (Recherche)
-    const aktuellerUmsatz =
-      state.gesamtKlienten * durchschnittUmsatzProKlient * MONATE_PRO_JAHR;
-    const steigerungProzent = Math.round((jaehrlich / aktuellerUmsatz) * 100);
-    if (steigerungProzent > 5) {
-      facts.push(
-        `Das entspricht einer <strong>Umsatzsteigerung von ${steigerungProzent}%</strong> – ohne einen einzigen neuen Klienten.`,
-      );
-    }
-
-    // Fact 4: High-Value client benefit (NEW)
-    if (hvKlienten >= 5) {
-      const mehrumsatzProHV = Math.round(
-        jaehrlich / hvKlienten / MONATE_PRO_JAHR,
-      );
-      facts.push(
-        `Ihre <strong>${hvKlienten} High-Value-Klienten</strong> bringen durchschnittlich ${formatCurrency(mehrumsatzProHV)} Mehrumsatz pro Monat.`,
-      );
-    }
-
-    // Return a random fact (or the first one if only one exists)
-    if (facts.length === 0) {
-      return "Starten Sie jetzt und erschließen Sie Ihr ungenutztes Potenzial.";
-    }
-
-    // Rotate facts based on a simple hash of current values
-    const factIndex = (state.gesamtKlienten + state.pflegegrad) % facts.length;
-    return facts[factIndex];
-  }
-
-  // ========================================
   // Slider Track Update
   // ========================================
 
@@ -266,19 +241,115 @@ document.addEventListener("DOMContentLoaded", function () {
     debounceTimer = setTimeout(() => {
       const results = calculate();
 
-      // Animate numbers
-      animateNumber(resultHvKlienten, results.hvKlienten, false);
-      animateNumber(resultMonatlich, results.monatlich, true);
-      animateNumber(resultJaehrlich, results.jaehrlich, true);
+      // Check if Bundesland is selected
+      const bundeslandSelected =
+        state.bundesland && BUNDESLAND_DATA[state.bundesland];
 
-      // Update context fact
-      if (contextFact) {
-        contextFact.innerHTML = getContextFact(
-          results.jaehrlich,
-          results.hvKlienten,
-        );
+      if (bundeslandSelected) {
+        // Animate numbers
+        animateNumber(resultHvKlienten, results.hvKlienten, false);
+        animateNumber(resultMonatlich, results.monatlich, true);
+        animateNumber(resultJaehrlich, results.jaehrlich, true);
+
+        // Update transparency box with Bundesland name
+        if (transparenzBundesland) {
+          transparenzBundesland.textContent = state.bundesland;
+        }
+
+        // Update transparency box with real breakdown numbers
+        if (results.breakdown) {
+          updateTransparenzBox(results.breakdown);
+        }
+
+        // Show transparency box
+        if (transparenzBox) {
+          transparenzBox.classList.remove("hidden");
+        }
+      } else {
+        // Show placeholder when no Bundesland selected
+        if (resultHvKlienten) resultHvKlienten.textContent = "–";
+        if (resultMonatlich) resultMonatlich.textContent = "– €";
+        if (resultJaehrlich) resultJaehrlich.textContent = "– €";
+
+        // Hide transparency box
+        if (transparenzBox) {
+          transparenzBox.classList.add("hidden");
+        }
       }
     }, 50);
+  }
+
+  // ========================================
+  // Transparency Box Update Function
+  // ========================================
+
+  function updateTransparenzBox(breakdown) {
+    // Helper to safely update element text
+    const updateEl = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    // HzP section values
+    updateEl("t-gesamt", formatNumber(breakdown.gesamt));
+    updateEl("t-ueber67", formatNumber(breakdown.hzp.klientenUeber67));
+    updateEl(
+      "t-niedrigVermoegen",
+      formatNumber(breakdown.hzp.mitNiedrigemVermoegen),
+    );
+    updateEl("t-hzpKlienten", formatNumber(breakdown.hzp.klienten));
+    updateEl("t-hzpStunden", breakdown.hzp.stunden);
+    updateEl(
+      "t-hzpSatz",
+      breakdown.hzp.satz.toLocaleString("de-DE", { minimumFractionDigits: 2 }),
+    );
+    updateEl("t-hzpUmsatz", formatCurrency(breakdown.hzp.umsatz));
+
+    // EGH section values
+    updateEl("t-gesamt2", formatNumber(breakdown.gesamt));
+    updateEl("t-unter67", formatNumber(breakdown.egh.klientenUnter67));
+    updateEl("t-eghKlienten", formatNumber(breakdown.egh.klienten));
+    updateEl("t-eghStunden", breakdown.egh.stunden);
+    updateEl(
+      "t-eghSatz",
+      breakdown.egh.satz.toLocaleString("de-DE", { minimumFractionDigits: 2 }),
+    );
+    updateEl("t-eghUmsatz", formatCurrency(breakdown.egh.umsatz));
+
+    // Show/hide EGH section based on whether they have EGH license
+    const eghSection = document.getElementById("transparenz-egh");
+    if (eghSection) {
+      if (breakdown.hatEgh) {
+        eghSection.classList.remove("hidden");
+      } else {
+        eghSection.classList.add("hidden");
+      }
+    }
+  }
+
+  // ========================================
+  // Button Group Helper
+  // ========================================
+
+  function setActiveButton(
+    buttons,
+    activeValue,
+    activeClasses,
+    inactiveClasses,
+  ) {
+    buttons.forEach((btn) => {
+      const isActive = btn.dataset.value === String(activeValue);
+
+      // Remove all classes first
+      activeClasses.forEach((cls) => btn.classList.remove(cls));
+      inactiveClasses.forEach((cls) => btn.classList.remove(cls));
+
+      if (isActive) {
+        activeClasses.forEach((cls) => btn.classList.add(cls));
+      } else {
+        inactiveClasses.forEach((cls) => btn.classList.add(cls));
+      }
+    });
   }
 
   // ========================================
@@ -286,37 +357,42 @@ document.addEventListener("DOMContentLoaded", function () {
   // ========================================
 
   // Slider: Gesamtklienten
-  sliderKlienten.addEventListener("input", function () {
-    state.gesamtKlienten = parseInt(this.value);
-    if (displayKlienten) {
-      displayKlienten.textContent = formatNumber(this.value);
-    }
-    updateSliderTrack(this);
-    updateUI();
+  if (sliderKlienten) {
+    sliderKlienten.addEventListener("input", function () {
+      state.gesamtKlienten = parseInt(this.value);
+      if (displayKlienten) {
+        displayKlienten.textContent = formatNumber(this.value);
+      }
+      updateSliderTrack(this);
+      updateUI();
+      this.setAttribute("aria-valuenow", this.value);
+    });
+  }
 
-    // Update ARIA attribute
-    this.setAttribute("aria-valuenow", this.value);
-  });
+  // Dropdown: Bundesland
+  if (bundeslandSelect) {
+    bundeslandSelect.addEventListener("change", function () {
+      state.bundesland = this.value || null;
+      updateUI();
+    });
+  }
 
-  // Pflegegrad Buttons
-  pflegegradButtons.forEach((button) => {
+  // Toggle: EGH-Zulassung
+  eghButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      // Reset all buttons
-      pflegegradButtons.forEach((btn) => {
-        btn.classList.remove("border-teal", "bg-teal", "text-white");
-        btn.classList.add("border-gray-200");
-      });
+      const value = this.dataset.value === "true";
+      state.hatEgh = value;
 
-      // Style active button
-      this.classList.remove("border-gray-200");
-      this.classList.add("border-teal", "bg-teal", "text-white");
+      setActiveButton(
+        eghButtons,
+        value,
+        ["border-teal", "bg-teal", "text-white"],
+        ["border-gray-200", "text-gray-700"],
+      );
 
-      // Update state
-      state.pflegegrad = parseInt(this.dataset.value);
       updateUI();
     });
 
-    // Keyboard accessibility
     button.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -325,14 +401,97 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Buttons: Finanzielle Situation
+  finanzButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      state.finanzielleSituation = this.dataset.value;
+
+      setActiveButton(
+        finanzButtons,
+        this.dataset.value,
+        ["border-teal", "bg-teal", "text-white"],
+        ["border-gray-200", "text-gray-700"],
+      );
+
+      updateUI();
+    });
+
+    button.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+
+  // Pflegegrad Buttons
+  pflegegradButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      state.pflegegrad = parseInt(this.dataset.value);
+
+      setActiveButton(
+        pflegegradButtons,
+        this.dataset.value,
+        ["border-teal", "bg-teal", "text-white"],
+        ["border-gray-200"],
+      );
+
+      updateUI();
+    });
+
+    button.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+
+  // Slider: Altersverteilung
+  if (sliderAlter) {
+    sliderAlter.addEventListener("input", function () {
+      state.anteilUnter67 = parseInt(this.value) / 100;
+      if (displayAlter) {
+        displayAlter.textContent = this.value + "%";
+      }
+      updateSliderTrack(this);
+      updateUI();
+    });
+  }
+
   // ========================================
   // Initialization
   // ========================================
 
-  // Initialize slider track
+  // Initialize slider tracks
   updateSliderTrack(sliderKlienten);
+  if (sliderAlter) {
+    updateSliderTrack(sliderAlter);
+  }
 
-  // Initial calculation
+  // Set initial button states
+  setActiveButton(
+    eghButtons,
+    false,
+    ["border-teal", "bg-teal", "text-white"],
+    ["border-gray-200", "text-gray-700"],
+  );
+
+  setActiveButton(
+    finanzButtons,
+    "gemischt",
+    ["border-teal", "bg-teal", "text-white"],
+    ["border-gray-200", "text-gray-700"],
+  );
+
+  setActiveButton(
+    pflegegradButtons,
+    "3",
+    ["border-teal", "bg-teal", "text-white"],
+    ["border-gray-200"],
+  );
+
+  // Initial UI update
   updateUI();
 
   // ========================================
@@ -354,4 +513,85 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // ========================================
+  // Tooltip Functionality for Info Buttons
+  // ========================================
+
+  const tooltip = document.getElementById("tooltip");
+  const infoButtons = document.querySelectorAll(".info-btn");
+
+  if (tooltip && infoButtons.length > 0) {
+    let activeTooltipBtn = null;
+
+    function showTooltip(btn) {
+      const text = btn.dataset.tooltip;
+      if (!text) return;
+
+      tooltip.textContent = text;
+      tooltip.classList.remove("hidden");
+
+      // Position tooltip below the button
+      const btnRect = btn.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+
+      // Calculate position (centered below button)
+      let left = btnRect.left + btnRect.width / 2 - tooltipRect.width / 2;
+      let top = btnRect.bottom + 8;
+
+      // Ensure tooltip doesn't overflow viewport
+      const padding = 16;
+      if (left < padding) left = padding;
+      if (left + tooltipRect.width > window.innerWidth - padding) {
+        left = window.innerWidth - tooltipRect.width - padding;
+      }
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+
+      activeTooltipBtn = btn;
+    }
+
+    function hideTooltip() {
+      tooltip.classList.add("hidden");
+      activeTooltipBtn = null;
+    }
+
+    infoButtons.forEach((btn) => {
+      // Click to toggle on mobile
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (activeTooltipBtn === btn) {
+          hideTooltip();
+        } else {
+          showTooltip(btn);
+        }
+      });
+
+      // Hover for desktop
+      btn.addEventListener("mouseenter", function () {
+        showTooltip(btn);
+      });
+
+      btn.addEventListener("mouseleave", function () {
+        hideTooltip();
+      });
+    });
+
+    // Close tooltip when clicking outside
+    document.addEventListener("click", function (e) {
+      if (activeTooltipBtn && !e.target.closest(".info-btn")) {
+        hideTooltip();
+      }
+    });
+
+    // Close tooltip on escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && activeTooltipBtn) {
+        hideTooltip();
+      }
+    });
+  }
 });
