@@ -256,27 +256,6 @@ select:focus {
 }
 
 /* ========================================
-   MOBILE CTA BAR
-   ======================================== */
-
-#mobile-cta {
-    transform: translateY(100%);
-    animation: slideUp 0.3s ease-out 1s forwards;
-}
-
-@keyframes slideUp {
-    to {
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 767px) {
-    body {
-        padding-bottom: 72px;
-    }
-}
-
-/* ========================================
    TYPOGRAPHY ENHANCEMENTS
    ======================================== */
 
