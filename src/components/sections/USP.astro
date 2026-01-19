@@ -1,0 +1,95 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+---
+
+<section id="alleinstellungsmerkmal" class="py-16 md:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+            eyebrow="Ihr Wettbewerbsvorteil"
+            title="Bieten Sie Ihren Klienten mehr –<br />ohne Mehraufwand für Sie"
+            subtitle="Wir beraten Ihre Klienten zu ihren Ansprüchen und übernehmen die komplette Antragstellung. Sie bieten diesen Service als Alleinstellungsmerkmal an."
+            class="mb-12"
+        />
+
+        <!-- USP Cards - Zwei Cards -->
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 max-w-4xl mx-auto">
+            <!-- Bestandsklienten -->
+            <div
+                class="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100"
+            >
+                <div
+                    class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-4"
+                >
+                    <svg
+                        class="w-6 h-6 text-teal"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        ></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">
+                    Ihre Bestandsklienten
+                </h3>
+                <p class="text-gray-600">
+                    Wir analysieren Ihre bestehenden Klienten und beraten sie
+                    persönlich zu ihren Ansprüchen – oft liegen Tausende Euro an
+                    ungenutzten Leistungen brach.
+                </p>
+            </div>
+
+            <!-- Neuklienten -->
+            <div
+                class="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100"
+            >
+                <div
+                    class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-4"
+                >
+                    <svg
+                        class="w-6 h-6 text-teal"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                        ></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">
+                    Ihre Neuklienten
+                </h3>
+                <p class="text-gray-600">
+                    Wir integrieren unsere Beratung in Ihre Erstgespräche – so
+                    erhält jeder neue Klient von Tag 1 die Leistungen, die ihm
+                    zustehen.
+                </p>
+            </div>
+        </div>
+
+        <!-- Highlight Box -->
+        <div
+            class="bg-gradient-to-r from-navy to-navy/90 rounded-2xl p-6 md:p-8 text-center max-w-3xl mx-auto"
+        >
+            <p class="text-white/90 text-lg md:text-xl mb-2">
+                Für Ihre Klienten entstehen <span
+                    class="font-semibold text-white">keine Mehrkosten</span
+                >.
+            </p>
+            <p class="text-white/90 text-lg md:text-xl">
+                Für Sie entsteht ein <span class="font-semibold text-white"
+                    >echtes Alleinstellungsmerkmal</span
+                >.
+            </p>
+        </div>
+    </div>
+</section>

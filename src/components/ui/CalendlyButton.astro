@@ -1,37 +1,36 @@
 ---
 interface Props {
-  text?: string;
-  variant?: 'primary' | 'secondary';
-  size?: 'md' | 'lg';
-  class?: string;
+    text?: string;
+    variant?: "primary" | "secondary";
+    size?: "md" | "lg";
+    class?: string;
 }
 
 const {
-  text = 'Erstgespräch vereinbaren',
-  variant = 'primary',
-  size = 'md',
-  class: className = ''
+    text = "Erstgespräch vereinbaren",
+    variant = "primary",
+    size = "md",
+    class: className = "",
 } = Astro.props;
 
-const baseClasses = 'font-semibold rounded-lg transition-all inline-flex items-center justify-center gap-2';
+const baseClasses =
+    "font-semibold rounded-lg transition-all inline-flex items-center justify-center gap-2";
 
 const sizeClasses = {
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg'
+    md: "px-6 py-3 text-base",
+    lg: "px-8 py-4 text-lg",
 };
 
 const variantClasses = {
-  primary: 'bg-teal text-white hover:bg-teal-light shadow-lg hover:shadow-xl',
-  secondary: 'bg-white text-navy border-2 border-navy hover:bg-navy hover:text-white'
+    primary: "bg-teal text-white hover:bg-teal-light shadow-lg hover:shadow-xl",
+    secondary:
+        "bg-white text-navy border-2 border-navy hover:bg-navy hover:text-white",
 };
 
 const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 ---
 
-<button
-  onclick="typeof Calendly !== 'undefined' && Calendly.initPopupWidget({ url: 'https://calendly.com/steffen-decari/erstgespraech?primary_color=097788' }); return false;"
-  class={classes}
->
-  <slot name="icon" />
-  {text}
+<button onclick="window.openCalendlyPopup?.(); return false;" class={classes}>
+    <slot name="icon" />
+    {text}
 </button>

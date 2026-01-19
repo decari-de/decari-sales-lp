@@ -147,6 +147,21 @@ const base = import.meta.env.BASE_URL;
             });
 
             setTimeout(loadCalendly, 1500);
+
+            // Guard-Funktion um doppelte Popup-Öffnung zu verhindern
+            window.openCalendlyPopup = (function () {
+                let isOpening = false;
+                return function () {
+                    if (isOpening || typeof Calendly === "undefined") return;
+                    isOpening = true;
+                    Calendly.initPopupWidget({
+                        url: "https://calendly.com/steffen-decari/erstgespraech?primary_color=097788",
+                    });
+                    setTimeout(function () {
+                        isOpening = false;
+                    }, 1000);
+                };
+            })();
         </script>
     </body>
 </html>

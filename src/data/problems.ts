@@ -31,9 +31,9 @@ export const problems: Problem[] = [
     iconColor: "red",
     title: "Wachstum blockiert",
     description:
-      "Selbst wenn Sie wachsen wollten – ohne neue Mitarbeiter geht nichts. Und die sind nicht zu finden.",
-    stat: "80%",
-    statLabel: "mussten Anfragen ablehnen",
+      "Manche lehnen Anfragen ab, andere erhalten zu wenig passende Klienten. In beiden Fällen: ungenutztes Potenzial.",
+    stat: "40%",
+    statLabel: "haben ungenutzte Ansprüche",
     iconPath:
       "M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636",
   },
