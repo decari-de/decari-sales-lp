@@ -19,9 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const bundeslandSelect = document.getElementById("bundesland");
   const eghButtons = document.querySelectorAll("#egh-toggle button");
   const finanzButtons = document.querySelectorAll("#finanz-buttons button");
-  const pflegegradButtons = document.querySelectorAll(
-    "#pflegegrad-buttons button",
-  );
   const sliderAlter = document.getElementById("anteilUnter67");
   const displayAlter = document.getElementById("display-alter");
 
@@ -89,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
     bundesland: null,
     hatEgh: false,
     finanzielleSituation: "gemischt",
-    pflegegrad: 3,
     anteilUnter67: 0.15,
   };
 
@@ -298,22 +294,12 @@ document.addEventListener("DOMContentLoaded", function () {
       formatNumber(breakdown.hzp.mitNiedrigemVermoegen),
     );
     updateEl("t-hzpKlienten", formatNumber(breakdown.hzp.klienten));
-    updateEl("t-hzpStunden", breakdown.hzp.stunden);
-    updateEl(
-      "t-hzpSatz",
-      breakdown.hzp.satz.toLocaleString("de-DE", { minimumFractionDigits: 2 }),
-    );
     updateEl("t-hzpUmsatz", formatCurrency(breakdown.hzp.umsatz));
 
     // EGH section values
     updateEl("t-gesamt2", formatNumber(breakdown.gesamt));
     updateEl("t-unter67", formatNumber(breakdown.egh.klientenUnter67));
     updateEl("t-eghKlienten", formatNumber(breakdown.egh.klienten));
-    updateEl("t-eghStunden", breakdown.egh.stunden);
-    updateEl(
-      "t-eghSatz",
-      breakdown.egh.satz.toLocaleString("de-DE", { minimumFractionDigits: 2 }),
-    );
     updateEl("t-eghUmsatz", formatCurrency(breakdown.egh.umsatz));
 
     // Show/hide EGH section based on whether they have EGH license
@@ -424,29 +410,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Pflegegrad Buttons
-  pflegegradButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      state.pflegegrad = parseInt(this.dataset.value);
-
-      setActiveButton(
-        pflegegradButtons,
-        this.dataset.value,
-        ["border-teal", "bg-teal", "text-white"],
-        ["border-gray-200"],
-      );
-
-      updateUI();
-    });
-
-    button.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        this.click();
-      }
-    });
-  });
-
   // Slider: Altersverteilung
   if (sliderAlter) {
     sliderAlter.addEventListener("input", function () {
@@ -482,13 +445,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "gemischt",
     ["border-teal", "bg-teal", "text-white"],
     ["border-gray-200", "text-gray-700"],
-  );
-
-  setActiveButton(
-    pflegegradButtons,
-    "3",
-    ["border-teal", "bg-teal", "text-white"],
-    ["border-gray-200"],
   );
 
   // Initial UI update

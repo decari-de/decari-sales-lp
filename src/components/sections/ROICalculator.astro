@@ -31,8 +31,6 @@ const infoTexts = {
         "Die Vergütungssätze für Hilfe zur Pflege und Eingliederungshilfe variieren je nach Bundesland erheblich.",
     egh: "Ohne Zulassung für Eingliederungshilfe (SGB IX) können Sie diese Leistungen nicht abrechnen. Die Zulassung beantragen Sie beim Bezirk oder Landschaftsverband.",
     finanz: "Hilfe zur Pflege (SGB XII) steht nur Klienten mit begrenztem Vermögen zu (unter ca. 10.000€). Je mehr Klienten in bescheidenen Verhältnissen leben, desto höher das Potenzial.",
-    pflegegrad:
-        "Höhere Pflegegrade bedeuten oft komplexere Versorgungssituationen – und damit mehr Möglichkeiten für Zusatzleistungen.",
     alter: "Eingliederungshilfe (SGB IX) ist nur für Klienten unter 67 Jahren möglich. Hilfe zur Pflege (SGB XII) richtet sich an Klienten über 67.",
 };
 ---
@@ -44,7 +42,7 @@ const infoTexts = {
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
             title="Wie viel zusätzliches Umsatzpotenzial liegt bei Ihren Klienten?"
-            subtitle="6 Angaben – Ihre Schätzung in Sekunden"
+            subtitle="5 Angaben – Ihre Schätzung in Sekunden"
             class="mb-10 md:mb-12"
         />
 
@@ -252,63 +250,7 @@ const infoTexts = {
                     </div>
                 </div>
 
-                <!-- Field 5: Care Level -->
-                <div class="calculator-field">
-                    <label
-                        class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3"
-                    >
-                        Durchschnittlicher Pflegegrad Ihrer Klienten
-                        <button
-                            type="button"
-                            class="info-btn"
-                            data-tooltip={infoTexts.pflegegrad}
-                            aria-label="Information zum Pflegegrad"
-                        >
-                            <svg
-                                class="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                            </svg>
-                        </button>
-                    </label>
-                    <div
-                        class="flex gap-2 flex-wrap"
-                        id="pflegegrad-buttons"
-                        role="group"
-                        aria-label="Pflegegrad auswählen"
-                    >
-                        <button
-                            data-value="2"
-                            class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
-                            >2</button
-                        >
-                        <button
-                            data-value="3"
-                            class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-teal bg-teal text-white font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
-                            >3</button
-                        >
-                        <button
-                            data-value="4"
-                            class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
-                            >4</button
-                        >
-                        <button
-                            data-value="5"
-                            class="flex-1 min-w-[60px] px-4 py-3 rounded-lg border-2 border-gray-200 font-semibold transition-all hover:border-teal focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
-                            >5</button
-                        >
-                    </div>
-                </div>
-
-                <!-- Field 6: Anteil unter 67 Jahren -->
+                <!-- Field 5: Anteil unter 67 Jahren -->
                 <div class="calculator-field">
                     <label
                         for="anteilUnter67"
@@ -447,14 +389,7 @@ const infoTexts = {
                                 > Klienten erfolgreich einen Antrag
                             </li>
                             <li>
-                                • Bei <span
-                                    id="t-hzpStunden"
-                                    class="font-medium text-gray-700">30</span
-                                > Std./Monat × <span
-                                    id="t-hzpSatz"
-                                    class="font-medium text-gray-700"
-                                    >43,80</span
-                                >€ = <span
+                                • Geschätzter Umsatz: <span
                                     id="t-hzpUmsatz"
                                     class="font-medium text-teal">2.628€</span
                                 >/Monat
@@ -484,14 +419,7 @@ const infoTexts = {
                                 > Klienten erfolgreich einen Antrag
                             </li>
                             <li>
-                                • Bei <span
-                                    id="t-eghStunden"
-                                    class="font-medium text-gray-700">40</span
-                                > Std./Monat × <span
-                                    id="t-eghSatz"
-                                    class="font-medium text-gray-700"
-                                    >30,48</span
-                                >€ = <span
+                                • Geschätzter Umsatz: <span
                                     id="t-eghUmsatz"
                                     class="font-medium text-teal">1.219€</span
                                 >/Monat
