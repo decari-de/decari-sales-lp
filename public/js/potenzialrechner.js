@@ -45,15 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // hzp = Hilfe zur Pflege (SGB XII), egh = Eingliederungshilfe (SGB IX)
   const BUNDESLAND_DATA = {
     "Baden-Württemberg": { hzp: 45.0, egh: 32.0 },
-    Bayern: { hzp: 67.68, egh: 31.57 }, // Philipp-Playbook
+    Bayern: { hzp: 45.5, egh: 31.57 },
     Berlin: { hzp: 48.0, egh: 33.0 },
     Brandenburg: { hzp: 38.0, egh: 28.0 },
     Bremen: { hzp: 44.0, egh: 30.0 },
-    Hamburg: { hzp: 50.0, egh: 34.0 },
-    Hessen: { hzp: 46.0, egh: 30.0 }, // Philipp-Schätzung
+    Hamburg: { hzp: 46.0, egh: 34.0 },
+    Hessen: { hzp: 46.0, egh: 30.0 },
     "Mecklenburg-Vorpommern": { hzp: 36.0, egh: 27.0 },
     Niedersachsen: { hzp: 42.0, egh: 29.0 },
-    "Nordrhein-Westfalen": { hzp: 43.8, egh: 30.48 }, // Philipp-Playbook
+    "Nordrhein-Westfalen": { hzp: 43.8, egh: 33.48 },
     "Rheinland-Pfalz": { hzp: 43.0, egh: 29.0 },
     Saarland: { hzp: 42.0, egh: 29.0 },
     Sachsen: { hzp: 38.0, egh: 27.0 },
@@ -67,14 +67,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // ========================================
 
   const KONVERSIONSRATE = 0.2; // 20% der Zielgruppe
-  const STUNDEN_HZP = 30; // Monatliche Stunden HzP
-  const STUNDEN_EGH = 40; // Monatliche Stunden EGH
+  const STUNDEN_HZP = 50; // Monatliche Stunden HzP
+  const STUNDEN_EGH = 60; // Monatliche Stunden EGH
 
-  // Vermögens-Faktoren (Proxy für Vermögen < 10k€)
-  const VERMOEGEN_FAKTOREN = {
-    wohlhabend: 0.15, // 15% - Eigenheim, Ersparnisse
-    gemischt: 0.3, // 30% - Verschiedene Situationen
-    bescheiden: 0.45, // 45% - Wenig Rücklagen
+  // Vermögens-Faktoren (Proxy für Anteil mit Vermögen < 10k€)
+  const VERMOEGEN_FAKTOREN_HZP = {
+    wohlhabend: 0.15,
+    gemischt: 0.3,
+    bescheiden: 0.45,
+  };
+
+  // Vermögens-Faktoren (Proxy für Anteil mit Vermögen < 71k€)
+  const VERMOEGEN_FAKTOREN_EGH = {
+    wohlhabend: 0.3,
+    gemischt: 0.6,
+    bescheiden: 0.9,
   };
 
   const MONATE_PRO_JAHR = 12;
@@ -115,22 +122,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const rates = BUNDESLAND_DATA[bundesland];
-    const vermoegensFaktor = VERMOEGEN_FAKTOREN[finanzielleSituation];
+    const vermoegensFaktorHZP = VERMOEGEN_FAKTOREN_HZP[finanzielleSituation];
+    const vermoegensFaktorEGH = VERMOEGEN_FAKTOREN_EGH[finanzielleSituation];
 
     // HzP: Klienten >67 UND passendes Vermögensprofil
     const klientenUeber67 = Math.round(gesamtKlienten * (1 - anteilUnter67));
-    const mitNiedrigemVermoegen = Math.round(
-      klientenUeber67 * vermoegensFaktor,
+    const mitNiedrigemVermoegenHZP = Math.round(
+      klientenUeber67 * vermoegensFaktorHZP,
     );
-    const hzpKlienten = Math.round(mitNiedrigemVermoegen * KONVERSIONSRATE);
+    const hzpKlienten = Math.round(mitNiedrigemVermoegenHZP * KONVERSIONSRATE);
     const hzpUmsatz = hzpKlienten * STUNDEN_HZP * rates.hzp;
 
     // EGH: Nur wenn Zulassung vorhanden, Klienten <67
     const klientenUnter67 = Math.round(gesamtKlienten * anteilUnter67);
+    const mitNiedrigemVermoegenEGH = Math.round(
+      klientenUnter67 * vermoegensFaktorEGH,
+    );
     let eghKlienten = 0;
     let eghUmsatz = 0;
     if (hatEgh) {
-      eghKlienten = Math.round(klientenUnter67 * KONVERSIONSRATE);
+      eghKlienten = Math.round(mitNiedrigemVermoegenEGH * KONVERSIONSRATE);
       eghUmsatz = eghKlienten * STUNDEN_EGH * rates.egh;
     }
 
@@ -144,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gesamt: gesamtKlienten,
         hzp: {
           klientenUeber67: klientenUeber67,
-          mitNiedrigemVermoegen: mitNiedrigemVermoegen,
+          mitNiedrigemVermoegen: mitNiedrigemVermoegenHZP,
           klienten: hzpKlienten,
           stunden: STUNDEN_HZP,
           satz: rates.hzp,
