@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Constants - Berechnungsparameter
   // ========================================
 
-  const KONVERSIONSRATE = 0.2; // 20% der Zielgruppe
+  const KONVERSIONSRATE = 0.5; // 50% der Zielgruppe
   const STUNDEN_HZP = 30; // Monatliche Stunden HzP
   const STUNDEN_EGH = 40; // Monatliche Stunden EGH
 
