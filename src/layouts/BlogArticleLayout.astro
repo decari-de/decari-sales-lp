@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import "@fontsource/inter";
 
 interface Props {
     title: string;
@@ -31,16 +32,6 @@ const siteUrl = "https://partner.decari.de";
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="/assets/decari-favicon.png" />
         <link rel="apple-touch-icon" href="/assets/decari-favicon.png" />
-
-        <!-- Preconnect -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-        <!-- Fonts -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
 
         <!-- Calendly CSS -->
         <link
