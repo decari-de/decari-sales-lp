@@ -7,6 +7,8 @@ import HeadCommon from "../../../../components/HeadCommon.astro";
 import PflegedienstListItem from "../../../../components/pflegedienste/PflegedienstListItem.astro";
 import DirectoryCTA from "../../../../components/pflegedienste/DirectoryCTA.astro";
 import RegionalPotential from "../../../../components/pflegedienste/RegionalPotential.astro";
+import ScrollToTop from "../../../../components/pflegedienste/ScrollToTop.astro";
+import BundeslandSelector from "../../../../components/pflegedienste/BundeslandSelector.astro";
 import "../../../../styles/global.css";
 import {
     staedte,
@@ -140,9 +142,29 @@ const itemListSchema = {
                     <h1 class="text-3xl md:text-4xl font-bold text-navy mb-3">
                         Pflegedienste in {stadt.name}
                     </h1>
-                    <p class="text-lg text-gray-600">
-                        {stadt.diensteCount} ambulante Pflegedienste im Überblick
-                    </p>
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full bg-teal/10 text-teal text-sm font-medium"
+                    >
+                        <svg
+                            class="w-4 h-4 mr-1.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                            ></path>
+                        </svg>
+                        {stadt.diensteCount}
+                        {
+                            stadt.diensteCount === 1
+                                ? "Pflegedienst"
+                                : "Pflegedienste"
+                        }
+                    </span>
                 </header>
 
                 <!-- Regional Potential -->
@@ -172,26 +194,34 @@ const itemListSchema = {
 
                 <!-- Back Navigation -->
                 <div
-                    class="mt-8 pt-6 border-t border-gray-200 flex flex-wrap gap-4"
+                    class="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
                 >
-                    <a
-                        href={`/pflegedienste/${stadt.bundeslandSlug}/`}
-                        class="text-teal font-medium hover:text-teal-light transition-colors"
-                    >
-                        &larr; Alle Städte in {stadt.bundesland}
-                    </a>
-                    <a
-                        href="/pflegedienste/"
-                        class="text-gray-500 hover:text-teal transition-colors"
-                    >
-                        Alle Bundesländer
-                    </a>
+                    <div class="flex flex-wrap gap-4">
+                        <a
+                            href={`/pflegedienste/${stadt.bundeslandSlug}/`}
+                            class="text-teal font-medium hover:text-teal-light transition-colors"
+                        >
+                            &larr; Alle Städte in {stadt.bundesland}
+                        </a>
+                        <a
+                            href="/pflegedienste/"
+                            class="text-gray-500 hover:text-teal transition-colors"
+                        >
+                            Alle Bundesländer
+                        </a>
+                    </div>
+                    <div class="sm:w-48">
+                        <BundeslandSelector
+                            currentSlug={stadt.bundeslandSlug}
+                        />
+                    </div>
                 </div>
             </div>
         </main>
 
         <Footer />
 
+        <ScrollToTop />
         <CalendlyLoader />
     </body>
 </html>

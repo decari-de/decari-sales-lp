@@ -7,6 +7,8 @@ import HeadCommon from "../../components/HeadCommon.astro";
 import StateCard from "../../components/pflegedienste/StateCard.astro";
 import CityCard from "../../components/pflegedienste/CityCard.astro";
 import DirectoryCTA from "../../components/pflegedienste/DirectoryCTA.astro";
+import ScrollToTop from "../../components/pflegedienste/ScrollToTop.astro";
+import CitySearch from "../../components/pflegedienste/CitySearch.astro";
 import "../../styles/global.css";
 import {
     bundeslaender,
@@ -116,6 +118,11 @@ const webPageSchema = {
                             <p class="text-sm text-gray-500">Städte</p>
                         </div>
                     </div>
+
+                    <!-- City Search -->
+                    <div class="mt-8">
+                        <CitySearch />
+                    </div>
                 </header>
 
                 <!-- Potential Highlight -->
@@ -183,33 +190,58 @@ const webPageSchema = {
                 />
 
                 <!-- SEO Text -->
-                <section class="mt-12 prose prose-lg max-w-none">
-                    <h2 class="text-xl font-bold text-navy">
-                        Über dieses Verzeichnis
-                    </h2>
-                    <p class="text-gray-600">
-                        Unser Verzeichnis umfasst {
-                            totalDienste.toLocaleString("de-DE")
-                        } ambulante Pflegedienste in allen {
-                            bundeslaender.length
-                        } Bundesländern Deutschlands. Hier finden Sie Kontaktdaten,
-                        Adressen und weitere Informationen zu Pflegediensten in Ihrer
-                        Nähe.
-                    </p>
-                    <p class="text-gray-600">
-                        Als Pflegedienst möchten wir Sie darauf aufmerksam
-                        machen, dass viele Ihrer Klienten Anspruch auf
-                        zusätzliche Sozialleistungen haben könnten, die bisher
-                        nicht abgerufen werden. Decari unterstützt Sie dabei,
-                        dieses Potenzial zu erschließen – vollständig ohne
-                        Mehraufwand für Ihr Team.
-                    </p>
+                <section
+                    class="mt-12 bg-white rounded-2xl border border-gray-100 p-6 md:p-8"
+                >
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-10 h-10 bg-navy/10 rounded-lg flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-5 h-5 text-navy"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-navy mb-3">
+                                Über dieses Verzeichnis
+                            </h2>
+                            <p class="text-gray-600 mb-3">
+                                Unser Verzeichnis umfasst {
+                                    totalDienste.toLocaleString("de-DE")
+                                } ambulante Pflegedienste in allen {
+                                    bundeslaender.length
+                                } Bundesländern Deutschlands. Hier finden Sie Kontaktdaten,
+                                Adressen und weitere Informationen zu Pflegediensten
+                                in Ihrer Nähe.
+                            </p>
+                            <p class="text-gray-600">
+                                Als Pflegedienst möchten wir Sie darauf
+                                aufmerksam machen, dass viele Ihrer Klienten
+                                Anspruch auf zusätzliche Sozialleistungen haben
+                                könnten, die bisher nicht abgerufen werden.
+                                Decari unterstützt Sie dabei, dieses Potenzial
+                                zu erschließen – vollständig ohne Mehraufwand
+                                für Ihr Team.
+                            </p>
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
 
         <Footer />
 
+        <ScrollToTop />
         <CalendlyLoader />
     </body>
 </html>

@@ -1,0 +1,90 @@
+---
+// AlphabetFilter - A-Z filter buttons for filtering city lists
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+---
+
+<div class="mb-6">
+  <div class="flex flex-wrap gap-1" role="group" aria-label="Nach Anfangsbuchstaben filtern">
+    <button
+      data-letter="all"
+      class="alphabet-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-teal text-white transition-colors focus:outline-none focus:ring-2 focus:ring-teal/50"
+      aria-pressed="true"
+    >
+      Alle
+    </button>
+    {letters.map((letter) => (
+      <button
+        data-letter={letter}
+        class="alphabet-btn w-8 h-8 rounded-lg text-sm font-medium text-gray-600 hover:bg-teal hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-teal/50"
+        aria-pressed="false"
+      >
+        {letter}
+      </button>
+    ))}
+  </div>
+  <p id="filter-status" class="mt-3 text-sm text-gray-500" aria-live="polite"></p>
+</div>
+
+<script is:inline>
+(function() {
+  const buttons = document.querySelectorAll('.alphabet-btn');
+  const filterStatus = document.getElementById('filter-status');
+  const cityCards = document.querySelectorAll('[data-city-name]');
+
+  if (!buttons.length || !cityCards.length) return;
+
+  let currentFilter = 'all';
+
+  function updateFilter(letter) {
+    currentFilter = letter;
+    let visibleCount = 0;
+
+    cityCards.forEach(card => {
+      const cityName = card.getAttribute('data-city-name') || '';
+      const firstLetter = cityName.charAt(0).toUpperCase();
+      const shouldShow = letter === 'all' || firstLetter === letter;
+
+      if (shouldShow) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Update button states
+    buttons.forEach(btn => {
+      const btnLetter = btn.getAttribute('data-letter');
+      const isActive = btnLetter === letter;
+
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+
+      if (isActive) {
+        btn.classList.add('bg-teal', 'text-white');
+        btn.classList.remove('text-gray-600');
+      } else {
+        btn.classList.remove('bg-teal', 'text-white');
+        btn.classList.add('text-gray-600');
+      }
+    });
+
+    // Update status text
+    if (filterStatus) {
+      if (letter === 'all') {
+        filterStatus.textContent = '';
+      } else {
+        filterStatus.textContent = `${visibleCount} ${visibleCount === 1 ? 'Stadt' : 'Städte'} mit "${letter}"`;
+      }
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const letter = btn.getAttribute('data-letter');
+      if (letter) {
+        updateFilter(letter);
+      }
+    });
+  });
+})();
+</script>
