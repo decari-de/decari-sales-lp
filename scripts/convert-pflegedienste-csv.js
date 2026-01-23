@@ -4,6 +4,7 @@
  * Reads pflegedienste_folk_final.csv and generates src/data/pflegedienste.ts
  *
  * Run with: node scripts/convert-pflegedienste-csv.js
+ * Run with limit: node scripts/convert-pflegedienste-csv.js --limit=5000
  */
 
 import { readFileSync, writeFileSync } from "fs";
@@ -270,13 +271,14 @@ export interface StadtData {
   diensteCount: number;
 }
 
+// Main data arrays
 export const pflegedienste: Pflegedienst[] = ${JSON.stringify(pflegedienste, null, 2)};
 
 export const bundeslaender: BundeslandData[] = ${JSON.stringify(bundeslaender, null, 2)};
 
 export const staedte: StadtData[] = ${JSON.stringify(staedte, null, 2)};
 
-// Helper functions for data access
+// Helper functions
 export function getPflegedienstBySlug(bundeslandSlug: string, stadtSlug: string, slug: string): Pflegedienst | undefined {
   return pflegedienste.find(
     p => p.bundeslandSlug === bundeslandSlug && p.stadtSlug === stadtSlug && p.slug === slug

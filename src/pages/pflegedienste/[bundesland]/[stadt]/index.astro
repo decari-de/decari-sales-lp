@@ -1,29 +1,32 @@
 ---
 import Header from "../../../../components/Header.astro";
 import Footer from "../../../../components/Footer.astro";
+import CalendlyLoader from "../../../../components/CalendlyLoader.astro";
+import Breadcrumb from "../../../../components/Breadcrumb.astro";
+import HeadCommon from "../../../../components/HeadCommon.astro";
 import PflegedienstListItem from "../../../../components/pflegedienste/PflegedienstListItem.astro";
 import DirectoryCTA from "../../../../components/pflegedienste/DirectoryCTA.astro";
 import RegionalPotential from "../../../../components/pflegedienste/RegionalPotential.astro";
 import "../../../../styles/global.css";
 import {
-  staedte,
-  getPflegedienstStadt,
-  getBundeslandBySlug,
-  type StadtData
+    staedte,
+    getPflegedienstStadt,
+    getBundeslandBySlug,
+    type StadtData,
 } from "../../../../data/pflegedienste";
 
 export async function getStaticPaths() {
-  return staedte.map((stadt) => ({
-    params: {
-      bundesland: stadt.bundeslandSlug,
-      stadt: stadt.slug,
-    },
-    props: { stadt },
-  }));
+    return staedte.map((stadt) => ({
+        params: {
+            bundesland: stadt.bundeslandSlug,
+            stadt: stadt.slug,
+        },
+        props: { stadt },
+    }));
 }
 
 interface Props {
-  stadt: StadtData;
+    stadt: StadtData;
 }
 
 const { stadt } = Astro.props;
@@ -39,181 +42,156 @@ const metaDescription = `${stadt.diensteCount} ambulante Pflegedienste in ${stad
 
 // JSON-LD BreadcrumbList
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": siteUrl },
-    { "@type": "ListItem", "position": 2, "name": "Pflegedienste", "item": `${siteUrl}/pflegedienste/` },
-    { "@type": "ListItem", "position": 3, "name": stadt.bundesland, "item": `${siteUrl}/pflegedienste/${stadt.bundeslandSlug}/` },
-    { "@type": "ListItem", "position": 4, "name": stadt.name }
-  ]
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Startseite", item: siteUrl },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Pflegedienste",
+            item: `${siteUrl}/pflegedienste/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 3,
+            name: stadt.bundesland,
+            item: `${siteUrl}/pflegedienste/${stadt.bundeslandSlug}/`,
+        },
+        { "@type": "ListItem", position: 4, name: stadt.name },
+    ],
 };
 
 // JSON-LD ItemList for dienste
 const itemListSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": `Pflegedienste in ${stadt.name}`,
-  "numberOfItems": diensteInStadt.length,
-  "itemListElement": diensteInStadt.slice(0, 10).map((dienst, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "name": dienst.companyName,
-    "url": `${siteUrl}/pflegedienste/${dienst.bundeslandSlug}/${dienst.stadtSlug}/${dienst.slug}/`
-  }))
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `Pflegedienste in ${stadt.name}`,
+    numberOfItems: diensteInStadt.length,
+    itemListElement: diensteInStadt.slice(0, 10).map((dienst, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: dienst.companyName,
+        url: `${siteUrl}/pflegedienste/${dienst.bundeslandSlug}/${dienst.stadtSlug}/${dienst.slug}/`,
+    })),
 };
 ---
 
 <!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pflegedienste in {stadt.name} | {stadt.diensteCount} Anbieter – Decari</title>
-    <meta name="description" content={metaDescription} />
+    <head>
+        <HeadCommon
+            title={`Pflegedienste in ${stadt.name} | ${stadt.diensteCount} Anbieter – Decari`}
+            description={metaDescription}
+            canonicalUrl={canonicalUrl}
+        />
 
-    <link rel="canonical" href={canonicalUrl} />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(breadcrumbSchema)}
+        />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(itemListSchema)}
+        />
+    </head>
+    <body class="font-sans text-gray-800 bg-gray-50 antialiased">
+        <Header variant="blog-article" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={`Pflegedienste in ${stadt.name} – ${stadt.diensteCount} Anbieter`} />
-    <meta property="og:description" content={metaDescription} />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content="de_DE" />
+        <main class="py-8 md:py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Breadcrumb
+                    items={[
+                        { label: "Startseite", href: "/" },
+                        { label: "Pflegedienste", href: "/pflegedienste/" },
+                        {
+                            label: stadt.bundesland,
+                            href: `/pflegedienste/${stadt.bundeslandSlug}/`,
+                        },
+                        { label: stadt.name },
+                    ]}
+                />
 
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+                <!-- Header -->
+                <header class="mb-8">
+                    <div
+                        class="flex items-center gap-2 text-sm text-teal font-medium mb-2"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            ></path>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        {stadt.bundesland}
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-navy mb-3">
+                        Pflegedienste in {stadt.name}
+                    </h1>
+                    <p class="text-lg text-gray-600">
+                        {stadt.diensteCount} ambulante Pflegedienste im Überblick
+                    </p>
+                </header>
 
-    <link rel="icon" type="image/png" href="/assets/decari-favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/decari-favicon.png" />
+                <!-- Regional Potential -->
+                <RegionalPotential
+                    stadtName={stadt.name}
+                    diensteCount={stadt.diensteCount}
+                />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+                <!-- Dienste List -->
+                <section class="mt-8">
+                    <h2 class="text-lg font-semibold text-navy mb-4">
+                        Alle Pflegedienste in {stadt.name}
+                    </h2>
+                    <div class="grid gap-3">
+                        {
+                            diensteInStadt.map((dienst) => (
+                                <PflegedienstListItem dienst={dienst} />
+                            ))
+                        }
+                    </div>
+                </section>
 
-    <link
-      rel="preload"
-      href="https://assets.calendly.com/assets/external/widget.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
-    </noscript>
-  </head>
-  <body class="font-sans text-gray-800 bg-gray-50 antialiased">
-    <Header variant="blog-article" />
+                <!-- CTA -->
+                <div class="mt-10">
+                    <DirectoryCTA />
+                </div>
 
-    <main class="py-8 md:py-12">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Breadcrumb -->
-        <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-          <ol class="flex flex-wrap items-center gap-2">
-            <li>
-              <a href="/" class="hover:text-teal transition-colors">Startseite</a>
-            </li>
-            <li class="text-gray-400">/</li>
-            <li>
-              <a href="/pflegedienste/" class="hover:text-teal transition-colors">Pflegedienste</a>
-            </li>
-            <li class="text-gray-400">/</li>
-            <li>
-              <a href={`/pflegedienste/${stadt.bundeslandSlug}/`} class="hover:text-teal transition-colors">
-                {stadt.bundesland}
-              </a>
-            </li>
-            <li class="text-gray-400">/</li>
-            <li class="text-gray-700 font-medium">{stadt.name}</li>
-          </ol>
-        </nav>
+                <!-- Back Navigation -->
+                <div
+                    class="mt-8 pt-6 border-t border-gray-200 flex flex-wrap gap-4"
+                >
+                    <a
+                        href={`/pflegedienste/${stadt.bundeslandSlug}/`}
+                        class="text-teal font-medium hover:text-teal-light transition-colors"
+                    >
+                        &larr; Alle Städte in {stadt.bundesland}
+                    </a>
+                    <a
+                        href="/pflegedienste/"
+                        class="text-gray-500 hover:text-teal transition-colors"
+                    >
+                        Alle Bundesländer
+                    </a>
+                </div>
+            </div>
+        </main>
 
-        <!-- Header -->
-        <header class="mb-8">
-          <div class="flex items-center gap-2 text-sm text-teal font-medium mb-2">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {stadt.bundesland}
-          </div>
-          <h1 class="text-3xl md:text-4xl font-bold text-navy mb-3">
-            Pflegedienste in {stadt.name}
-          </h1>
-          <p class="text-lg text-gray-600">
-            {stadt.diensteCount} ambulante Pflegedienste im Überblick
-          </p>
-        </header>
+        <Footer />
 
-        <!-- Regional Potential -->
-        <RegionalPotential stadtName={stadt.name} diensteCount={stadt.diensteCount} />
-
-        <!-- Dienste List -->
-        <section class="mt-8">
-          <h2 class="text-lg font-semibold text-navy mb-4">
-            Alle Pflegedienste in {stadt.name}
-          </h2>
-          <div class="grid gap-3">
-            {diensteInStadt.map((dienst) => (
-              <PflegedienstListItem dienst={dienst} />
-            ))}
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <div class="mt-10">
-          <DirectoryCTA />
-        </div>
-
-        <!-- Back Navigation -->
-        <div class="mt-8 pt-6 border-t border-gray-200 flex flex-wrap gap-4">
-          <a
-            href={`/pflegedienste/${stadt.bundeslandSlug}/`}
-            class="text-teal font-medium hover:text-teal-light transition-colors"
-          >
-            &larr; Alle Städte in {stadt.bundesland}
-          </a>
-          <a
-            href="/pflegedienste/"
-            class="text-gray-500 hover:text-teal transition-colors"
-          >
-            Alle Bundesländer
-          </a>
-        </div>
-      </div>
-    </main>
-
-    <Footer />
-
-    <script is:inline>
-      let calendlyLoaded = false;
-      function loadCalendly() {
-        if (calendlyLoaded) return;
-        calendlyLoaded = true;
-        const script = document.createElement("script");
-        script.src = "https://assets.calendly.com/assets/external/widget.js";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-
-      ["scroll", "mousemove", "touchstart", "click"].forEach((event) => {
-        document.addEventListener(event, loadCalendly, { once: true, passive: true });
-      });
-
-      setTimeout(loadCalendly, 2000);
-
-      window.openCalendlyPopup = (function () {
-        let isOpening = false;
-        return function () {
-          if (isOpening || typeof Calendly === "undefined") return;
-          isOpening = true;
-          Calendly.initPopupWidget({
-            url: "https://calendly.com/steffen-decari/erstgespraech?primary_color=097788",
-          });
-          setTimeout(function () { isOpening = false; }, 1000);
-        };
-      })();
-    </script>
-  </body>
+        <CalendlyLoader />
+    </body>
 </html>

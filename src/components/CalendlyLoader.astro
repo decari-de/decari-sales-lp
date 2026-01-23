@@ -1,0 +1,56 @@
+---
+/**
+ * CalendlyLoader - Lazy-loaded Calendly widget integration
+ *
+ * This component handles:
+ * - Lazy loading of Calendly script on user interaction
+ * - Fallback loading after timeout
+ * - Guard function to prevent double popup opening
+ *
+ * Usage: Add <CalendlyLoader /> before closing </body> tag
+ * Call window.openCalendlyPopup() to open the popup
+ */
+
+interface Props {
+  /** Timeout in ms before auto-loading Calendly (default: 2000) */
+  timeout?: number;
+}
+
+const { timeout = 2000 } = Astro.props;
+---
+
+<script is:inline define:vars={{ timeout }}>
+  let calendlyLoaded = false;
+
+  function loadCalendly() {
+    if (calendlyLoaded) return;
+    calendlyLoaded = true;
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }
+
+  // Load on user interaction
+  ["scroll", "mousemove", "touchstart", "click"].forEach((event) => {
+    document.addEventListener(event, loadCalendly, { once: true, passive: true });
+  });
+
+  // Fallback: load after timeout
+  setTimeout(loadCalendly, timeout);
+
+  // Guard function to prevent double popup opening
+  window.openCalendlyPopup = (function () {
+    let isOpening = false;
+    return function () {
+      if (isOpening || typeof Calendly === "undefined") return;
+      isOpening = true;
+      Calendly.initPopupWidget({
+        url: "https://calendly.com/steffen-decari/erstgespraech?primary_color=097788",
+      });
+      setTimeout(function () {
+        isOpening = false;
+      }, 1000);
+    };
+  })();
+</script>

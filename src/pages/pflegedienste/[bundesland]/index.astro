@@ -1,35 +1,45 @@
 ---
 import Header from "../../../components/Header.astro";
 import Footer from "../../../components/Footer.astro";
+import CalendlyLoader from "../../../components/CalendlyLoader.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import HeadCommon from "../../../components/HeadCommon.astro";
 import CityCard from "../../../components/pflegedienste/CityCard.astro";
 import DirectoryCTA from "../../../components/pflegedienste/DirectoryCTA.astro";
 import "../../../styles/global.css";
 import {
-  bundeslaender,
-  getStaedteByBundesland,
-  type BundeslandData
+    bundeslaender,
+    getStaedteByBundesland,
+    type BundeslandData,
 } from "../../../data/pflegedienste";
-import { calculateRegionalPotential, formatCurrency } from "../../../utils/potentialCalculator";
+import {
+    calculateRegionalPotential,
+    formatCurrency,
+} from "../../../utils/potentialCalculator";
 
 export async function getStaticPaths() {
-  return bundeslaender.map((bl) => ({
-    params: { bundesland: bl.slug },
-    props: { bundesland: bl },
-  }));
+    return bundeslaender.map((bl) => ({
+        params: { bundesland: bl.slug },
+        props: { bundesland: bl },
+    }));
 }
 
 interface Props {
-  bundesland: BundeslandData;
+    bundesland: BundeslandData;
 }
 
 const { bundesland } = Astro.props;
 
 // Get all cities in this state, sorted by dienste count
-const staedteInBundesland = getStaedteByBundesland(bundesland.slug)
-  .sort((a, b) => b.diensteCount - a.diensteCount);
+const staedteInBundesland = getStaedteByBundesland(bundesland.slug).sort(
+    (a, b) => b.diensteCount - a.diensteCount,
+);
 
 // Calculate regional potential
-const potential = calculateRegionalPotential(bundesland.name, bundesland.diensteCount);
+const potential = calculateRegionalPotential(
+    bundesland.name,
+    bundesland.diensteCount,
+);
 
 const siteUrl = "https://partner.decari.de";
 const canonicalUrl = `${siteUrl}/pflegedienste/${bundesland.slug}/`;
@@ -38,168 +48,134 @@ const metaDescription = `${bundesland.diensteCount} ambulante Pflegedienste in $
 
 // JSON-LD BreadcrumbList
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": siteUrl },
-    { "@type": "ListItem", "position": 2, "name": "Pflegedienste", "item": `${siteUrl}/pflegedienste/` },
-    { "@type": "ListItem", "position": 3, "name": bundesland.name }
-  ]
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Startseite", item: siteUrl },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Pflegedienste",
+            item: `${siteUrl}/pflegedienste/`,
+        },
+        { "@type": "ListItem", position: 3, name: bundesland.name },
+    ],
 };
 ---
 
 <!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pflegedienste in {bundesland.name} | {bundesland.diensteCount} Anbieter – Decari</title>
-    <meta name="description" content={metaDescription} />
+    <head>
+        <HeadCommon
+            title={`Pflegedienste in ${bundesland.name} | ${bundesland.diensteCount} Anbieter – Decari`}
+            description={metaDescription}
+            canonicalUrl={canonicalUrl}
+        />
 
-    <link rel="canonical" href={canonicalUrl} />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(breadcrumbSchema)}
+        />
+    </head>
+    <body class="font-sans text-gray-800 bg-gray-50 antialiased">
+        <Header variant="blog-article" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={`Pflegedienste in ${bundesland.name} – ${bundesland.diensteCount} Anbieter`} />
-    <meta property="og:description" content={metaDescription} />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content="de_DE" />
+        <main class="py-8 md:py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Breadcrumb
+                    items={[
+                        { label: "Startseite", href: "/" },
+                        { label: "Pflegedienste", href: "/pflegedienste/" },
+                        { label: bundesland.name },
+                    ]}
+                />
 
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+                <!-- Header -->
+                <header class="mb-8">
+                    <h1 class="text-3xl md:text-4xl font-bold text-navy mb-3">
+                        Pflegedienste in {bundesland.name}
+                    </h1>
+                    <p class="text-lg text-gray-600">
+                        {bundesland.diensteCount.toLocaleString("de-DE")} ambulante
+                        Pflegedienste in {
+                            bundesland.staedteCount.toLocaleString("de-DE")
+                        } Städten
+                    </p>
+                </header>
 
-    <link rel="icon" type="image/png" href="/assets/decari-favicon.png" />
-    <link rel="apple-touch-icon" href="/assets/decari-favicon.png" />
+                <!-- Regional Potential Card -->
+                <section
+                    class="bg-gradient-to-br from-teal/5 to-teal/10 rounded-2xl p-6 md:p-8 border border-teal/20 mb-8"
+                >
+                    <div class="flex items-start gap-4 mb-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-teal/20 rounded-xl flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-6 h-6 text-teal"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-navy">
+                                Ungenutztes Potenzial in {bundesland.name}
+                            </h2>
+                            <p class="text-gray-600 mt-1">
+                                Geschätzte Sozialleistungen, die jährlich nicht
+                                abgerufen werden
+                            </p>
+                        </div>
+                    </div>
+                    <p class="text-3xl md:text-4xl font-bold text-teal">
+                        {formatCurrency(potential.yearlyPotential)}
+                    </p>
+                    <p class="text-sm text-gray-500 mt-2">
+                        * Basierend auf Durchschnittswerten für ambulante
+                        Pflegedienste
+                    </p>
+                </section>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+                <!-- Cities Grid -->
+                <section>
+                    <h2 class="text-lg font-semibold text-navy mb-4">
+                        Städte in {bundesland.name}
+                    </h2>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        {
+                            staedteInBundesland.map((stadt) => (
+                                <CityCard stadt={stadt} />
+                            ))
+                        }
+                    </div>
+                </section>
 
-    <link
-      rel="preload"
-      href="https://assets.calendly.com/assets/external/widget.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
-    </noscript>
-  </head>
-  <body class="font-sans text-gray-800 bg-gray-50 antialiased">
-    <Header variant="blog-article" />
+                <!-- CTA -->
+                <div class="mt-10">
+                    <DirectoryCTA />
+                </div>
 
-    <main class="py-8 md:py-12">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Breadcrumb -->
-        <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-          <ol class="flex flex-wrap items-center gap-2">
-            <li>
-              <a href="/" class="hover:text-teal transition-colors">Startseite</a>
-            </li>
-            <li class="text-gray-400">/</li>
-            <li>
-              <a href="/pflegedienste/" class="hover:text-teal transition-colors">Pflegedienste</a>
-            </li>
-            <li class="text-gray-400">/</li>
-            <li class="text-gray-700 font-medium">{bundesland.name}</li>
-          </ol>
-        </nav>
-
-        <!-- Header -->
-        <header class="mb-8">
-          <h1 class="text-3xl md:text-4xl font-bold text-navy mb-3">
-            Pflegedienste in {bundesland.name}
-          </h1>
-          <p class="text-lg text-gray-600">
-            {bundesland.diensteCount.toLocaleString('de-DE')} ambulante Pflegedienste in {bundesland.staedteCount.toLocaleString('de-DE')} Städten
-          </p>
-        </header>
-
-        <!-- Regional Potential Card -->
-        <section class="bg-gradient-to-br from-teal/5 to-teal/10 rounded-2xl p-6 md:p-8 border border-teal/20 mb-8">
-          <div class="flex items-start gap-4 mb-4">
-            <div class="flex-shrink-0 w-12 h-12 bg-teal/20 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
+                <!-- Back Navigation -->
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <a
+                        href="/pflegedienste/"
+                        class="text-teal font-medium hover:text-teal-light transition-colors"
+                    >
+                        &larr; Alle Bundesländer
+                    </a>
+                </div>
             </div>
-            <div>
-              <h2 class="text-xl font-bold text-navy">
-                Ungenutztes Potenzial in {bundesland.name}
-              </h2>
-              <p class="text-gray-600 mt-1">
-                Geschätzte Sozialleistungen, die jährlich nicht abgerufen werden
-              </p>
-            </div>
-          </div>
-          <p class="text-3xl md:text-4xl font-bold text-teal">
-            {formatCurrency(potential.yearlyPotential)}
-          </p>
-          <p class="text-sm text-gray-500 mt-2">
-            * Basierend auf Durchschnittswerten für ambulante Pflegedienste
-          </p>
-        </section>
+        </main>
 
-        <!-- Cities Grid -->
-        <section>
-          <h2 class="text-lg font-semibold text-navy mb-4">
-            Städte in {bundesland.name}
-          </h2>
-          <div class="grid gap-3 sm:grid-cols-2">
-            {staedteInBundesland.map((stadt) => (
-              <CityCard stadt={stadt} />
-            ))}
-          </div>
-        </section>
+        <Footer />
 
-        <!-- CTA -->
-        <div class="mt-10">
-          <DirectoryCTA />
-        </div>
-
-        <!-- Back Navigation -->
-        <div class="mt-8 pt-6 border-t border-gray-200">
-          <a
-            href="/pflegedienste/"
-            class="text-teal font-medium hover:text-teal-light transition-colors"
-          >
-            &larr; Alle Bundesländer
-          </a>
-        </div>
-      </div>
-    </main>
-
-    <Footer />
-
-    <script is:inline>
-      let calendlyLoaded = false;
-      function loadCalendly() {
-        if (calendlyLoaded) return;
-        calendlyLoaded = true;
-        const script = document.createElement("script");
-        script.src = "https://assets.calendly.com/assets/external/widget.js";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-
-      ["scroll", "mousemove", "touchstart", "click"].forEach((event) => {
-        document.addEventListener(event, loadCalendly, { once: true, passive: true });
-      });
-
-      setTimeout(loadCalendly, 2000);
-
-      window.openCalendlyPopup = (function () {
-        let isOpening = false;
-        return function () {
-          if (isOpening || typeof Calendly === "undefined") return;
-          isOpening = true;
-          Calendly.initPopupWidget({
-            url: "https://calendly.com/steffen-decari/erstgespraech?primary_color=097788",
-          });
-          setTimeout(function () { isOpening = false; }, 1000);
-        };
-      })();
-    </script>
-  </body>
+        <CalendlyLoader />
+    </body>
 </html>
