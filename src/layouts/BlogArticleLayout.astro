@@ -8,10 +8,60 @@ interface Props {
     description: string;
     category: string;
     breadcrumbTitle: string;
+    slug: string;
+    publishedDate: string;
+    modifiedDate?: string;
+    ogImage?: string;
 }
 
-const { title, description, category, breadcrumbTitle } = Astro.props;
+const {
+    title,
+    description,
+    category,
+    breadcrumbTitle,
+    slug,
+    publishedDate,
+    modifiedDate,
+    ogImage,
+} = Astro.props;
 const siteUrl = "https://partner.decari.de";
+const canonicalUrl = `${siteUrl}/blog/${slug}/`;
+const imageUrl = ogImage || `${siteUrl}/assets/decari-og-image.png`;
+
+// JSON-LD Schemas
+const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description: description,
+    datePublished: publishedDate,
+    dateModified: modifiedDate || publishedDate,
+    author: { "@type": "Organization", name: "Decari GmbH" },
+    publisher: {
+        "@type": "Organization",
+        name: "Decari GmbH",
+        logo: {
+            "@type": "ImageObject",
+            url: `${siteUrl}/assets/decari-logo.png`,
+        },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+};
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Startseite", item: siteUrl },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${siteUrl}/blog/`,
+        },
+        { "@type": "ListItem", position: 3, name: breadcrumbTitle },
+    ],
+};
 ---
 
 <!doctype html>
@@ -22,11 +72,35 @@ const siteUrl = "https://partner.decari.de";
         <title>{title} – Decari Blog</title>
         <meta name="description" content={description} />
 
+        <!-- Canonical URL -->
+        <link rel="canonical" href={canonicalUrl} />
+
         <!-- Open Graph -->
         <meta property="og:type" content="article" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={imageUrl} />
         <meta property="og:locale" content="de_DE" />
+
+        <!-- Article-specific meta tags -->
+        <meta property="article:published_time" content={publishedDate} />
+        {
+            modifiedDate && (
+                <meta property="article:modified_time" content={modifiedDate} />
+            )
+        }
+        <meta property="article:author" content="Decari Team" />
+
+        <!-- JSON-LD Structured Data -->
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(articleSchema)}
+        />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(breadcrumbSchema)}
+        />
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="/assets/decari-favicon.png" />

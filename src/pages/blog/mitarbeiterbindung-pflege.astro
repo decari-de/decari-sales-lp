@@ -1,19 +1,21 @@
 ---
-import BlogArticleLayout from '../../layouts/BlogArticleLayout.astro';
-import articleContent from '../../content/blog-mitarbeiterbindung-pflege.html?raw';
+import BlogArticleLayout from "../../layouts/BlogArticleLayout.astro";
+import articleContent from "../../content/blog-mitarbeiterbindung-pflege.html?raw";
 
 const cleanContent = articleContent
-  .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, '')
-  .replace(/<header class="mb-10">[\s\S]*?<\/header>/, '')
-  .replace(/<div class="mt-16 bg-teal[\s\S]*?<\/div>/, '')
-  .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, '');
+    .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, "")
+    .replace(/<header class="mb-10">[\s\S]*?<\/header>/, "")
+    .replace(/<div class="mt-16 bg-teal[\s\S]*?<\/div>/, "")
+    .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, "");
 ---
 
 <BlogArticleLayout
-  title="Mitarbeiterbindung: Wie höhere Budgets pro Klient helfen"
-  description="Die Verbindung zwischen Klientenbudgets und Mitarbeiterzufriedenheit – und warum zufriedene Teams weniger kündigen."
-  category="Personal"
-  breadcrumbTitle="Mitarbeiterbindung"
+    title="Mitarbeiterbindung: Wie höhere Budgets pro Klient helfen"
+    description="Die Verbindung zwischen Klientenbudgets und Mitarbeiterzufriedenheit – und warum zufriedene Teams weniger kündigen."
+    category="Personal"
+    breadcrumbTitle="Mitarbeiterbindung"
+    slug="mitarbeiterbindung-pflege"
+    publishedDate="2025-01-15"
 >
-  <Fragment set:html={cleanContent} />
+    <Fragment set:html={cleanContent} />
 </BlogArticleLayout>

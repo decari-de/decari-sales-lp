@@ -1,20 +1,22 @@
 ---
-import BlogArticleLayout from '../../layouts/BlogArticleLayout.astro';
-import articleContent from '../../content/blog-sgb-xii-hilfe-zur-pflege.html?raw';
+import BlogArticleLayout from "../../layouts/BlogArticleLayout.astro";
+import articleContent from "../../content/blog-sgb-xii-hilfe-zur-pflege.html?raw";
 
 // Remove header, breadcrumb, and CTA from the extracted content
 const cleanContent = articleContent
-  .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, '')
-  .replace(/<header class="mb-10">[\s\S]*?<\/header>/, '')
-  .replace(/<div class="mt-16 bg-teal[\s\S]*?<\/div>/, '')
-  .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, '');
+    .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, "")
+    .replace(/<header class="mb-10">[\s\S]*?<\/header>/, "")
+    .replace(/<div class="mt-16 bg-teal[\s\S]*?<\/div>/, "")
+    .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, "");
 ---
 
 <BlogArticleLayout
-  title="SGB XII Hilfe zur Pflege: Was Pflegedienste wissen müssen"
-  description="Ein umfassender Leitfaden zu den Grundlagen der Hilfe zur Pflege nach SGB XII – und wie Pflegedienste davon profitieren können."
-  category="SGB XII"
-  breadcrumbTitle="SGB XII Hilfe zur Pflege"
+    title="SGB XII Hilfe zur Pflege: Was Pflegedienste wissen müssen"
+    description="Ein umfassender Leitfaden zu den Grundlagen der Hilfe zur Pflege nach SGB XII – und wie Pflegedienste davon profitieren können."
+    category="SGB XII"
+    breadcrumbTitle="SGB XII Hilfe zur Pflege"
+    slug="sgb-xii-hilfe-zur-pflege"
+    publishedDate="2025-01-15"
 >
-  <Fragment set:html={cleanContent} />
+    <Fragment set:html={cleanContent} />
 </BlogArticleLayout>
