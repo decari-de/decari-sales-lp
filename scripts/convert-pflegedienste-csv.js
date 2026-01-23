@@ -6,43 +6,56 @@
  * Run with: node scripts/convert-pflegedienste-csv.js
  */
 
-import { readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readFileSync, writeFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Parse command line arguments
+const args = process.argv.slice(2);
+const limitArg = args.find((arg) => arg.startsWith("--limit="));
+const LIMIT = limitArg ? parseInt(limitArg.split("=")[1], 10) : null;
+
+if (LIMIT) {
+  console.log(
+    `⚠️  Limiting to ${LIMIT} Pflegedienste (for Cloudflare Pages 20k limit)`,
+  );
+}
+
 // Paths
-const CSV_PATH = join(__dirname, '..', 'pflegedienste_folk_final.csv');
-const OUTPUT_PATH = join(__dirname, '..', 'src', 'data', 'pflegedienste.ts');
+const CSV_PATH = join(__dirname, "..", "pflegedienste_folk_final.csv");
+const OUTPUT_PATH = join(__dirname, "..", "src", "data", "pflegedienste.ts");
 
 /**
  * Normalize German characters and create URL-safe slug
  */
 function slugify(text) {
-  if (!text) return '';
+  if (!text) return "";
 
-  return text
-    .toLowerCase()
-    // German character normalization
-    .replace(/ä/g, 'ae')
-    .replace(/ö/g, 'oe')
-    .replace(/ü/g, 'ue')
-    .replace(/ß/g, 'ss')
-    .replace(/Ä/g, 'ae')
-    .replace(/Ö/g, 'oe')
-    .replace(/Ü/g, 'ue')
-    // Remove special characters except spaces and hyphens
-    .replace(/[^a-z0-9\s-]/g, '')
-    // Replace spaces with hyphens
-    .replace(/\s+/g, '-')
-    // Remove multiple consecutive hyphens
-    .replace(/-+/g, '-')
-    // Trim hyphens from start and end
-    .replace(/^-+|-+$/g, '')
-    // Limit length
-    .substring(0, 80);
+  return (
+    text
+      .toLowerCase()
+      // German character normalization
+      .replace(/ä/g, "ae")
+      .replace(/ö/g, "oe")
+      .replace(/ü/g, "ue")
+      .replace(/ß/g, "ss")
+      .replace(/Ä/g, "ae")
+      .replace(/Ö/g, "oe")
+      .replace(/Ü/g, "ue")
+      // Remove special characters except spaces and hyphens
+      .replace(/[^a-z0-9\s-]/g, "")
+      // Replace spaces with hyphens
+      .replace(/\s+/g, "-")
+      // Remove multiple consecutive hyphens
+      .replace(/-+/g, "-")
+      // Trim hyphens from start and end
+      .replace(/^-+|-+$/g, "")
+      // Limit length
+      .substring(0, 80)
+  );
 }
 
 /**
@@ -50,7 +63,7 @@ function slugify(text) {
  */
 function parseCSVLine(line) {
   const result = [];
-  let current = '';
+  let current = "";
   let inQuotes = false;
 
   for (let i = 0; i < line.length; i++) {
@@ -58,9 +71,9 @@ function parseCSVLine(line) {
 
     if (char === '"') {
       inQuotes = !inQuotes;
-    } else if (char === ',' && !inQuotes) {
+    } else if (char === "," && !inQuotes) {
       result.push(current.trim());
-      current = '';
+      current = "";
     } else {
       current += char;
     }
@@ -75,37 +88,39 @@ function parseCSVLine(line) {
  * Format: "Straße 123, 12345 Stadt"
  */
 function parseAddress(address) {
-  if (!address) return { street: '', plz: '', city: '' };
+  if (!address) return { street: "", plz: "", city: "" };
 
   // Remove quotes
-  address = address.replace(/^"|"$/g, '');
+  address = address.replace(/^"|"$/g, "");
 
   // Try to find PLZ pattern (5 digits)
   const plzMatch = address.match(/(\d{5})\s+(.+)$/);
 
   if (plzMatch) {
-    const streetPart = address.substring(0, address.indexOf(plzMatch[0])).replace(/,\s*$/, '');
+    const streetPart = address
+      .substring(0, address.indexOf(plzMatch[0]))
+      .replace(/,\s*$/, "");
     return {
       street: streetPart.trim(),
       plz: plzMatch[1],
-      city: plzMatch[2].trim()
+      city: plzMatch[2].trim(),
     };
   }
 
-  return { street: address, plz: '', city: '' };
+  return { street: address, plz: "", city: "" };
 }
 
 /**
  * Main conversion function
  */
 function convertCSV() {
-  console.log('Reading CSV file...');
-  const csvContent = readFileSync(CSV_PATH, 'utf-8');
-  const lines = csvContent.split('\n').filter(line => line.trim());
+  console.log("Reading CSV file...");
+  const csvContent = readFileSync(CSV_PATH, "utf-8");
+  const lines = csvContent.split("\n").filter((line) => line.trim());
 
   // Parse header
   const header = parseCSVLine(lines[0]);
-  console.log('CSV Headers:', header);
+  console.log("CSV Headers:", header);
 
   // Parse data rows
   const pflegedienste = [];
@@ -114,11 +129,26 @@ function convertCSV() {
   const stadtMap = new Map(); // Aggregate by Stadt
 
   for (let i = 1; i < lines.length; i++) {
+    // Apply limit if specified
+    if (LIMIT && pflegedienste.length >= LIMIT) {
+      console.log(`Reached limit of ${LIMIT} entries, stopping...`);
+      break;
+    }
+
     const values = parseCSVLine(lines[i]);
 
     if (values.length < 8) continue;
 
-    const [companyName, email, emailType, phone, website, address, stadt, bundesland] = values;
+    const [
+      companyName,
+      email,
+      emailType,
+      phone,
+      website,
+      address,
+      stadt,
+      bundesland,
+    ] = values;
 
     if (!companyName || !bundesland) continue;
 
@@ -126,8 +156,8 @@ function convertCSV() {
     const addressParts = parseAddress(address);
 
     // Use Stadt from CSV, fallback to parsed city from address
-    const cityName = stadt || addressParts.city || 'Unbekannt';
-    const stateName = bundesland || 'Unbekannt';
+    const cityName = stadt || addressParts.city || "Unbekannt";
+    const stateName = bundesland || "Unbekannt";
 
     // Generate slugs
     const bundeslandSlug = slugify(stateName);
@@ -135,7 +165,7 @@ function convertCSV() {
 
     // Generate company slug with city for uniqueness
     let baseSlug = slugify(companyName);
-    if (!baseSlug) baseSlug = 'pflegedienst';
+    if (!baseSlug) baseSlug = "pflegedienst";
 
     // Create unique key for slug deduplication
     const slugKey = `${bundeslandSlug}/${stadtSlug}/${baseSlug}`;
@@ -152,11 +182,11 @@ function convertCSV() {
       email: email ? email.trim() : undefined,
       phone: phone ? phone.trim() : undefined,
       website: website ? website.trim() : undefined,
-      address: address ? address.replace(/^"|"$/g, '').trim() : '',
+      address: address ? address.replace(/^"|"$/g, "").trim() : "",
       stadt: cityName,
       stadtSlug,
       bundesland: stateName,
-      bundeslandSlug
+      bundeslandSlug,
     };
 
     pflegedienste.push(dienst);
@@ -167,7 +197,7 @@ function convertCSV() {
         name: stateName,
         slug: bundeslandSlug,
         diensteCount: 0,
-        staedteSet: new Set()
+        staedteSet: new Set(),
       });
     }
     const bl = bundeslandMap.get(bundeslandSlug);
@@ -182,7 +212,7 @@ function convertCSV() {
         slug: stadtSlug,
         bundesland: stateName,
         bundeslandSlug,
-        diensteCount: 0
+        diensteCount: 0,
       });
     }
     stadtMap.get(stadtKey).diensteCount++;
@@ -194,16 +224,17 @@ function convertCSV() {
 
   // Convert maps to arrays
   const bundeslaender = Array.from(bundeslandMap.values())
-    .map(bl => ({
+    .map((bl) => ({
       name: bl.name,
       slug: bl.slug,
       diensteCount: bl.diensteCount,
-      staedteCount: bl.staedteSet.size
+      staedteCount: bl.staedteSet.size,
     }))
     .sort((a, b) => b.diensteCount - a.diensteCount);
 
-  const staedte = Array.from(stadtMap.values())
-    .sort((a, b) => b.diensteCount - a.diensteCount);
+  const staedte = Array.from(stadtMap.values()).sort(
+    (a, b) => b.diensteCount - a.diensteCount,
+  );
 
   // Generate TypeScript file
   const tsContent = `// Auto-generated from pflegedienste_folk_final.csv
@@ -275,15 +306,17 @@ export function getStadtBySlug(bundeslandSlug: string, stadtSlug: string): Stadt
 }
 `;
 
-  writeFileSync(OUTPUT_PATH, tsContent, 'utf-8');
+  writeFileSync(OUTPUT_PATH, tsContent, "utf-8");
   console.log(`\nGenerated ${OUTPUT_PATH}`);
-  console.log('\nSummary:');
+  console.log("\nSummary:");
   console.log(`- ${pflegedienste.length} Pflegedienste`);
   console.log(`- ${bundeslaender.length} Bundesländer`);
   console.log(`- ${staedte.length} Städte`);
-  console.log('\nTop 5 Bundesländer by count:');
-  bundeslaender.slice(0, 5).forEach(bl => {
-    console.log(`  ${bl.name}: ${bl.diensteCount} Dienste, ${bl.staedteCount} Städte`);
+  console.log("\nTop 5 Bundesländer by count:");
+  bundeslaender.slice(0, 5).forEach((bl) => {
+    console.log(
+      `  ${bl.name}: ${bl.diensteCount} Dienste, ${bl.staedteCount} Städte`,
+    );
   });
 }
 
