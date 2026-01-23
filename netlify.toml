@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Redirects für SPA-ähnliches Verhalten (falls nötig)
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
