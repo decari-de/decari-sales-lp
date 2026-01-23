@@ -1,0 +1,66 @@
+---
+/**
+ * Breadcrumb - Reusable navigation breadcrumb component
+ *
+ * Features:
+ * - Semantic HTML with aria-label for accessibility
+ * - Responsive: separators hidden on mobile (< sm breakpoint)
+ * - Last item truncated with tooltip for long text
+ * - Consistent styling across all pages
+ *
+ * Usage:
+ * <Breadcrumb items={[
+ *   { label: "Startseite", href: "/" },
+ *   { label: "Pflegedienste", href: "/pflegedienste/" },
+ *   { label: "Bayern" } // Last item without href
+ * ]} />
+ */
+
+interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
+
+interface Props {
+    items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const lastIndex = items.length - 1;
+---
+
+<nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+        {
+            items.map((item, index) => {
+                const isLast = index === lastIndex;
+                const isLink = !!item.href;
+
+                return (
+                    <>
+                        {index > 0 && (
+                            <li class="text-gray-400 hidden sm:inline">/</li>
+                        )}
+                        {isLink ? (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    class="hover:text-teal transition-colors"
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        ) : (
+                            <li
+                                class="text-gray-700 font-medium truncate max-w-[120px] sm:max-w-[200px]"
+                                title={item.label}
+                            >
+                                {item.label}
+                            </li>
+                        )}
+                    </>
+                );
+            })
+        }
+    </ol>
+</nav>

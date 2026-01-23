@@ -1,0 +1,98 @@
+---
+/**
+ * HeadCommon - Shared <head> elements for all pages
+ *
+ * Includes:
+ * - Meta charset and viewport
+ * - Title and description
+ * - Canonical URL
+ * - Open Graph meta tags
+ * - Twitter Card meta tags
+ * - Favicon
+ * - Google Fonts (Inter)
+ * - Calendly CSS (preloaded)
+ *
+ * Usage:
+ * <head>
+ *   <HeadCommon
+ *     title="Page Title"
+ *     description="Page description"
+ *     canonicalUrl="https://partner.decari.de/page/"
+ *   />
+ *   <!-- Page-specific elements like JSON-LD schemas -->
+ * </head>
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  /** Open Graph image URL (default: decari-og-image.png) */
+  ogImage?: string;
+  /** Open Graph type (default: "website") */
+  ogType?: string;
+  /** Include Twitter Card meta tags (default: true) */
+  includeTwitter?: boolean;
+}
+
+const siteUrl = "https://partner.decari.de";
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage = `${siteUrl}/assets/decari-og-image.png`,
+  ogType = "website",
+  includeTwitter = true
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:image" content={ogImage} />
+
+<!-- Twitter Card -->
+{includeTwitter && (
+  <>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </>
+)}
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/assets/decari-favicon.png" />
+<link rel="apple-touch-icon" href="/assets/decari-favicon.png" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Calendly CSS (preloaded) -->
+<link
+  rel="preload"
+  href="https://assets.calendly.com/assets/external/widget.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://assets.calendly.com/assets/external/widget.css"
+  />
+</noscript>

@@ -1,0 +1,247 @@
+---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CalendlyLoader from "../../components/CalendlyLoader.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import HeadCommon from "../../components/HeadCommon.astro";
+import StateCard from "../../components/pflegedienste/StateCard.astro";
+import CityCard from "../../components/pflegedienste/CityCard.astro";
+import DirectoryCTA from "../../components/pflegedienste/DirectoryCTA.astro";
+import ScrollToTop from "../../components/pflegedienste/ScrollToTop.astro";
+import CitySearch from "../../components/pflegedienste/CitySearch.astro";
+import "../../styles/global.css";
+import {
+    bundeslaender,
+    staedte,
+    pflegedienste,
+} from "../../data/pflegedienste";
+import { formatCurrency } from "../../utils/potentialCalculator";
+
+// Get top cities by dienste count
+const topCities = staedte.slice(0, 20);
+
+// Calculate total potential
+const totalDienste = pflegedienste.length;
+const avgMonthlyPerDienst = 1654; // ~7 eligible clients * 350€ * 0.67
+const totalYearlyPotential = totalDienste * avgMonthlyPerDienst * 12;
+
+const siteUrl = "https://partner.decari.de";
+const canonicalUrl = `${siteUrl}/pflegedienste/`;
+
+const metaDescription = `Verzeichnis aller ${totalDienste.toLocaleString("de-DE")} ambulanten Pflegedienste in Deutschland. Finden Sie Pflegedienste in Ihrer Nähe mit Kontaktdaten und Informationen.`;
+
+// JSON-LD BreadcrumbList
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Startseite", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Pflegedienste" },
+    ],
+};
+
+// JSON-LD WebPage
+const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Pflegedienste in Deutschland",
+    description: metaDescription,
+    url: canonicalUrl,
+    isPartOf: {
+        "@type": "WebSite",
+        name: "Decari",
+        url: siteUrl,
+    },
+};
+---
+
+<!doctype html>
+<html lang="de">
+    <head>
+        <HeadCommon
+            title={`Pflegedienste in Deutschland | ${totalDienste.toLocaleString("de-DE")} Anbieter – Decari`}
+            description={metaDescription}
+            canonicalUrl={canonicalUrl}
+        />
+
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(breadcrumbSchema)}
+        />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(webPageSchema)}
+        />
+    </head>
+    <body class="font-sans text-gray-800 bg-gray-50 antialiased">
+        <Header variant="blog-index" />
+
+        <main class="py-8 md:py-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Breadcrumb
+                    items={[
+                        { label: "Startseite", href: "/" },
+                        { label: "Pflegedienste" },
+                    ]}
+                />
+
+                <!-- Hero Section -->
+                <header class="text-center mb-12">
+                    <h1 class="text-3xl md:text-5xl font-bold text-navy mb-4">
+                        Pflegedienste in Deutschland
+                    </h1>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto"
+                    >
+                        Das umfassende Verzeichnis aller ambulanten
+                        Pflegedienste mit Kontaktdaten und Informationen.
+                    </p>
+
+                    <!-- Stats -->
+                    <div class="flex flex-wrap justify-center gap-8 mt-8">
+                        <div class="text-center">
+                            <p class="text-3xl md:text-4xl font-bold text-teal">
+                                {totalDienste.toLocaleString("de-DE")}
+                            </p>
+                            <p class="text-sm text-gray-500">Pflegedienste</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl md:text-4xl font-bold text-navy">
+                                {bundeslaender.length}
+                            </p>
+                            <p class="text-sm text-gray-500">Bundesländer</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl md:text-4xl font-bold text-navy">
+                                {staedte.length.toLocaleString("de-DE")}
+                            </p>
+                            <p class="text-sm text-gray-500">Städte</p>
+                        </div>
+                    </div>
+
+                    <!-- City Search -->
+                    <div class="mt-8">
+                        <CitySearch />
+                    </div>
+                </header>
+
+                <!-- Potential Highlight -->
+                <section
+                    class="bg-gradient-to-br from-navy to-navy/90 rounded-2xl p-6 md:p-10 text-white mb-12"
+                >
+                    <div
+                        class="flex flex-col md:flex-row md:items-center gap-6"
+                    >
+                        <div class="flex-1">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                                Ungenutztes Potenzial deutschlandweit
+                            </h2>
+                            <p class="text-white/80 text-lg">
+                                Jedes Jahr werden schätzungsweise <span
+                                    class="font-bold text-white"
+                                    >{
+                                        formatCurrency(totalYearlyPotential)
+                                    }</span
+                                > an Sozialleistungen für Pflegebedürftige nicht abgerufen.
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a
+                                href="/#rechner"
+                                class="inline-flex items-center justify-center px-6 py-3 bg-teal text-white font-semibold rounded-lg hover:bg-teal-light transition-colors"
+                            >
+                                Ihr Potenzial berechnen
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bundesländer -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-navy mb-6">
+                        Pflegedienste nach Bundesland
+                    </h2>
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {
+                            bundeslaender.map((bl) => (
+                                <StateCard bundesland={bl} />
+                            ))
+                        }
+                    </div>
+                </section>
+
+                <!-- Top Cities -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-navy mb-2">
+                        Top-Städte nach Anzahl Pflegedienste
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Die 20 Städte mit den meisten ambulanten Pflegediensten
+                    </p>
+                    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        {topCities.map((stadt) => <CityCard stadt={stadt} />)}
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <DirectoryCTA
+                    title="Sind Sie Pflegedienstleitung?"
+                    description="Erfahren Sie, wie Decari Ihnen hilft, ungenutztes Umsatzpotenzial bei Ihren Klienten zu erschließen – ohne Mehraufwand für Ihr Team."
+                />
+
+                <!-- SEO Text -->
+                <section
+                    class="mt-12 bg-white rounded-2xl border border-gray-100 p-6 md:p-8"
+                >
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-10 h-10 bg-navy/10 rounded-lg flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-5 h-5 text-navy"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-navy mb-3">
+                                Über dieses Verzeichnis
+                            </h2>
+                            <p class="text-gray-600 mb-3">
+                                Unser Verzeichnis umfasst {
+                                    totalDienste.toLocaleString("de-DE")
+                                } ambulante Pflegedienste in allen {
+                                    bundeslaender.length
+                                } Bundesländern Deutschlands. Hier finden Sie Kontaktdaten,
+                                Adressen und weitere Informationen zu Pflegediensten
+                                in Ihrer Nähe.
+                            </p>
+                            <p class="text-gray-600">
+                                Als Pflegedienst möchten wir Sie darauf
+                                aufmerksam machen, dass viele Ihrer Klienten
+                                Anspruch auf zusätzliche Sozialleistungen haben
+                                könnten, die bisher nicht abgerufen werden.
+                                Decari unterstützt Sie dabei, dieses Potenzial
+                                zu erschließen – vollständig ohne Mehraufwand
+                                für Ihr Team.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <Footer />
+
+        <ScrollToTop />
+        <CalendlyLoader />
+    </body>
+</html>

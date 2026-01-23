@@ -1,0 +1,51 @@
+---
+import { bundeslaender } from "../../data/pflegedienste";
+
+interface Props {
+  currentSlug?: string;
+}
+
+const { currentSlug } = Astro.props;
+
+// Sort alphabetically
+const sortedBundeslaender = [...bundeslaender].sort((a, b) =>
+  a.name.localeCompare(b.name, 'de')
+);
+---
+
+<div class="relative">
+  <label for="bundesland-select" class="sr-only">Bundesland wechseln</label>
+  <select
+    id="bundesland-select"
+    class="w-full appearance-none bg-white border border-gray-200 rounded-lg px-4 py-2.5 pr-10 text-sm text-gray-700 cursor-pointer hover:border-teal/50 focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal transition-colors"
+  >
+    <option value="">Bundesland wechseln...</option>
+    {sortedBundeslaender.map((bl) => (
+      <option
+        value={`/pflegedienste/${bl.slug}/`}
+        selected={bl.slug === currentSlug}
+      >
+        {bl.name} ({bl.diensteCount.toLocaleString('de-DE')})
+      </option>
+    ))}
+  </select>
+  <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  const select = document.getElementById('bundesland-select');
+  if (!select) return;
+
+  select.addEventListener('change', function() {
+    const value = this.value;
+    if (value) {
+      window.location.href = value;
+    }
+  });
+})();
+</script>

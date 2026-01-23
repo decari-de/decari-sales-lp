@@ -1,0 +1,497 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CalendlyLoader from "../components/CalendlyLoader.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import HeadCommon from "../components/HeadCommon.astro";
+import "../styles/global.css";
+import type { Pflegedienst, StadtData } from "../data/pflegedienste";
+
+interface Props {
+    dienst: Pflegedienst;
+    relatedDienste?: Pflegedienst[];
+    stadtData?: StadtData;
+}
+
+const { dienst, relatedDienste = [], stadtData } = Astro.props;
+
+const siteUrl = "https://partner.decari.de";
+const canonicalUrl = `${siteUrl}/pflegedienste/${dienst.bundeslandSlug}/${dienst.stadtSlug}/${dienst.slug}/`;
+
+// Meta description
+const metaDescription = `${dienst.companyName} – Ambulanter Pflegedienst in ${dienst.stadt}, ${dienst.bundesland}. Kontaktdaten, Adresse und Informationen.`;
+
+// JSON-LD LocalBusiness Schema
+const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": canonicalUrl,
+    name: dienst.companyName,
+    description: `Ambulanter Pflegedienst in ${dienst.stadt}, ${dienst.bundesland}`,
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: dienst.address.split(",")[0]?.trim() || dienst.address,
+        addressLocality: dienst.stadt,
+        addressRegion: dienst.bundesland,
+        addressCountry: "DE",
+    },
+    ...(dienst.phone && { telephone: dienst.phone }),
+    ...(dienst.email && { email: dienst.email }),
+    ...(dienst.website && { url: dienst.website }),
+    areaServed: {
+        "@type": "City",
+        name: dienst.stadt,
+    },
+    serviceType: "Ambulante Pflege",
+};
+
+// JSON-LD BreadcrumbList Schema
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Startseite",
+            item: siteUrl,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Pflegedienste",
+            item: `${siteUrl}/pflegedienste/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 3,
+            name: dienst.bundesland,
+            item: `${siteUrl}/pflegedienste/${dienst.bundeslandSlug}/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 4,
+            name: dienst.stadt,
+            item: `${siteUrl}/pflegedienste/${dienst.bundeslandSlug}/${dienst.stadtSlug}/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 5,
+            name: dienst.companyName,
+        },
+    ],
+};
+---
+
+<!doctype html>
+<html lang="de">
+    <head>
+        <HeadCommon
+            title={`${dienst.companyName} | Pflegedienst in ${dienst.stadt} – Decari`}
+            description={metaDescription}
+            canonicalUrl={canonicalUrl}
+            ogType="local.business"
+        />
+
+        <!-- JSON-LD Structured Data -->
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(localBusinessSchema)}
+        />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(breadcrumbSchema)}
+        />
+    </head>
+    <body class="font-sans text-gray-800 bg-gray-50 antialiased">
+        <Header variant="blog-article" />
+
+        <main class="py-8 md:py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Breadcrumb
+                    items={[
+                        { label: "Startseite", href: "/" },
+                        { label: "Pflegedienste", href: "/pflegedienste/" },
+                        {
+                            label: dienst.bundesland,
+                            href: `/pflegedienste/${dienst.bundeslandSlug}/`,
+                        },
+                        {
+                            label: dienst.stadt,
+                            href: `/pflegedienste/${dienst.bundeslandSlug}/${dienst.stadtSlug}/`,
+                        },
+                        { label: dienst.companyName },
+                    ]}
+                />
+
+                <!-- Main Content Card -->
+                <article
+                    class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+                >
+                    <!-- Header -->
+                    <header class="p-6 md:p-8 border-b border-gray-100">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-teal/10 rounded-xl flex items-center justify-center"
+                            >
+                                <svg
+                                    class="w-6 h-6 md:w-8 md:h-8 text-teal"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h1
+                                    class="text-2xl md:text-3xl font-bold text-navy mb-2"
+                                >
+                                    {dienst.companyName}
+                                </h1>
+                                <div
+                                    class="flex items-center gap-2 text-gray-600"
+                                >
+                                    <svg
+                                        class="w-4 h-4 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                        ></path>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                        ></path>
+                                    </svg>
+                                    <span
+                                        >{dienst.stadt}, {
+                                            dienst.bundesland
+                                        }</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Contact Info -->
+                    <div class="p-6 md:p-8">
+                        <h2 class="text-lg font-semibold text-navy mb-4">
+                            Kontaktdaten
+                        </h2>
+                        <div class="space-y-4">
+                            <!-- Address -->
+                            {
+                                dienst.address && (
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                                            <svg
+                                                class="w-5 h-5 text-gray-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">
+                                                Adresse
+                                            </p>
+                                            <p class="text-gray-800">
+                                                {dienst.address}
+                                            </p>
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+                            <!-- Phone -->
+                            {
+                                dienst.phone && (
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                                            <svg
+                                                class="w-5 h-5 text-gray-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">
+                                                Telefon
+                                            </p>
+                                            <a
+                                                href={`tel:${dienst.phone.replace(/\s/g, "")}`}
+                                                class="text-teal hover:text-teal-light transition-colors font-medium"
+                                            >
+                                                {dienst.phone}
+                                            </a>
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+                            <!-- Email -->
+                            {
+                                dienst.email && (
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                                            <svg
+                                                class="w-5 h-5 text-gray-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">
+                                                E-Mail
+                                            </p>
+                                            <a
+                                                href={`mailto:${dienst.email}`}
+                                                class="text-teal hover:text-teal-light transition-colors font-medium break-words"
+                                            >
+                                                {dienst.email}
+                                            </a>
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+                            <!-- Website -->
+                            {
+                                dienst.website && (
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                                            <svg
+                                                class="w-5 h-5 text-gray-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">
+                                                Website
+                                            </p>
+                                            <a
+                                                href={
+                                                    dienst.website.startsWith(
+                                                        "http",
+                                                    )
+                                                        ? dienst.website
+                                                        : `https://${dienst.website}`
+                                                }
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="text-teal hover:text-teal-light transition-colors font-medium break-words"
+                                            >
+                                                {dienst.website.replace(
+                                                    /^https?:\/\//,
+                                                    "",
+                                                )}
+                                            </a>
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+                            <!-- No contact info fallback -->
+                            {
+                                !dienst.phone &&
+                                    !dienst.email &&
+                                    !dienst.website && (
+                                        <p class="text-gray-500 italic">
+                                            Keine weiteren Kontaktdaten
+                                            verfügbar.
+                                        </p>
+                                    )
+                            }
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regional Potential Section -->
+                <slot name="potential" />
+
+                <!-- CTA Section -->
+                <section
+                    class="mt-8 bg-gradient-to-br from-navy to-navy/90 rounded-2xl p-6 md:p-8 text-white"
+                >
+                    <div
+                        class="flex flex-col md:flex-row md:items-center gap-6"
+                    >
+                        <div class="flex-1">
+                            <h2 class="text-xl md:text-2xl font-bold mb-2">
+                                Sind Sie {dienst.companyName}?
+                            </h2>
+                            <p class="text-white/80">
+                                Erfahren Sie, wie viel zusätzliche
+                                Sozialleistungen Ihre Klienten nicht abrufen.
+                                Decari übernimmt die komplette Antragstellung –
+                                ohne Mehraufwand für Ihr Team.
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button
+                                onclick="window.openCalendlyPopup && window.openCalendlyPopup()"
+                                class="inline-flex items-center justify-center px-6 py-3 bg-teal text-white font-semibold rounded-lg hover:bg-teal-light transition-colors"
+                            >
+                                Termin buchen
+                            </button>
+                            <a
+                                href="/#rechner"
+                                class="inline-flex items-center justify-center px-6 py-3 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition-colors border border-white/20"
+                            >
+                                Potenzial berechnen
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Related Dienste -->
+                {
+                    relatedDienste.length > 0 && (
+                        <section class="mt-8">
+                            <h2 class="text-lg font-semibold text-navy mb-4">
+                                Weitere Pflegedienste in {dienst.stadt}
+                            </h2>
+                            <div class="grid gap-3">
+                                {relatedDienste.slice(0, 5).map((related) => (
+                                    <a
+                                        href={`/pflegedienste/${related.bundeslandSlug}/${related.stadtSlug}/${related.slug}/`}
+                                        class="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 hover:border-teal/30 hover:shadow-sm transition-all group"
+                                    >
+                                        <div class="flex items-center gap-3 min-w-0">
+                                            <div class="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-teal/10 transition-colors">
+                                                <svg
+                                                    class="w-5 h-5 text-gray-400 group-hover:text-teal transition-colors"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <span class="text-gray-800 font-medium truncate group-hover:text-teal transition-colors">
+                                                {related.companyName}
+                                            </span>
+                                        </div>
+                                        <svg
+                                            class="w-5 h-5 text-gray-400 group-hover:text-teal transition-colors flex-shrink-0"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 5l7 7-7 7"
+                                            />
+                                        </svg>
+                                    </a>
+                                ))}
+                            </div>
+                            {stadtData && stadtData.diensteCount > 5 && (
+                                <a
+                                    href={`/pflegedienste/${dienst.bundeslandSlug}/${dienst.stadtSlug}/`}
+                                    class="inline-flex items-center gap-2 mt-4 text-teal font-medium hover:text-teal-light transition-colors"
+                                >
+                                    Alle {stadtData.diensteCount} Pflegedienste
+                                    in {dienst.stadt} anzeigen
+                                    <svg
+                                        class="w-4 h-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                        />
+                                    </svg>
+                                </a>
+                            )}
+                        </section>
+                    )
+                }
+
+                <!-- Back Navigation -->
+                <div
+                    class="mt-8 pt-6 border-t border-gray-200 flex flex-wrap gap-4"
+                >
+                    <a
+                        href={`/pflegedienste/${dienst.bundeslandSlug}/${dienst.stadtSlug}/`}
+                        class="text-teal font-medium hover:text-teal-light transition-colors"
+                    >
+                        &larr; Alle Pflegedienste in {dienst.stadt}
+                    </a>
+                    <a
+                        href={`/pflegedienste/${dienst.bundeslandSlug}/`}
+                        class="text-gray-500 hover:text-teal transition-colors"
+                    >
+                        Pflegedienste in {dienst.bundesland}
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <Footer />
+
+        <CalendlyLoader />
+    </body>
+</html>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Sind Sie ein Pflegedienst?",
+  description = "Erfahren Sie, wie viel zusätzliche Sozialleistungen Ihre Klienten nicht abrufen. Decari übernimmt die komplette Antragstellung – ohne Mehraufwand für Ihr Team."
+} = Astro.props;
+---
+
+<section class="bg-gradient-to-br from-navy to-navy/90 rounded-2xl p-6 md:p-8 text-white">
+  <div class="flex flex-col md:flex-row md:items-center gap-6">
+    <div class="flex-1">
+      <h2 class="text-xl md:text-2xl font-bold mb-2">
+        {title}
+      </h2>
+      <p class="text-white/80">
+        {description}
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3">
+      <button
+        onclick="window.openCalendlyPopup && window.openCalendlyPopup()"
+        class="inline-flex items-center justify-center px-6 py-3 bg-teal text-white font-semibold rounded-lg hover:bg-teal-light transition-colors"
+      >
+        Termin buchen
+      </button>
+      <a
+        href="/#rechner"
+        class="inline-flex items-center justify-center px-6 py-3 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition-colors border border-white/20"
+      >
+        Potenzial berechnen
+      </a>
+    </div>
+  </div>
+</section>
