@@ -1,0 +1,48 @@
+---
+import PflegedienstLayout from "../../../../layouts/PflegedienstLayout.astro";
+import RegionalPotential from "../../../../components/pflegedienste/RegionalPotential.astro";
+import {
+  pflegedienste,
+  getPflegedienstStadt,
+  getStadtBySlug,
+  type Pflegedienst
+} from "../../../../data/pflegedienste";
+
+export async function getStaticPaths() {
+  return pflegedienste.map((dienst) => ({
+    params: {
+      bundesland: dienst.bundeslandSlug,
+      stadt: dienst.stadtSlug,
+      slug: dienst.slug,
+    },
+    props: { dienst },
+  }));
+}
+
+interface Props {
+  dienst: Pflegedienst;
+}
+
+const { dienst } = Astro.props;
+
+// Get related dienste in the same city (excluding current)
+const allInCity = getPflegedienstStadt(dienst.bundeslandSlug, dienst.stadtSlug);
+const relatedDienste = allInCity
+  .filter((d) => d.id !== dienst.id)
+  .slice(0, 5);
+
+// Get city data for count
+const stadtData = getStadtBySlug(dienst.bundeslandSlug, dienst.stadtSlug);
+---
+
+<PflegedienstLayout
+  dienst={dienst}
+  relatedDienste={relatedDienste}
+  stadtData={stadtData}
+>
+  <RegionalPotential
+    slot="potential"
+    stadtName={dienst.stadt}
+    diensteCount={stadtData?.diensteCount || 1}
+  />
+</PflegedienstLayout>

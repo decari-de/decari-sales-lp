@@ -1,0 +1,216 @@
+---
+import { staedte } from "../../data/pflegedienste";
+
+// Create search index as JSON for client-side use
+const searchIndex = staedte.map(stadt => ({
+  n: stadt.name,
+  b: stadt.bundesland,
+  u: `/pflegedienste/${stadt.bundeslandSlug}/${stadt.slug}/`,
+  c: stadt.diensteCount
+}));
+---
+
+<div class="relative w-full max-w-md mx-auto" id="city-search-container">
+  <div class="relative">
+    <label for="city-search-input" class="sr-only">Stadt suchen</label>
+    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+      <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+    <input
+      type="text"
+      id="city-search-input"
+      placeholder="Stadt suchen..."
+      autocomplete="off"
+      class="w-full pl-11 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal transition-colors"
+    />
+    <button
+      type="button"
+      id="city-search-clear"
+      class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 hover:text-gray-600 hidden"
+      aria-label="Suche leeren"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="city-search-results"
+    class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-lg border border-gray-100 max-h-80 overflow-y-auto hidden z-50"
+    role="listbox"
+    aria-label="Suchergebnisse"
+  >
+    <!-- Results rendered by JS -->
+  </div>
+</div>
+
+<script is:inline define:vars={{ searchIndex }}>
+(function() {
+  const input = document.getElementById('city-search-input');
+  const results = document.getElementById('city-search-results');
+  const clearBtn = document.getElementById('city-search-clear');
+
+  if (!input || !results || !clearBtn) return;
+
+  let debounceTimer;
+  const DEBOUNCE_MS = 150;
+  const MAX_RESULTS = 8;
+
+  // Simple fuzzy matching - checks if query characters appear in order
+  function fuzzyMatch(str, query) {
+    const strLower = str.toLowerCase();
+    const queryLower = query.toLowerCase();
+
+    // Exact start match gets highest score
+    if (strLower.startsWith(queryLower)) {
+      return { match: true, score: 100 };
+    }
+
+    // Contains match
+    if (strLower.includes(queryLower)) {
+      return { match: true, score: 50 };
+    }
+
+    // Character sequence match (fuzzy)
+    let strIdx = 0;
+    let queryIdx = 0;
+    let matchCount = 0;
+
+    while (strIdx < strLower.length && queryIdx < queryLower.length) {
+      if (strLower[strIdx] === queryLower[queryIdx]) {
+        matchCount++;
+        queryIdx++;
+      }
+      strIdx++;
+    }
+
+    if (queryIdx === queryLower.length) {
+      return { match: true, score: matchCount * 10 };
+    }
+
+    return { match: false, score: 0 };
+  }
+
+  function search(query) {
+    if (!query || query.length < 2) {
+      return [];
+    }
+
+    const matches = [];
+
+    for (const city of searchIndex) {
+      const nameMatch = fuzzyMatch(city.n, query);
+
+      if (nameMatch.match) {
+        matches.push({
+          ...city,
+          score: nameMatch.score + (city.c / 100) // Boost by dienste count
+        });
+      }
+    }
+
+    // Sort by score descending
+    matches.sort((a, b) => b.score - a.score);
+
+    return matches.slice(0, MAX_RESULTS);
+  }
+
+  function renderResults(items) {
+    if (items.length === 0) {
+      results.innerHTML = `
+        <div class="px-4 py-3 text-sm text-gray-500">
+          Keine Stadt gefunden
+        </div>
+      `;
+      results.classList.remove('hidden');
+      return;
+    }
+
+    results.innerHTML = items.map((item, index) => `
+      <a
+        href="${item.u}"
+        class="flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors ${index > 0 ? 'border-t border-gray-100' : ''}"
+        role="option"
+      >
+        <div class="flex items-center gap-3 min-w-0">
+          <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <div class="min-w-0">
+            <p class="font-medium text-gray-800 truncate">${item.n}</p>
+            <p class="text-xs text-gray-500">${item.b}</p>
+          </div>
+        </div>
+        <span class="text-xs text-gray-400 flex-shrink-0">${item.c} Pflegedienste</span>
+      </a>
+    `).join('');
+
+    results.classList.remove('hidden');
+  }
+
+  function hideResults() {
+    results.classList.add('hidden');
+  }
+
+  function updateClearButton() {
+    if (input.value) {
+      clearBtn.classList.remove('hidden');
+    } else {
+      clearBtn.classList.add('hidden');
+    }
+  }
+
+  // Event handlers
+  input.addEventListener('input', () => {
+    updateClearButton();
+
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const query = input.value.trim();
+
+      if (query.length < 2) {
+        hideResults();
+        return;
+      }
+
+      const items = search(query);
+      renderResults(items);
+    }, DEBOUNCE_MS);
+  });
+
+  input.addEventListener('focus', () => {
+    const query = input.value.trim();
+    if (query.length >= 2) {
+      const items = search(query);
+      renderResults(items);
+    }
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    hideResults();
+    updateClearButton();
+    input.focus();
+  });
+
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    const container = document.getElementById('city-search-container');
+    if (container && !container.contains(e.target)) {
+      hideResults();
+    }
+  });
+
+  // Keyboard navigation
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hideResults();
+      input.blur();
+    }
+  });
+})();
+</script>

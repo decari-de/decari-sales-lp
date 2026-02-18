@@ -1,0 +1,53 @@
+---
+import { calculateRegionalPotential, formatCurrency } from "../../utils/potentialCalculator";
+
+interface Props {
+  stadtName: string;
+  diensteCount: number;
+}
+
+const { stadtName, diensteCount } = Astro.props;
+const potential = calculateRegionalPotential(stadtName, diensteCount);
+---
+
+<section class="mt-8 bg-gradient-to-br from-teal/5 to-teal/10 rounded-2xl p-6 md:p-8 border border-teal/20">
+  <div class="flex items-start gap-4 mb-6">
+    <div class="flex-shrink-0 w-12 h-12 bg-teal/20 rounded-xl flex items-center justify-center">
+      <svg class="w-6 h-6 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      </svg>
+    </div>
+    <div>
+      <h2 class="text-xl font-bold text-navy">
+        Ungenutztes Potenzial in {stadtName}
+      </h2>
+      <p class="text-gray-600 mt-1">
+        Geschätzte Sozialleistungen, die nicht abgerufen werden
+      </p>
+    </div>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-4 mb-6">
+    <div class="bg-white rounded-xl p-4 border border-gray-100">
+      <p class="text-sm text-gray-500 mb-1">Monatliches Potenzial</p>
+      <p class="text-2xl md:text-3xl font-bold text-teal">
+        {formatCurrency(potential.monthlyPotential)}
+      </p>
+    </div>
+    <div class="bg-white rounded-xl p-4 border border-gray-100">
+      <p class="text-sm text-gray-500 mb-1">Jährliches Potenzial</p>
+      <p class="text-2xl md:text-3xl font-bold text-navy">
+        {formatCurrency(potential.yearlyPotential)}
+      </p>
+    </div>
+  </div>
+
+  <p class="text-gray-700">
+    {potential.description}
+  </p>
+
+  <p class="text-sm text-gray-500 mt-4">
+    * Basierend auf Durchschnittswerten für ambulante Pflegedienste in Deutschland.
+    Tatsächliches Potenzial kann variieren.
+  </p>
+</section>
