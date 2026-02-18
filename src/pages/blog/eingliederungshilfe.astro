@@ -1,0 +1,21 @@
+---
+import BlogArticleLayout from "../../layouts/BlogArticleLayout.astro";
+import articleContent from "../../content/blog-eingliederungshilfe.html?raw";
+
+const cleanContent = articleContent
+    .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, "")
+    .replace(/<header class="mb-10">[\s\S]*?<\/header>/, "")
+    .replace(/<div class="mt-16 bg-teal[\s\S]*?<\/div>/, "")
+    .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, "");
+---
+
+<BlogArticleLayout
+    title="Eingliederungshilfe: Der unterschätzte Umsatzhebel für ambulante Pflegedienste"
+    description="71.190 € Vermögensfreibetrag, Partnereinkommen wird nicht herangezogen, 50–80 € pro Fachleistungsstunde: Warum Eingliederungshilfe nach SGB IX der größte blinde Fleck der ambulanten Pflege ist."
+    category="SGB IX"
+    breadcrumbTitle="Eingliederungshilfe"
+    slug="eingliederungshilfe"
+    publishedDate="2026-02-18"
+>
+    <Fragment set:html={cleanContent} />
+</BlogArticleLayout>

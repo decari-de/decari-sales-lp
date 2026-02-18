@@ -1,0 +1,21 @@
+---
+import BlogArticleLayout from "../../layouts/BlogArticleLayout.astro";
+import articleContent from "../../content/blog-37-3-beratungsbesuche.html?raw";
+
+const cleanContent = articleContent
+    .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, "")
+    .replace(/<header class="mb-10">[\s\S]*?<\/header>/, "")
+    .replace(/<div class="mt-16 bg-teal[\s\S]*?<\/div>/, "")
+    .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, "");
+---
+
+<BlogArticleLayout
+    title="§37.3-Beratungsbesuche: Vom Pflichttermin zum Akquise-Instrument"
+    description="3,1 Millionen Pflegegeld-Empfänger brauchen regelmäßig einen Beratungsbesuch. Warum §37.3 das wertvollste Akquise-Tool der ambulanten Pflege ist – und wie Sie es strategisch nutzen."
+    category="SGB XI"
+    breadcrumbTitle="§37.3-Beratungsbesuche"
+    slug="37-3-beratungsbesuche"
+    publishedDate="2026-02-18"
+>
+    <Fragment set:html={cleanContent} />
+</BlogArticleLayout>

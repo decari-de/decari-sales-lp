@@ -1,0 +1,21 @@
+---
+import BlogArticleLayout from "../../layouts/BlogArticleLayout.astro";
+import articleContent from "../../content/blog-vermoegensgrenzen-hzp.html?raw";
+
+const cleanContent = articleContent
+    .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, "")
+    .replace(/<header class="mb-10">[\s\S]*?<\/header>/, "")
+    .replace(/<div class="mt-16 bg-teal[\s\S]*?<\/div>/, "")
+    .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, "");
+---
+
+<BlogArticleLayout
+    title="Vermögensgrenzen bei Hilfe zur Pflege: Großzügiger als gedacht"
+    description="Der häufigste Einwand gegen Hilfe zur Pflege: 'Die haben zu viel Vermögen.' Die Realität: Die effektive Grenze liegt oft bei über 100.000 €. Alle Freibeträge im Überblick."
+    category="SGB XII"
+    breadcrumbTitle="Vermögensgrenzen HzP"
+    slug="vermoegensgrenzen-hzp"
+    publishedDate="2026-02-18"
+>
+    <Fragment set:html={cleanContent} />
+</BlogArticleLayout>
