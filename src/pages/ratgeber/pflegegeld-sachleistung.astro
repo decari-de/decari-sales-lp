@@ -1,6 +1,6 @@
 ---
-import BlogArticleLayout from "../../layouts/BlogArticleLayout.astro";
-import articleContent from "../../content/blog-pflegegeld-sachleistung.html?raw";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import articleContent from "../../content/ratgeber-pflegegeld-sachleistung.html?raw";
 
 // Remove header, breadcrumb, and CTA from the extracted content
 const cleanContent = articleContent
@@ -10,7 +10,7 @@ const cleanContent = articleContent
     .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, "");
 ---
 
-<BlogArticleLayout
+<ArticleLayout
     title="Pflegegeld zur Sachleistung: So steigern Pflegedienste ihren Umsatz pro Patient"
     description="Warum viele Patienten auf Pflegegeld als Einkommen angewiesen sind – und wie vorrangige Sozialleistungen das Problem lösen. Mit konkreten Zahlen und Rechenbeispielen."
     category="Finanzierung"
@@ -19,4 +19,4 @@ const cleanContent = articleContent
     publishedDate="2026-02-18"
 >
     <Fragment set:html={cleanContent} />
-</BlogArticleLayout>
+</ArticleLayout>

@@ -26,42 +26,39 @@ npm run preview  # Preview des Builds
 ```
 src/
 ├── components/
-│   ├── Header.astro    # Header mit variant-Prop (home|blog-index|blog-article|404)
-│   └── Footer.astro
+│   ├── Header.astro    # Einheitlicher Header (fixed, Glasmorphismus, Mobile-Menu)
+│   ├── Footer.astro
+│   └── Disclaimer.astro # Haftungsausschluss für Ratgeber-Artikel
 ├── layouts/
-│   ├── BaseLayout.astro        # Hauptlayout mit SEO, Fonts, Calendly, Cookie-Banner
-│   └── BlogArticleLayout.astro # Blog-Artikel mit Breadcrumb
+│   ├── BaseLayout.astro    # Hauptlayout mit SEO, Fonts, Calendly, Cookie-Banner
+│   └── ArticleLayout.astro # Ratgeber-Artikel mit Breadcrumb, Disclaimer, CTA
 ├── pages/
 │   ├── index.astro
 │   ├── 404.astro
 │   ├── impressum.astro
 │   ├── datenschutz.astro
-│   └── blog/
+│   └── ratgeber/
 │       ├── index.astro
 │       ├── sgb-xii-hilfe-zur-pflege.astro
 │       ├── warum-mehr-klienten-nicht-die-loesung-ist.astro
-│       └── mitarbeiterbindung-pflege.astro
-├── content/        # Raw HTML-Imports (?raw Suffix)
+│       ├── mitarbeiterbindung-pflege.astro
+│       ├── pflegegeld-sachleistung.astro
+│       ├── angebotskuerzung.astro
+│       ├── vermoegensgrenzen-hzp.astro
+│       ├── eingliederungshilfe.astro
+│       ├── 37-3-beratungsbesuche.astro
+│       └── scham-sozialleistungen.astro
+├── content/        # Raw HTML-Imports (?raw Suffix, Präfix: ratgeber-*)
 └── styles/
     └── global.css  # Tailwind + Custom CSS
 
 public/
 ├── assets/         # Bilder (Logo, Favicon, Ursula)
 ├── js/             # Potenzialrechner
+├── _redirects      # 301-Redirects /blog/ → /ratgeber/ (Cloudflare Pages)
 ├── robots.txt
 └── sitemap.xml
 ```
-
-## Header-Varianten
-
-Die Header-Komponente akzeptiert einen `variant`-Prop:
-
-| Variant | Verhalten |
-|---------|-----------|
-| `home` | Fixed, Glasmorphismus, Mobile-Menu, Calendly-Popup |
-| `blog-index` | Statisch, Links zu Startseite/Rechner |
-| `blog-article` | Statisch, Link zum Blog |
-| `404` | Minimal, nur "Zur Startseite" Button |
 
 ## Farben (Tailwind)
 
@@ -77,11 +74,12 @@ Die Header-Komponente akzeptiert einen `variant`-Prop:
 
 ## Wichtige Hinweise
 
-- Blog-Inhalte liegen als Raw-HTML in `src/content/` und werden mit `?raw` importiert
+- Ratgeber-Inhalte liegen als Raw-HTML in `src/content/ratgeber-*.html` und werden mit `?raw` importiert
 - Potenzialrechner ist Vanilla JS in `public/js/potenzialrechner.js`
 - Scripts die auf public/ Assets zugreifen brauchen `is:inline` Direktive
 - Cookie-Banner wird in BaseLayout.astro gerendert (localStorage für Dismiss-Status)
 - Kein Analytics aktiv (kein PostHog, kein Google Analytics)
+- Alte `/blog/`-URLs werden per `public/_redirects` auf `/ratgeber/` umgeleitet (301)
 
 ## Deployment
 

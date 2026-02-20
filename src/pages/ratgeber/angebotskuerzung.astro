@@ -1,6 +1,6 @@
 ---
-import BlogArticleLayout from "../../layouts/BlogArticleLayout.astro";
-import articleContent from "../../content/blog-angebotskuerzung.html?raw";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import articleContent from "../../content/ratgeber-angebotskuerzung.html?raw";
 
 const cleanContent = articleContent
     .replace(/<nav class="text-sm text-gray-500 mb-6">[\s\S]*?<\/nav>/, "")
@@ -9,7 +9,7 @@ const cleanContent = articleContent
     .replace(/<div class="mt-12 pt-8[\s\S]*?<\/div>/, "");
 ---
 
-<BlogArticleLayout
+<ArticleLayout
     title="Warum Pflegeangebote gekürzt werden – und was Ihr Pflegedienst dagegen tun kann"
     description="55,9 % aller Pflegebedürftigen wählen reines Pflegegeld, nur 3,3 % reine Sachleistung. Warum Klienten Angebote kürzen und wie Sie als Pflegedienst die Finanzierungsbrücke bauen."
     category="Strategie"
@@ -18,4 +18,4 @@ const cleanContent = articleContent
     publishedDate="2026-02-18"
 >
     <Fragment set:html={cleanContent} />
-</BlogArticleLayout>
+</ArticleLayout>
