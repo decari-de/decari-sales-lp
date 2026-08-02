@@ -1,10 +1,15 @@
-/blog/ /ratgeber/ 301
-/blog/sgb-xii-hilfe-zur-pflege/ /ratgeber/sgb-xii-hilfe-zur-pflege/ 301
-/blog/pflegegeld-sachleistung/ /ratgeber/pflegegeld-sachleistung/ 301
-/blog/warum-mehr-klienten-nicht-die-loesung-ist/ /ratgeber/warum-mehr-klienten-nicht-die-loesung-ist/ 301
-/blog/mitarbeiterbindung-pflege/ /ratgeber/mitarbeiterbindung-pflege/ 301
-/blog/angebotskuerzung/ /ratgeber/angebotskuerzung/ 301
-/blog/vermoegensgrenzen-hzp/ /ratgeber/vermoegensgrenzen-hzp/ 301
-/blog/eingliederungshilfe/ /ratgeber/eingliederungshilfe/ 301
-/blog/37-3-beratungsbesuche/ /ratgeber/37-3-beratungsbesuche/ 301
-/blog/scham-sozialleistungen/ /ratgeber/scham-sozialleistungen/ 301
+# Alt-Auftritt abgelöst (decari-de/decari-website#122, 02.08.2026).
+# partner.decari.de gehört nicht zur Sitemap des Relaunches; die Zielgruppe
+# läuft jetzt über decari.de/fuer-pflegedienste. Deshalb pauschal 301 dorthin
+# — inklusive /ratgeber/* und der alten /blog/*-Slugs (Search Console, 12
+# Monate: alle Artikel 0 Klicks, Startseite 7, /datenschutz/ 1 — kein Grund
+# für artikelgenaues Mapping).
+#
+# Wichtig: Pages-Projekt "decari-sales-lp" und der (proxied) DNS-Record für
+# partner.decari.de MÜSSEN bestehen bleiben — der 301 wird von genau diesem
+# Deployment ausgeliefert. Record löschen = NXDOMAIN statt Redirect.
+#
+# Der Splat gewinnt in Cloudflare Pages auch gegen vorhandene Assets
+# (index.html, /ratgeber/…, robots.txt, sitemap-index.xml) — am 02.08.2026
+# gegen ein Wegwerf-Pages-Projekt verifiziert.
+/*  https://decari.de/fuer-pflegedienste  301
